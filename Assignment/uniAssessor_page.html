@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>University Assessor Page</title>
+        <link rel="stylesheet" href="Uniassess.css">
+    </head>
+    <body>
+        <header>
+            <h1 id="title">Internship Grading</h1>
+        </header>
+        <form id="searchbar">
+            <h3 id="Searchtitle">Search (Student ID/Name):</h3>
+            <input class="inputbox" type="text" id="student_ID" placeholder="Enter Student ID; e.g. 1000234">
+            <input class="inputbox" type="text" id="student_name" placeholder="Enter Student's Full Name">
+            <button class="searchbtn">Search</button>
+            <button class="searchbtn">Clear</button>
+        </form>
+        <main>
+            <section id="internDET">
+                <h2>Internship Details</h2>
+                <p>Student ID&emsp;<span>Empty</span>&emsp;&emsp;&emsp;Student Name&emsp;<span>Empty</span></p>
+                <p>Internship ID&emsp;<span>None</span>&emsp;&emsp;&emsp;Company Code&emsp;<span>None</span></p>
+                <p>Start Date&emsp;<span>Unknown</span>&emsp;&emsp;&emsp;End Date&emsp;<span>Unknown</span></p>
+                <p>Industry Marks&emsp;<span>0</span>&emsp;&emsp;&emsp;University Marks&emsp;<span>0</span></p>
+            </section>
+            <section>
+                <article id="tableContainer">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Internship ID</th>
+                                <th>Student ID</th>
+                                <th>Student name</th>
+                                <th>Company Name</th>
+                                <th>UTP</th>
+                                <th>UTP Feedback</th>
+                                <th>HSR</th>
+                                <th>HSR Feedback</th>
+                                <th>CUTK</th>
+                                <th>CUTK Feedback</th>
+                                <th>PR</th>
+                                <th>PR Feedback</th>
+                                <th>CLI</th>
+                                <th>CLI Feedback</th>
+                                <th>LLA</th>
+                                <th>LLA Feedback</th>
+                                <th>PM</th>
+                                <th>PM Feedback</th>
+                                <th>TM</th>
+                                <th>TM Feedback</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </article>
+            </section>
+        </main>
+        <script>
+            const params = new URLSearchParams(window.location.search);
+            if (params.get("login") == "success") {
+                alert("Login successful! Welcome!");
+                // Clean the URL so refreshing doesn't re-trigger the alert
+                window.history.replaceState({}, document.title, window.location.pathname);
+            }
+        </script>
+    </body>
+</html>

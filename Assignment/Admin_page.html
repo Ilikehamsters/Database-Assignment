@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Admin Page</title>
+        <link rel="stylesheet" href="Admin.css">
+    </head>
+    <body>
+        <main>
+            <section>
+                <h2>Select your function:</h2>
+                <a href="User_Access.html">
+                    <article>
+                        <p>User Access</p>
+                    </article>
+                </a>
+                <a href="Student_Profile.html">
+                    <article>
+                        <p>Student Profile</p>
+                    </article>
+                </a>
+                <a href="Ext_Assessor.html">
+                    <article>
+                        <p>Industrial Assessor Management</p>
+                    </article>
+                </a>
+                <a href="Intern_Manage.html">
+                    <article>
+                        <p>Internship Management</p>
+                    </article>
+                </a>
+            </section>
+        </main>
+        <script>
+            const params = new URLSearchParams(window.location.search);
+            if (params.get("login") == "success") {
+                alert("Login successful! Welcome!");
+                // Clean the URL so refreshing doesn't re-trigger the alert
+                window.history.replaceState({}, document.title, window.location.pathname);
+            }
+        </script>
+    </body>
+</html>

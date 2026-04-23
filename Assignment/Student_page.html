@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Student Page</title>
+    </head>
+    <body>
+
+        <script>
+            const params = new URLSearchParams(window.location.search);
+            if (params.get("login") == "success") {
+                alert("Login successful! Welcome!");
+                // Clean the URL so refreshing doesn't re-trigger the alert
+                window.history.replaceState({}, document.title, window.location.pathname);
+            }
+        </script>
+    </body>
+</html>
