@@ -10,50 +10,37 @@
         </header>
         <form id="searchbar">
             <h3 id="Searchtitle">Search (Student ID/Name):</h3>
-            <input class="inputbox" type="text" id="student_ID" placeholder="Enter Student ID; e.g. 1000234">
-            <input class="inputbox" type="text" id="student_name" placeholder="Enter Student's Full Name">
+            <input class="inputbox" type="search" id="student_ID" name="StudentID" value="" placeholder="Enter Student ID; e.g. 1000234">
+            <input class="inputbox" type="search" id="student_name" name="StudentName" value="" placeholder="Enter Student's Full Name">
             <button class="searchbtn">Search</button>
             <button class="searchbtn">Clear</button>
         </form>
         <main>
-            <section id="internDET">
-                <h2>Internship Details</h2>
-                <p>Student ID&emsp;<span>Empty</span>&emsp;&emsp;&emsp;Student Name&emsp;<span>Empty</span></p>
-                <p>Internship ID&emsp;<span>None</span>&emsp;&emsp;&emsp;Company Code&emsp;<span>None</span></p>
-                <p>Start Date&emsp;<span>Unknown</span>&emsp;&emsp;&emsp;End Date&emsp;<span>Unknown</span></p>
-                <p>Industry Marks&emsp;<span>0</span>&emsp;&emsp;&emsp;University Marks&emsp;<span>0</span></p>
+            <section class="infoContainer">
+                <h2 class="infoTitle">Internship Details</h2>
+                <p class="internInfo">Student ID&emsp;<span>Empty</span>&emsp;&emsp;&emsp;Student Name&emsp;<span>Empty</span></p>
+                <p class="internInfo">Internship ID&emsp;<span>None</span>&emsp;&emsp;&emsp;Company Code&emsp;<span>None</span></p>
+                <p class="internInfo">Start Date&emsp;<span>Unknown</span>&emsp;&emsp;&emsp;End Date&emsp;<span>Unknown</span></p>
+                <p class="internInfo">Industry Marks&emsp;<span>0</span>&emsp;&emsp;&emsp;University Marks&emsp;<span>0</span></p>
+                <p class="internInfo">Total Internship Marks&emsp;<span>0</span></p>
             </section>
-            <section>
-                <article id="tableContainer">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Internship ID</th>
-                                <th>Student ID</th>
-                                <th>Student name</th>
-                                <th>Company Name</th>
-                                <th>UTP</th>
-                                <th>UTP Feedback</th>
-                                <th>HSR</th>
-                                <th>HSR Feedback</th>
-                                <th>CUTK</th>
-                                <th>CUTK Feedback</th>
-                                <th>PR</th>
-                                <th>PR Feedback</th>
-                                <th>CLI</th>
-                                <th>CLI Feedback</th>
-                                <th>LLA</th>
-                                <th>LLA Feedback</th>
-                                <th>PM</th>
-                                <th>PM Feedback</th>
-                                <th>TM</th>
-                                <th>TM Feedback</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                        </tbody>
-                    </table>
-                </article>
+            <section class="infoContainer">
+                <h2 class="infoTitle">Industrial Supervisor Marks</h2>
+                <p class="markInfo">UTP&emsp;<span>0</span>&emsp;&emsp;&emsp;Feedback&emsp;<span>N/A</span></p>
+                <p class="markInfo">HSR&emsp;<span>0</span>&emsp;&emsp;&emsp;Feedback&emsp;<span>N/A</span></p>
+                <p class="markInfo">CUTK&emsp;<span>0</span>&emsp;&emsp;&emsp;Feedback&emsp;<span>N/A</span></p>
+                <p class="markInfo">PR&emsp;<span>0</span>&emsp;&emsp;&emsp;Feedback&emsp;<span>N/A</span></p>
+                <p class="markInfo">CLI&emsp;<span>0</span>&emsp;&emsp;&emsp;Feedback&emsp;<span>N/A</span></p>
+                <p class="markInfo">LLA&emsp;<span>0</span>&emsp;&emsp;&emsp;Feedback&emsp;<span>N/A</span></p>
+                <p class="markInfo">PM&emsp;<span>0</span>&emsp;&emsp;&emsp;Feedback&emsp;<span>N/A</span></p>
+                <p class="markInfo">TM&emsp;<span>0</span>&emsp;&emsp;&emsp;Feedback&emsp;<span>N/A</span></p>
+            </section>
+            <section class="infoContainer">
+                <h2 class="infoTitle">University Assessor Marks</h2>
+                <form>
+                    <label for="UTP">UTP</label>
+                    <input type="number" name="UTP" value="0">
+                </form>
             </section>
         </main>
         <script>
