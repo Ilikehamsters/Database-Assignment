@@ -156,9 +156,18 @@
                 </form>
             </section>
             <article>
-                <input id="prevNAV" type="image" src="left arrow.svg" alt="Previous" name="Previous">
-                <span id="recordCount">100</span>
-                <input id="nextNAV" type="image" src="right arrow.svg" alt="Next" name="Next">
+                <table id="navposition">
+                    <tr>
+                        <td><button type="button"><img src="left arrow.svg" alt="Previous button" id="prevNAV"></button></td>
+                        <td id="recordCount">1</td>
+                        <td><button type="button"><img src="right arrow.svg" alt="Next button" id="nextNAV"></button></td>
+                    </tr>
+                    <tr>
+                        <td class="navlabel">Previous</td>
+                        <td></td>
+                        <td class="navlabel">Next</td>
+                    </tr>
+                </table>
             </article>
         </main>
         <script>
@@ -168,6 +177,29 @@
                 // Clean the URL so refreshing doesn't re-trigger the alert
                 window.history.replaceState({}, document.title, window.location.pathname);
             }
+            let count = 1;
+            const leftnav = document.getElementById("prevNAV");
+            const rightnav = document.getElementById("nextNAV");
+            const counter = document.getElementById("recordCount");
+            function DECrecordNum() {
+                count--;
+                if (count < 1) {
+                    count = 1;
+                    counter.textContent = count;
+                }
+                else {
+                    counter.textContent = count;
+                }
+            }
+            function ADDrecordNum() {
+                count++;
+                counter.textContent = count;
+            }
+
+            leftnav.addEventListener("click", DECrecordNum);
+            rightnav.addEventListener("click", ADDrecordNum);
+
+
         </script>
     </body>
 </html>
