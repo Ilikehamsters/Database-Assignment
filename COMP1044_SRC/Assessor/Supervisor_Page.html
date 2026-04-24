@@ -52,62 +52,7 @@
                 </table>
             </section>
             <section class="infoContainer">
-                <h2 class="infoTitle">Industrial Supervisor Marks</h2>
-
-                <table>
-                    <thead>
-                        <tr>
-                            <th></th>
-                            <th>Marks</th>
-                            <th class="tsecondHalf">Remarks</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>UTP:</td>
-                            <td class="indMark">0</td>
-                            <td class="tsecondHalf">N/A</td>
-                        </tr>
-                        <tr>
-                            <td>HSR:</td>
-                            <td class="indMark">0</td>
-                            <td class="tsecondHalf">N/A</td>
-                        </tr>
-                        <tr>
-                            <td>CUTK:</td>
-                            <td class="indMark">0</td>
-                            <td class="tsecondHalf">N/A</td>
-                        </tr>
-                        <tr>
-                            <td>PR:</td>
-                            <td class="indMark">0</td>
-                            <td class="tsecondHalf">N/A</td>
-                        </tr>
-                        <tr>
-                            <td>CLI:</td>
-                            <td class="indMark">0</td>
-                            <td class="tsecondHalf">N/A</td>
-                        </tr>
-                        <tr>
-                            <td>LLA:</td>
-                            <td class="indMark">0</td>
-                            <td class="tsecondHalf">N/A</td>
-                        </tr>
-                        <tr>
-                            <td>PM:</td>
-                            <td class="indMark">0</td>
-                            <td class="tsecondHalf">N/A</td>
-                        </tr>
-                        <tr>
-                            <td>TM:</td>
-                            <td class="indMark">0</td>
-                            <td class="tsecondHalf">N/A</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </section>
-            <section class="infoContainer">
-                <h2 class="infoTitle">Marking Submition</h2>
+                <h2 class="infoTitle">Marking Submission</h2>
                 <form method="post">
                     <table>
                         <tr>
@@ -157,20 +102,6 @@
                     </table>
                 </form>
             </section>
-            <article>
-                <table id="navposition">
-                    <tr>
-                        <td><button type="button"><img src="../Assets/LeftArrow.svg" alt="Previous button" id="prevNAV"></button></td>
-                        <td id="recordCount">1</td>
-                        <td><button type="button"><img src="../Assets/RightArrow.svg" alt="Next button" id="nextNAV"></button></td>
-                    </tr>
-                    <tr>
-                        <td class="navlabel">Previous</td>
-                        <td></td>
-                        <td class="navlabel">Next</td>
-                    </tr>
-                </table>
-            </article>
         </main>
         <script>
             const params = new URLSearchParams(window.location.search);
@@ -179,29 +110,6 @@
                 // Clean the URL so refreshing doesn't re-trigger the alert
                 window.history.replaceState({}, document.title, window.location.pathname);
             }
-            let count = 1;
-            const leftnav = document.getElementById("prevNAV");
-            const rightnav = document.getElementById("nextNAV");
-            const counter = document.getElementById("recordCount");
-            function DECrecordNum() {
-                count--;
-                if (count < 1) {
-                    count = 1;
-                    counter.textContent = count;
-                }
-                else {
-                    counter.textContent = count;
-                }
-            }
-            function ADDrecordNum() {
-                count++;
-                counter.textContent = count;
-            }
-
-            leftnav.addEventListener("click", DECrecordNum);
-            rightnav.addEventListener("click", ADDrecordNum);
-
-
         </script>
     </body>
 </html>

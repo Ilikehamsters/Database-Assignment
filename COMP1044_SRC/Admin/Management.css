@@ -8,20 +8,22 @@ body {
     max-width: 1400px;
     margin: 50px auto;
     margin-left: 35px;
+    font-family:Arial, Helvetica, sans-serif;
 }
 
 #title {
-    font-size: 50px;
+    font-size: 35px;
     color: darkblue;
-    padding-bottom: 10px;
+    margin-bottom: 1%;
 }
 
 #searchbar {
     background-color: white;
-    padding: 24px;
+    padding: 10px;
     border-radius: 12px;
     box-shadow: 0 1px 3px rgba(0,0,0,0.1);
     border: 1px solid rgb(237, 237, 237);
+    margin-top: 0;
     margin-bottom: 24px;
     display: flex;
     flex-direction: horizontal;
@@ -29,6 +31,10 @@ body {
     align-items: flex-end;
     gap: 20px;
     flex-wrap: wrap;
+}
+
+#Searchtitle {
+    padding-left: 10px;
 }
 
 .inputbox {
@@ -61,7 +67,6 @@ body {
 }
 
 #tableContainer {
-    background: blue;
     border-radius: 12px;
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
     border: 1px solid black;
@@ -74,13 +79,14 @@ table {
     text-align: left;
 }
 
-th {
-    background-color: #f8fafc;
+thead {
     color: rgb(19, 89, 159);
-    font-weight: 600;
+    background-color: #b8d8f9;
+}
+
+th {
+    font-weight: bold;
     font-size: 16px;
-    font-family: "Times New Roman", serif;
-    text-transform: uppercase;
     letter-spacing: 1px;
     padding: 18px;
     border-bottom: 1px solid black;
@@ -96,6 +102,6 @@ tr:last-child td {
     border-bottom: none;
 }
 
-tr:hover {
+tbody:hover {
     background-color: #f1f5f9;
 }

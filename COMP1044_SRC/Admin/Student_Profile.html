@@ -2,7 +2,7 @@
 <html>
     <head>
         <title>Student Profile Page</title>
-        <link rel="stylesheet" href="Student_Profile.css">
+        <link rel="stylesheet" href="Management.css">
     </head>
     <body>
         <header>
@@ -10,13 +10,14 @@
         </header>
         <form id="searchbar">
             <h3>Search (Student ID/Name):</h3>
-            <input class="inputbox" type="text" id="student_ID" placeholder="Enter Student ID; e.g. 1000234">
-            <input class="inputbox" type="text" id="student_name" placeholder="Enter Student's Full Name">
+            <input class="inputbox" type="number" id="student_ID" placeholder="Enter Student ID; e.g. 1000234">
+            <input class="inputbox" type="search" id="student_name" placeholder="Enter Student's Full Name">
             <button class="searchbtn">Search</button>
             <button class="searchbtn">Clear</button>
         </form>
         <main>
             <section>
+                <button id="addbtn">ADD +</button>
                 <article id="tableContainer">
                     <table>
                         <thead>
@@ -29,13 +30,27 @@
                                 <th>Contact No.</th>
                                 <th>Enroll date</th>
                                 <th>Email</th>
+                                <th colspan="2"></th>
                             </tr>
                         </thead>
                         <tbody>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>James</td>
+                            <td>Male</td>
+                            <td>Data Science</td>
+                            <td>+605453453</td>
+                            <td>2025-02-01</td>
+                            <td>James@gmail.com</td>
+                            <td><button>Modify</button></td>
+                            <td><button>Delete</button></td>
                         </tbody>
                     </table>
                 </article>
             </section>
         </main>
+        <script>
+
+        </script>
     </body>
 </html>
