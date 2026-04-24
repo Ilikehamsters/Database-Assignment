@@ -253,7 +253,7 @@ INSERT INTO `uni_staff` (`Staff_ID`, `User_ID`, `Position_Code`, `Full_Name`, `E
 
 CREATE TABLE `user_login` (
   `User_ID` int(11) NOT NULL,
-  `Username` varchar(8) NOT NULL,
+  `Username` varchar(12) NOT NULL,
   `Password` varchar(255) DEFAULT NULL,
   `Role` enum('Student','Admin','uniAssessor','indSuperv') DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;

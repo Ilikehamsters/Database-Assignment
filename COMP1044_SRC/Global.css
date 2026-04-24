@@ -241,3 +241,32 @@ td, th {
     font-weight: bold;
     color: #444;
 }
+
+.logoutIcon {
+    width: 30px;
+    height: 30px;
+    margin-left: 0;
+    filter: brightness(0) invert(1);
+}
+
+.logoutbtn {
+    display: flex;
+    align-items: center;
+    background-color: red;
+    color: white;
+    border: 1px transparent;
+    border-radius: 15px;
+    font-weight: bold;
+    font-size: 18px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    padding-left: 5px;
+    padding-right: 15px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.logoutbtn:hover {
+    background-color: rgb(217, 2, 2);
+    transform: translateY(-1px);
+    cursor: pointer;
+}
