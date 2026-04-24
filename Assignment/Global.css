@@ -2,11 +2,76 @@
     box-sizing: border-box;
 }
 
+.navbar {
+    background-color: white;
+    padding: 12px 5%;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid rgb(237, 237, 237);
+
+    position: fixed; /* to make it follow scroll */
+    top: 0; /* position it starting from top left corner  */
+    left: 0;
+    width: 100%; /* to span the entire left to right */
+    z-index: 1000; /* This guarantees the navbar stays on top of everything else as you scroll */
+
+    display: flex;
+    justify-content: space-between; /* to separate into lefthand and righthand side */
+    align-items: center;
+}
+
+.nav-left {
+    display: flex;
+    align-items: center;
+    gap: 40px; /* space between the logo and the links */
+}
+
+.nav-logo {
+    height: 50px; /* set the umn logo size */
+    width: auto;
+}
+
+.nav-links {
+    list-style: none; /* get rid of the bullet point */
+    display: flex;
+    gap: 25px; /* space between each link */
+    margin: 0;
+    padding: 0;
+}
+
+.nav-links li a {
+    text-decoration: none; /* get rid of the default underline */
+    color: #333;
+    font-size: 18px;
+    font-weight: bold;
+    padding-bottom: 5px;
+}
+
+.nav-links li a:hover {
+    color: rgb(23, 23, 152);
+}
+
+/* for selected/active/current page */
+.nav-links li a.active {
+    color: rgb(23, 23, 152);
+    border-bottom: 3px solid rgb(23, 23, 152);
+}
+
+.nav-right a.logout-text {
+    text-decoration: none;
+    color: #d9534f;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.nav-right a.logout-text:hover {
+    text-decoration: underline; /* underline text on hover */
+}
+
 body {
     background-color: #f8fafc;
     width: 95%;
     max-width: 1400px;
-    margin: 50px auto;
+    margin: 100px auto; /* 100px top so that the nav bar doesn't block the text, auto everything else aka left/right/bottom */
     font-family: Arial, Helvetica, sans-serif;
 }
 
