@@ -26,7 +26,7 @@
         <!-- righthand side of the nav bar -->
         <div class="nav-right">
             <!-- for user to log out -->
-            <a href="../Login_page.html" class="logout-text">Log Out</a>
+            <a href="../Login_page.html" class="logout-text"><button type="button" class="logoutbtn"><img src="../Assets/Logout.png" class="logoutIcon">Logout</button></a>
         </div>
     </nav>
 </header>
