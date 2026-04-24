@@ -1,3 +1,13 @@
+<?php
+session_start();
+
+//check if the user is logged in and they're the right role.
+if (!isset($_SESSION['User_ID']) || $_SESSION['Role'] !== 'Admin') {
+    //if no then bring the user to the login page.
+    header("Location: ../Login_Page.php");
+    exit();
+}
+?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -16,7 +26,7 @@
                     <!-- all the lefthand side links -->
                     <ul class="nav-links">
                         <!-- from top to bottom: main page, user management, internship management, result viewing, student profiles -->
-                        <li><a href="Admin_page.html" class="active">Home</a></li>
+                        <li><a href="Admin_Page.php" class="active">Home</a></li>
                         <li><a href="User_Access.html">Manage User</a></li>
                         <li><a href="Internship_Management.html">Manage Internship</a></li>
                         <li><a href="../Result_Viewing.html">View Results</a></li>
@@ -27,7 +37,7 @@
                 <!-- righthand side of the nav bar -->
                 <div class="nav-right">
                     <!-- for user to log out -->
-                    <a href="../Login_page.html" class="logout-text"><button type="button" class="logoutbtn"><img src="../Assets/Logout.png" class="logoutIcon">Logout</button></a>
+                    <a href="../Logout.php" class="logout-text"><button type="button" class="logoutbtn"><img src="../Assets/Logout.png" class="logoutIcon">Logout</button></a>
                 </div>
             </nav>
         </header>
@@ -87,6 +97,9 @@
             if (params.get("login") == "success") {
                 alert("Login successful! Welcome!");
                 // Clean the URL so refreshing doesn't re-trigger the alert
+                window.history.replaceState({}, document.title, window.location.pathname);
+            } else if (params.get("redirect") == "success") {
+                alert("You've been redirected to the home page as you are still logged in to an account.");
                 window.history.replaceState({}, document.title, window.location.pathname);
             }
         </script>

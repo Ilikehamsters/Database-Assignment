@@ -1,45 +1,67 @@
 <?php
+//start the session.
 session_start();
-$conn = new mysqli("localhost", "root", "root", "internship_db");
+//connect to the database.
+require_once 'global.php';
 
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+//check if the user is already logged in.
+if (isset($_SESSION['Role'])) {
+    //if yes then redirect them to the homepage based on the role.
+    match($_SESSION['Role']) {
+        'Student'     => header("Location: Student/Student_Page.php?redirect=success"),
+        'Admin'       => header("Location: Admin/Admin_Page.php?redirect=success"),
+        'uniAssessor' => header("Location: Assessor/Lecturer_Page.php?redirect=success"),
+        'indSuperv'   => header("Location: Assessor/Supervisor_Page.php?redirect=success"),
+    };
+    //exit and stop this page from loading.
+    exit();
 }
-
-// 2. Handle POST Request
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $user = $_POST['username'];
-    $pass = $_POST['password'];
-
-    // 3. Use Prepared Statements to prevent SQL Injection
-    $stmt = $conn->prepare("SELECT User_ID, Password, Role FROM user_login WHERE Username = ?");
-    $stmt->bind_param("s", $user);
-    $stmt->execute();
-    $result = $stmt->get_result();
-
-    if ($result->num_rows === 1) {
-        $row = $result->fetch_assoc();
-        
-        // 4. Verify Password
-        if ($pass === $row['Password']) {
-            // Success! Create session variables
-            $_SESSION['User_ID'] = $row['User_ID'];
-            $_SESSION['Username'] = $user;
-            $_SESSION['Role'] = $row['Role'];
-
-            match($row['Role']) {
-            'Student' => header("Location: Result_Viewing.html?login=success"),
-            'Admin'   => header("Location: Admin_page.html?login=success"),
-            default   => header("Location: teacher.html?login=success"),
-        };
-            exit();
-        } else {
-            echo "Invalid username or password!";
-        }
-    } else {
-        echo "Invalid username or password!";
-    }
-    $stmt->close();
-}
-$conn->close();
 ?>
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Login Page</title>
+        <link rel="stylesheet" href="Login_Page.css">
+    </head>
+    <body>
+        <header>
+            <h1 id="welcome">Welcome to the <br>Internship <br>Management <br>System!</h1>
+        </header>
+        <main>
+            <section id="login_form">
+                <form action="Login.php" method="post" id="login_content">
+                    <h2 id="login">Login</h2>
+                    <input class="textbox" type="text" id="username" name="username" placeholder="Username" required><br><br>
+                    <input class="textbox" type="password" id="password" name="password" placeholder="Password" required>
+                    <img src="Assets/Eye.png" alt="Show" id="togglePWD"><br><br>
+                    <input id="login_button" type="submit" value="Log in"><br>
+                    <a href="Forgot_PWD.html" id="forgot_password">Forgot password?</a><br><br>
+                </form>
+            </section>
+        </main>
+        <script>
+            // Get references to the password input and the toggle button
+            const passwordInput = document.getElementById('password');
+            const togglePassword = document.getElementById('togglePWD');
+
+            // Add a click event listener to the toggle button
+            togglePassword.addEventListener('click', function () {
+                // Check the current type of the input field
+                const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+    
+                // Set the new type
+                passwordInput.setAttribute('type', type);
+    
+                // Change the button text based on the type
+                (type == 'text') ? document.getElementById('togglePWD').src = "Assets/HiddenEye.png" : document.getElementById('togglePWD').src = "Assets/Eye.png";
+            });
+
+            const params = new URLSearchParams(window.location.search);
+            if (params.get("logout") == "success") {
+                alert("Logout successful!");
+                // Clean the URL so refreshing doesn't re-trigger the alert
+                window.history.replaceState({}, document.title, window.location.pathname);
+            }
+        </script>
+    </body>
+</html>

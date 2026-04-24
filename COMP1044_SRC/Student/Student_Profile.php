@@ -1,3 +1,4 @@
+<?php require_once 'Get_Student_Profile.php'; ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,9 +17,8 @@
             <img src="../Assets/UNMLogo.png" alt="UMN Logo" class="nav-logo">
             <!-- all the lefthand side links -->
             <ul class="nav-links">
-                <!-- from top to bottom: main page, internship result entry, result viewing -->
-                <li><a href="Supervisor_Page.html">Home</a></li>
-                <li><a href="Supervisor_Internship_Grading.html">Grade Internship</a></li>
+                <!-- from top to bottom: main page, result viewing -->
+                <li><a href="Student_Page.php">Home</a></li>
                 <li><a href="../Result_Viewing.html">View Results</a></li>
             </ul>
         </div>
@@ -27,9 +27,9 @@
         <div class="nav-right">
             <ul class="nav-links">
                 <!-- for profile information -->
-                <li><a href="Supervisor_Profile.html" class="active">Profile</a></li>
+                <li><a href="Student_Profile.php" class="active">Profile</a></li>
                 <!-- for user to log out -->
-                <a href="../Login_page.html" class="logout-text"><button type="button" class="logoutbtn"><img src="../Assets/Logout.png" class="logoutIcon">Logout</button></a>
+                <a href="../Logout.php" class="logout-text"><button type="button" class="logoutbtn"><img src="../Assets/Logout.png" class="logoutIcon">Logout</button></a>
             </ul>
         </div>
     </nav>
@@ -40,33 +40,39 @@
 
     <div class="infoContainer">
 
-        <h2 class="profile-name">SuperVisorName</h2>
+        <h2 class="profile-name"><?php echo($profile['Full_Name']) ?></h2>
 
         <!-- all the account info -->
         <div class="form-grid">
             <div class="detail-group">
-                <span class="detail-label">Staff ID</span>
-                <div class="detail-value">207233</div>
+                <span class="detail-label">Student ID</span>
+                <!-- get the Student_ID field from the $profile array -->
+                <div class="detail-value"><?php echo($profile['Student_ID']) ?></div>
             </div>
 
             <div class="detail-group">
                 <span class="detail-label">Full Name</span>
-                <div class="detail-value">SuperVisorName</div>
+                <div class="detail-value"><?php echo($profile['Full_Name']) ?></div>
             </div>
 
             <div class="detail-group">
                 <span class="detail-label">Email Address</span>
-                <div class="detail-value">super@gmail.com</div>
+                <div class="detail-value"><?php echo($profile['Email_Addr']) ?></div>
             </div>
 
             <div class="detail-group">
                 <span class="detail-label">Contact Number</span>
-                <div class="detail-value">+1123324311</div>
+                <div class="detail-value"><?php echo($profile['Contact_No.']) ?></div>
             </div>
 
             <div class="detail-group">
-                <span class="detail-label">Company Name</span>
-                <div class="detail-value">Dawg</div>
+                <span class="detail-label">Enrolled Programme</span>
+                <div class="detail-value"><?php echo($profile['Programme_Name']) ?></div>
+            </div>
+
+            <div class="detail-group">
+                <span class="detail-label">Enrollment Date</span>
+                <div class="detail-value"><?php echo($profile['Enroll_Date']) ?></div>
             </div>
         </div>
 

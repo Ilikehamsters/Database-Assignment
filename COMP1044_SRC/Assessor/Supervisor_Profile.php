@@ -1,3 +1,4 @@
+<?php require_once 'Get_Supervisor_Profile.php'; ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,8 +17,9 @@
             <img src="../Assets/UNMLogo.png" alt="UMN Logo" class="nav-logo">
             <!-- all the lefthand side links -->
             <ul class="nav-links">
-                <!-- from top to bottom: main page, result viewing -->
-                <li><a href="Student_Page.html">Home</a></li>
+                <!-- from top to bottom: main page, internship result entry, result viewing -->
+                <li><a href="Supervisor_Page.php">Home</a></li>
+                <li><a href="Supervisor_Internship_Grading.php">Grade Internship</a></li>
                 <li><a href="../Result_Viewing.html">View Results</a></li>
             </ul>
         </div>
@@ -26,9 +28,9 @@
         <div class="nav-right">
             <ul class="nav-links">
                 <!-- for profile information -->
-                <li><a href="Student_Profile.html" class="active">Profile</a></li>
+                <li><a href="Supervisor_Profile.php" class="active">Profile</a></li>
                 <!-- for user to log out -->
-                <a href="../Login_page.html" class="logout-text"><button type="button" class="logoutbtn"><img src="../Assets/Logout.png" class="logoutIcon">Logout</button></a>
+                <a href="../Logout.php" class="logout-text"><button type="button" class="logoutbtn"><img src="../Assets/Logout.png" class="logoutIcon">Logout</button></a>
             </ul>
         </div>
     </nav>
@@ -39,38 +41,33 @@
 
     <div class="infoContainer">
 
-        <h2 class="profile-name">Yee Grace Shuang</h2>
+        <h2 class="profile-name"><?php echo $profile['Full_Name']; ?></h2>
 
         <!-- all the account info -->
         <div class="form-grid">
             <div class="detail-group">
-                <span class="detail-label">Student ID</span>
-                <div class="detail-value">20716333</div>
+                <span class="detail-label">Supervisor ID</span>
+                <div class="detail-value"><?php echo $profile['Supvr_ID']; ?></div>
             </div>
 
             <div class="detail-group">
                 <span class="detail-label">Full Name</span>
-                <div class="detail-value">Yee Grace Shuang</div>
+                <div class="detail-value"><?php echo $profile['Full_Name']; ?></div>
             </div>
 
             <div class="detail-group">
                 <span class="detail-label">Email Address</span>
-                <div class="detail-value">grace.yee@student.nottingham.edu.my</div>
+                <div class="detail-value"><?php echo $profile['Email_Addr']; ?></div>
             </div>
 
             <div class="detail-group">
                 <span class="detail-label">Contact Number</span>
-                <div class="detail-value">+1111111111</div>
+                <div class="detail-value"><?php echo $profile['Contact_No.']; ?></div>
             </div>
 
             <div class="detail-group">
-                <span class="detail-label">Enrolled Programme</span>
-                <div class="detail-value">Computer Science</div>
-            </div>
-
-            <div class="detail-group">
-                <span class="detail-label">Enrollment Date</span>
-                <div class="detail-value">01/09/2024</div>
+                <span class="detail-label">Company Name</span>
+                <div class="detail-value"><?php echo $profile['Reg_Comp_Name']; ?></div>
             </div>
         </div>
 

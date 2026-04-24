@@ -1,3 +1,13 @@
+<?php
+session_start();
+
+//check if the user is logged in and they're the right role.
+if (!isset($_SESSION['User_ID']) || $_SESSION['Role'] !== 'uniAssessor') {
+    //if no then bring the user to the login page.
+    header("Location: ../Login_Page.php");
+    exit();
+}
+?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -15,9 +25,9 @@
                 <!-- all the lefthand side links -->
                 <ul class="nav-links">
                     <!-- from top to bottom: main page, internship result entry, result viewing -->
-                    <li><a href="Supervisor_Page.html">Home</a></li>
+                    <li><a href="Lecturer_Page.php">Home</a></li>
                     <!-- "active" class to get some additional styling for clarity to know this is the current page -->
-                    <li><a href="Supervisor_Internship_Grading.html" class="active">Grade Internship</a></li>
+                    <li><a href="Lecturer_Internship_Grading.php" class="active">Grade Internship</a></li>
                     <li><a href="../Result_Viewing.html">View Results</a></li>
                 </ul>
             </div>
@@ -25,10 +35,8 @@
             <!-- righthand side of the nav bar -->
             <div class="nav-right">
                 <ul class="nav-links">
-                    <!-- for profile information -->
-                    <li><a href="Supervisor_Profile.html">Profile</a></li>
-                    <!-- for user to log out -->
-                    <a href="../Login_page.html" class="logout-text"><button type="button" class="logoutbtn"><img src="../Assets/Logout.png" class="logoutIcon">Logout</button></a>
+                <!-- for user to log out -->
+                    <a href="../Logout.php" class="logout-text"><button type="button" class="logoutbtn"><img src="../Assets/Logout.png" class="logoutIcon">Logout</button></a>
                 </ul>
             </div>
         </nav>
@@ -76,6 +84,61 @@
                         <td>Final Internship Marks</td>
                         <td>0</td>
                     </tr>
+                </table>
+            </section>
+            <section class="infoContainer">
+                <h2 class="infoTitle">Industrial Supervisor Marks</h2>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>Marks</th>
+                            <th class="tsecondHalf">Remarks</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>UTP:</td>
+                            <td class="indMark">0</td>
+                            <td class="tsecondHalf">N/A</td>
+                        </tr>
+                        <tr>
+                            <td>HSR:</td>
+                            <td class="indMark">0</td>
+                            <td class="tsecondHalf">N/A</td>
+                        </tr>
+                        <tr>
+                            <td>CUTK:</td>
+                            <td class="indMark">0</td>
+                            <td class="tsecondHalf">N/A</td>
+                        </tr>
+                        <tr>
+                            <td>PR:</td>
+                            <td class="indMark">0</td>
+                            <td class="tsecondHalf">N/A</td>
+                        </tr>
+                        <tr>
+                            <td>CLI:</td>
+                            <td class="indMark">0</td>
+                            <td class="tsecondHalf">N/A</td>
+                        </tr>
+                        <tr>
+                            <td>LLA:</td>
+                            <td class="indMark">0</td>
+                            <td class="tsecondHalf">N/A</td>
+                        </tr>
+                        <tr>
+                            <td>PM:</td>
+                            <td class="indMark">0</td>
+                            <td class="tsecondHalf">N/A</td>
+                        </tr>
+                        <tr>
+                            <td>TM:</td>
+                            <td class="indMark">0</td>
+                            <td class="tsecondHalf">N/A</td>
+                        </tr>
+                    </tbody>
                 </table>
             </section>
             <section class="infoContainer">
@@ -129,6 +192,20 @@
                     </table>
                 </form>
             </section>
+            <article>
+                <table id="navposition">
+                    <tr>
+                        <td><button type="button" class="navbtn"><img src="../Assets/LeftArrow.svg" alt="Previous button" id="prevNAV"></button></td>
+                        <td id="recordCount">1</td>
+                        <td><button type="button" class="navbtn"><img src="../Assets/RightArrow.svg" alt="Next button" id="nextNAV"></button></td>
+                    </tr>
+                    <tr>
+                        <td class="navlabel">Previous</td>
+                        <td></td>
+                        <td class="navlabel">Next</td>
+                    </tr>
+                </table>
+            </article>
         </main>
         <script>
             const params = new URLSearchParams(window.location.search);
@@ -137,6 +214,29 @@
                 // Clean the URL so refreshing doesn't re-trigger the alert
                 window.history.replaceState({}, document.title, window.location.pathname);
             }
+            let count = 1;
+            const leftnav = document.getElementById("prevNAV");
+            const rightnav = document.getElementById("nextNAV");
+            const counter = document.getElementById("recordCount");
+            function DECrecordNum() {
+                count--;
+                if (count < 1) {
+                    count = 1;
+                    counter.textContent = count;
+                }
+                else {
+                    counter.textContent = count;
+                }
+            }
+            function ADDrecordNum() {
+                count++;
+                counter.textContent = count;
+            }
+
+            leftnav.addEventListener("click", DECrecordNum);
+            rightnav.addEventListener("click", ADDrecordNum);
+
+
         </script>
     </body>
 </html>

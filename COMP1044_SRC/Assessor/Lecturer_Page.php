@@ -1,3 +1,13 @@
+<?php
+session_start();
+
+//check if the user is logged in and they're the right role.
+if (!isset($_SESSION['User_ID']) || $_SESSION['Role'] !== 'uniAssessor') {
+    //if no then bring the user to the login page.
+    header("Location: ../Login_Page.php");
+    exit();
+}
+?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -16,8 +26,8 @@
                 <!-- all the lefthand side links -->
                 <ul class="nav-links">
                     <!-- from top to bottom: main page, internship result entry, result viewing -->
-                    <li><a href="Lecturer_Page.html" class="active">Home</a></li>
-                    <li><a href="Lecturer_Internship_Grading.html">Grade Internship</a></li>
+                    <li><a href="Lecturer_Page.php" class="active">Home</a></li>
+                    <li><a href="Lecturer_Internship_Grading.php">Grade Internship</a></li>
                     <li><a href="../Result_Viewing.html">View Results</a></li>
                 </ul>
             </div>
@@ -26,7 +36,7 @@
             <div class="nav-right">
                 <ul class="nav-links">
                     <!-- for user to log out -->
-                    <a href="../Login_page.html" class="logout-text"><button type="button" class="logoutbtn"><img src="../Assets/Logout.png" class="logoutIcon">Logout</button></a>
+                    <a href="../Logout.php" class="logout-text"><button type="button" class="logoutbtn"><img src="../Assets/Logout.png" class="logoutIcon">Logout</button></a>
                 </ul>
             </div>
         </nav>
@@ -37,7 +47,7 @@
         <div class="card-container">
 
             <!-- card to lead to grading internships -->
-            <a href="Lecturer_Internship_Grading.html" class="feature-card">
+            <a href="Lecturer_Internship_Grading.php" class="feature-card">
                 <div class="card-image">
                     <img src="../Assets/InternshipGrading.png" alt="Grade Internship">
                 </div>
@@ -60,6 +70,16 @@
 
         </div>
     </main>
-
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        if (params.get("login") == "success") {
+            alert("Login successful! Welcome!");
+            // Clean the URL so refreshing doesn't re-trigger the alert
+            window.history.replaceState({}, document.title, window.location.pathname);
+        } else if (params.get("redirect") == "success") {
+            alert("You've been redirected to the home page as you are still logged in to an account.");
+            window.history.replaceState({}, document.title, window.location.pathname);
+        }
+    </script>
     </body>
 </html>
