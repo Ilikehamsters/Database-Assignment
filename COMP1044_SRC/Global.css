@@ -48,10 +48,12 @@
 
 .nav-links li a:hover {
     color: rgb(23, 23, 152);
+    text-decoration: underline; /* underline text on hover */
 }
 
 /* for selected/active/current page */
 .nav-links li a.active {
+    text-decoration: none;
     color: rgb(23, 23, 152);
     border-bottom: 3px solid rgb(23, 23, 152);
 }
@@ -61,10 +63,6 @@
     color: #d9534f;
     font-size: 18px;
     font-weight: bold;
-}
-
-.nav-right a.logout-text:hover {
-    text-decoration: underline; /* underline text on hover */
 }
 
 body {
@@ -82,6 +80,7 @@ body {
 }
 
 .infoContainer {
+    color: #444;
     padding: 2%;
     background: whitesmoke;
     border-radius: 12px;
@@ -91,6 +90,7 @@ body {
 }
 
 .infoTitle {
+    color: black;
     font-weight: bold;
     font-size: 30px;
     margin-top: 0;
@@ -215,6 +215,7 @@ td, th {
 }
 
 #navposition {
+    color: #444;
     margin: 0 auto;
     text-align: center;
 }
@@ -238,5 +239,5 @@ td, th {
 
 .navlabel {
     font-weight: bold;
-    color: #555;
+    color: #444;
 }

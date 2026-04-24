@@ -3,205 +3,75 @@
     <head>
         <title>Internship Result Entry</title>
         <link rel="stylesheet" href="../Global.css">
+        <link rel="stylesheet" href="../Home_page.css">
     </head>
 
     <body>
-        <header>
-            <!--uhhh nav bar placeholder-->
-        </header>
-        <h1 id="title">Internship Result Entry</h1>
-        <form id="searchbar" method="post">
-            <h3 id="Searchtitle">Search (Student ID/Name):</h3>
-            <input class="inputbox" type="search" id="student_ID" name="StudentID" value="" placeholder="Enter Student ID; e.g. 1000234">
-            <input class="inputbox" type="search" id="student_name" name="StudentName" value="" placeholder="Enter Student's Full Name">
-            <button class="searchbtn">Search</button>
-            <button class="searchbtn">Clear</button>
-        </form>
-        <main>
-            <section class="infoContainer">
-                <h2 class="infoTitle">Internship Details</h2>
-                <table>
-                    <tr>
-                        <td>Student ID</td>
-                        <td>Empty</td>
-                        <td class="secondHalf">Student Name</td>
-                        <td>Empty</td>
-                    </tr>
-                    <tr>
-                        <td>Internship ID</td>
-                        <td>None</td>
-                        <td class="secondHalf">Company Code</td>
-                        <td>None</td>
-                    </tr>
-                    <tr>
-                        <td>Start Date</td>
-                        <td>Unknown</td>
-                        <td class="secondHalf">End Date</td>
-                        <td>Unknown</td>
-                    </tr>
-                    <tr>
-                        <td>Industry Marks</td>
-                        <td>0</td>
-                        <td class="secondHalf">University Marks</td>
-                        <td>0</td>
-                    </tr>
-                    <tr>
-                        <td>Final Internship Marks</td>
-                        <td>0</td>
-                    </tr>
-                </table>
-            </section>
-            <section class="infoContainer">
-                <h2 class="infoTitle">Industrial Supervisor Marks</h2>
+    <header>
+        <nav class="navbar">
+            <!-- lefthand side of the nav bar -->
+            <div class="nav-left">
+                <!-- show the umn logo -->
+                <img src="../Assets/UNMLogo.png" alt="UMN Logo" class="nav-logo">
+                <!-- all the lefthand side links -->
+                <ul class="nav-links">
+                    <!-- from top to bottom: main page, internship result entry, result viewing -->
+                    <li><a href="Lecturer_Page.html" class="active">Home</a></li>
+                    <li><a href="Lecturer_Internship_Grading.html">Grade Internship</a></li>
+                    <li><a href="../Result_Viewing.html">View Results</a></li>
+                </ul>
+            </div>
 
-                <table>
-                    <thead>
-                        <tr>
-                            <th></th>
-                            <th>Marks</th>
-                            <th class="tsecondHalf">Remarks</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>UTP:</td>
-                            <td class="indMark">0</td>
-                            <td class="tsecondHalf">N/A</td>
-                        </tr>
-                        <tr>
-                            <td>HSR:</td>
-                            <td class="indMark">0</td>
-                            <td class="tsecondHalf">N/A</td>
-                        </tr>
-                        <tr>
-                            <td>CUTK:</td>
-                            <td class="indMark">0</td>
-                            <td class="tsecondHalf">N/A</td>
-                        </tr>
-                        <tr>
-                            <td>PR:</td>
-                            <td class="indMark">0</td>
-                            <td class="tsecondHalf">N/A</td>
-                        </tr>
-                        <tr>
-                            <td>CLI:</td>
-                            <td class="indMark">0</td>
-                            <td class="tsecondHalf">N/A</td>
-                        </tr>
-                        <tr>
-                            <td>LLA:</td>
-                            <td class="indMark">0</td>
-                            <td class="tsecondHalf">N/A</td>
-                        </tr>
-                        <tr>
-                            <td>PM:</td>
-                            <td class="indMark">0</td>
-                            <td class="tsecondHalf">N/A</td>
-                        </tr>
-                        <tr>
-                            <td>TM:</td>
-                            <td class="indMark">0</td>
-                            <td class="tsecondHalf">N/A</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </section>
-            <section class="infoContainer">
-                <h2 class="infoTitle">Marking Submission</h2>
-                <form method="post">
-                    <table>
-                        <tr>
-                            <td>UTP</td>
-                            <td><input class="inputMark" type="number" name="UTP" value="0" min="0" max="10" required></td>
-                            <td><textarea name="UTPfeedback" rows="15" cols="100" maxlength="1000" placeholder="Enter feedback here (optional)..."></textarea></td>
-                        </tr>
-                        <tr>
-                            <td>HSR</td>
-                            <td><input class="inputMark" type="number" name="HSR" value="0" min="0" max="10" required></td>
-                            <td><textarea name="HSRfeedback" rows="15" cols="100" maxlength="1000" placeholder="Enter feedback here (optional)..."></textarea></td>
-                        </tr>
-                        <tr>
-                            <td>CUTK</td>
-                            <td><input class="inputMark" type="number" name="CUTK" value="0" min="0" max="10" required></td>
-                            <td><textarea name="CUTKfeedback" rows="15" cols="100" maxlength="1000" placeholder="Enter feedback here (optional)..."></textarea></td>
-                        </tr>
-                        <tr>
-                            <td>PR</td>
-                            <td><input class="inputMark" type="number" name="PR" value="0" min="0" max="15" required></td>
-                            <td><textarea name="PRfeedback" rows="15" cols="100" maxlength="1000" placeholder="Enter feedback here (optional)..."></textarea></td>
-                        </tr>
-                        <tr>
-                            <td>CLI</td>
-                            <td><input class="inputMark" type="number" name="CLI" value="0" min="0" max="10" required></td>
-                            <td><textarea name="CLIfeedback" rows="15" cols="100" maxlength="1000" placeholder="Enter feedback here (optional)..."></textarea></td>
-                        </tr>
-                        <tr>
-                            <td>LLA</td>
-                            <td><input class="inputMark" type="number" name="LLA" value="0" min="0" max="15" required></td>
-                            <td><textarea name="LLAfeedback" rows="15" cols="100" maxlength="1000" placeholder="Enter feedback here (optional)..."></textarea></td>
-                        </tr>
-                        <tr>
-                            <td>PM</td>
-                            <td><input class="inputMark" type="number" name="PM" value="0" min="0" max="15" required></td>
-                            <td><textarea name="PMfeedback" rows="15" cols="100" maxlength="1000" placeholder="Enter feedback here (optional)..."></textarea></td>
-                        </tr>
-                        <tr>
-                            <td>TM</td>
-                            <td><input class="inputMark" type="number" name="TM" value="0" min="0" max="15" required></td>
-                            <td><textarea name="TMfeedback" rows="15" cols="100" maxlength="1000" placeholder="Enter feedback here (optional)..."></textarea></td>
-                        </tr>
-                        <tr>
-                            <td><input class="formbtn" type="submit" value="Submit"></td>
-                            <td><input class="formbtn" type="reset" value="Clear"></td>
-                        </tr>
-                    </table>
-                </form>
-            </section>
-            <article>
-                <table id="navposition">
-                    <tr>
-                        <td><button type="button" class="navbtn"><img src="../Assets/LeftArrow.svg" alt="Previous button" id="prevNAV"></button></td>
-                        <td id="recordCount">1</td>
-                        <td><button type="button" class="navbtn"><img src="../Assets/RightArrow.svg" alt="Next button" id="nextNAV"></button></td>
-                    </tr>
-                    <tr>
-                        <td class="navlabel">Previous</td>
-                        <td></td>
-                        <td class="navlabel">Next</td>
-                    </tr>
-                </table>
-            </article>
-        </main>
-        <script>
-            const params = new URLSearchParams(window.location.search);
-            if (params.get("login") == "success") {
-                alert("Login successful! Welcome!");
-                // Clean the URL so refreshing doesn't re-trigger the alert
-                window.history.replaceState({}, document.title, window.location.pathname);
-            }
-            let count = 1;
-            const leftnav = document.getElementById("prevNAV");
-            const rightnav = document.getElementById("nextNAV");
-            const counter = document.getElementById("recordCount");
-            function DECrecordNum() {
-                count--;
-                if (count < 1) {
-                    count = 1;
-                    counter.textContent = count;
-                }
-                else {
-                    counter.textContent = count;
-                }
-            }
-            function ADDrecordNum() {
-                count++;
-                counter.textContent = count;
-            }
+            <!-- righthand side of the nav bar -->
+            <div class="nav-right">
+                <!-- for profile information -->
+                <li><a href="../Supervisor_Profile.html">Profile</a></li>
+                <!-- for user to log out -->
+                <a href="../Login_page.html" class="logout-text">Log Out</a>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <h1 id="title">Welcome, Lecturer!</h1>
 
-            leftnav.addEventListener("click", DECrecordNum);
-            rightnav.addEventListener("click", ADDrecordNum);
+        <div class="card-container">
 
+            <!-- card to lead to manage users -->
+            <a href="User_Access.html" class="feature-card">
+                <div class="card-image">
+                    <!-- Replace with a real image from your Assets folder later -->
+                    <img src="../Assets/Admin.jpg" alt="Manage Users">
+                </div>
+                <div class="card-text">
+                    <h3>Manage Users</h3>
+                    <p>Create, update, or delete Student, Staff, and Assessor profiles.</p>
+                </div>
+            </a>
 
-        </script>
+            <!-- CARD 2: Manage Internships -->
+            <a href="Internship_Management.html" class="feature-card">
+                <div class="card-image">
+                    <img src="../Assets/Student.jpg" alt="Manage Internships">
+                </div>
+                <div class="card-text">
+                    <h3>Manage Internships</h3>
+                    <p>Assign students to companies and allocate University Assessors.</p>
+                </div>
+            </a>
+
+            <!-- CARD 3: View Results -->
+            <a href="result_viewing.html" class="feature-card">
+                <div class="card-image">
+                    <img src="../Assets/Assessor.jpg" alt="View Results">
+                </div>
+                <div class="card-text">
+                    <h3>View Results</h3>
+                    <p>Monitor student progress and view final calculated internship marks.</p>
+                </div>
+            </a>
+
+        </div>
+    </main>
+
     </body>
 </html>
