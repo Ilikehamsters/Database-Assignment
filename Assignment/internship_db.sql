@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Apr 24, 2026 at 04:29 AM
+-- Generation Time: Apr 24, 2026 at 10:37 AM
 -- Server version: 5.7.24
 -- PHP Version: 8.3.1
 
@@ -28,8 +28,8 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `assessment` (
-  `Assessment_ID` int(11) NOT NULL,
-  `Internship_ID` int(11) NOT NULL,
+  `Assessment_ID` varchar(15) NOT NULL,
+  `Internship_ID` varchar(15) NOT NULL,
   `UTP` decimal(5,2) DEFAULT '0.00',
   `UTP_Feedback` varchar(255) DEFAULT NULL,
   `HSR` decimal(5,2) DEFAULT '0.00',
@@ -48,6 +48,22 @@ CREATE TABLE `assessment` (
   `TM_Feedback` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data for table `assessment`
+--
+
+INSERT INTO `assessment` (`Assessment_ID`, `Internship_ID`, `UTP`, `UTP_Feedback`, `HSR`, `HSR_Feedback`, `CUTK`, `CUTK_Feedback`, `PR`, `PR_Feedback`, `CLI`, `CLI_Feedback`, `LLA`, `LLA_Feedback`, `PM`, `PM_Feedback`, `TM`, `TM_Feedback`) VALUES
+('APRINDS32094', 'APR20394', 0.00, NULL, 0.00, NULL, 0.00, NULL, 0.00, NULL, 0.00, NULL, 0.00, NULL, 0.00, NULL, 0.00, NULL),
+('APRUNI32094', 'APR20394', 0.00, NULL, 0.00, NULL, 0.00, NULL, 0.00, NULL, 0.00, NULL, 0.00, NULL, 0.00, NULL, 0.00, NULL),
+('FEBINDS20394', 'FEB56732', 0.00, NULL, 0.00, NULL, 0.00, NULL, 0.00, NULL, 0.00, NULL, 0.00, NULL, 0.00, NULL, 0.00, NULL),
+('FEBUNI20394', 'FEB56732', 0.00, NULL, 0.00, NULL, 0.00, NULL, 0.00, NULL, 0.00, NULL, 0.00, NULL, 0.00, NULL, 0.00, NULL),
+('JANINDS32034', 'JAN10234', 0.00, NULL, 0.00, NULL, 0.00, NULL, 0.00, NULL, 0.00, NULL, 0.00, NULL, 0.00, NULL, 0.00, NULL),
+('JANUNI32034', 'JAN10234', 0.00, NULL, 0.00, NULL, 0.00, NULL, 0.00, NULL, 0.00, NULL, 0.00, NULL, 0.00, NULL, 0.00, NULL),
+('JULINDS30751', 'JUL30492', 0.00, NULL, 0.00, NULL, 0.00, NULL, 0.00, NULL, 0.00, NULL, 0.00, NULL, 0.00, NULL, 0.00, NULL),
+('JULUNI30751', 'JUL30492', 0.00, NULL, 0.00, NULL, 0.00, NULL, 0.00, NULL, 0.00, NULL, 0.00, NULL, 0.00, NULL, 0.00, NULL),
+('JUNINDS49821', 'JUN00001', 0.00, NULL, 0.00, NULL, 0.00, NULL, 0.00, NULL, 0.00, NULL, 0.00, NULL, 0.00, NULL, 0.00, NULL),
+('JUNUNI49821', 'JUN00001', 0.00, NULL, 0.00, NULL, 0.00, NULL, 0.00, NULL, 0.00, NULL, 0.00, NULL, 0.00, NULL, 0.00, NULL);
+
 -- --------------------------------------------------------
 
 --
@@ -60,6 +76,17 @@ CREATE TABLE `company` (
   `Reg_No.` varchar(50) NOT NULL,
   `Comp_Address` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `company`
+--
+
+INSERT INTO `company` (`Company_ID`, `Reg_Comp_Name`, `Reg_No.`, `Comp_Address`) VALUES
+(10445, 'Hamburger Inc', '102032', 'Los Angeles'),
+(12304, 'Nissan', '234834', 'New York'),
+(13424, 'Smack&Shoot', '114032', 'Texas'),
+(13922, 'Toy&Play', '454032', 'Washington DC'),
+(34231, 'Friendtalk', '104532', 'Florida');
 
 -- --------------------------------------------------------
 
@@ -77,6 +104,17 @@ CREATE TABLE `inds_supervisor` (
   `Gender` enum('Male','Female') DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data for table `inds_supervisor`
+--
+
+INSERT INTO `inds_supervisor` (`Supvr_ID`, `Company_ID`, `User_ID`, `Full_Name`, `Email_Addr`, `Contact_No.`, `Gender`) VALUES
+(1, 10445, 5, 'Ben', 'Ben@gmail.com', '+601123439402', 'Male'),
+(2, 34231, 17, 'Welt', 'Welt@gmail.com', '+602323777900', 'Male'),
+(3, 12304, 18, 'Grace', 'Grace@gmail.com', '+402323777900', 'Female'),
+(4, 13424, 19, 'Mia', 'Mia@gmail.com', '+749523777900', 'Female'),
+(5, 13922, 20, 'Richard', 'Richard@gmail.com', '+644423777900', 'Male');
+
 -- --------------------------------------------------------
 
 --
@@ -84,7 +122,7 @@ CREATE TABLE `inds_supervisor` (
 --
 
 CREATE TABLE `internship` (
-  `Internship_ID` int(11) NOT NULL,
+  `Internship_ID` varchar(15) NOT NULL,
   `Student_ID` int(11) NOT NULL,
   `Staff_ID` int(11) NOT NULL,
   `Company_ID` int(11) NOT NULL,
@@ -93,6 +131,17 @@ CREATE TABLE `internship` (
   `End_Intern` date NOT NULL,
   `Status` enum('Ungraded','Graded') DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `internship`
+--
+
+INSERT INTO `internship` (`Internship_ID`, `Student_ID`, `Staff_ID`, `Company_ID`, `Supvr_ID`, `Start_Intern`, `End_Intern`, `Status`) VALUES
+('APR20394', 3, 9, 13922, 4, '2020-04-08', '2020-08-08', 'Ungraded'),
+('FEB56732', 5, 8, 13424, 3, '2022-02-11', '2026-06-11', 'Ungraded'),
+('JAN10234', 2, 7, 12304, 2, '2024-01-16', '2024-05-16', 'Ungraded'),
+('JUL30492', 4, 10, 34231, 5, '2022-07-13', '2022-11-13', 'Ungraded'),
+('JUN00001', 1, 6, 10445, 1, '2023-06-01', '2023-10-01', 'Ungraded');
 
 -- --------------------------------------------------------
 
@@ -181,10 +230,10 @@ CREATE TABLE `uni_staff` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `student`
+-- Dumping data for table `uni_staff`
 --
 
-Insert INTO `uni_staff` (`Staff_ID`, `User_ID`, `Position_Code`, `Full_Name`, `Email_Addr`, `Contact_No.`, `Employ_Date`, `Gender`) VALUES
+INSERT INTO `uni_staff` (`Staff_ID`, `User_ID`, `Position_Code`, `Full_Name`, `Email_Addr`, `Contact_No.`, `Employ_Date`, `Gender`) VALUES
 (1, 3, 'AD', 'Storm', 'Storm@gmail.com', '+601123443910', '1994-01-25', 'Male'),
 (2, 9, 'AD', 'Sophia', 'Sophia@gmail.com', '+601145443910', '1990-11-05', 'Female'),
 (3, 10, 'AD', 'Oliver', 'Oliver@gmail.com', '+829323443910', '1991-03-12', 'Male'),
@@ -307,22 +356,18 @@ ALTER TABLE `user_login`
   ADD UNIQUE KEY `Username` (`Username`);
 
 --
--- AUTO_INCREMENT for table `assessment`
+-- AUTO_INCREMENT for dumped tables
 --
-ALTER TABLE `assessment`
-  MODIFY `Assessment_ID` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `internship`
---
-ALTER TABLE `internship`
-  MODIFY `Internship_ID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `user_login`
 --
 ALTER TABLE `user_login`
   MODIFY `User_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+
+--
+-- Constraints for dumped tables
+--
 
 --
 -- Constraints for table `assessment`
@@ -335,15 +380,15 @@ ALTER TABLE `assessment`
 --
 ALTER TABLE `inds_supervisor`
   ADD CONSTRAINT `superv_compID_fk` FOREIGN KEY (`Company_ID`) REFERENCES `company` (`Company_ID`),
-  ADD CONSTRAINT `superv_userID_fk` FOREIGN KEY (`User_ID`) REFERENCES `user_login` (`User_ID`) ON UPDATE CASCADE;
+  ADD CONSTRAINT `superv_userID_fk` FOREIGN KEY (`User_ID`) REFERENCES `user_login` (`User_ID`);
 
 --
 -- Constraints for table `internship`
 --
 ALTER TABLE `internship`
-  ADD CONSTRAINT `intern_studID_fk` FOREIGN KEY (`Student_ID`) REFERENCES `student` (`Student_ID`),
-  ADD CONSTRAINT `intern_staffID_fk` FOREIGN KEY (`Staff_ID`) REFERENCES `uni_staff` (`Staff_ID`),
   ADD CONSTRAINT `intern_compID_fk` FOREIGN KEY (`Company_ID`) REFERENCES `company` (`Company_ID`),
+  ADD CONSTRAINT `intern_staffID_fk` FOREIGN KEY (`Staff_ID`) REFERENCES `uni_staff` (`Staff_ID`),
+  ADD CONSTRAINT `intern_studID_fk` FOREIGN KEY (`Student_ID`) REFERENCES `student` (`Student_ID`),
   ADD CONSTRAINT `intern_supvrID_fk` FOREIGN KEY (`Supvr_ID`) REFERENCES `inds_supervisor` (`Supvr_ID`);
 
 --
