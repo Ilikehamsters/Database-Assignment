@@ -1,11 +1,13 @@
 .card-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* autofill the screen with the 300px cards*/
+    display: flex;
+    flex-wrap: wrap; /* wrap to next line if it runs out of space */
+    justify-content: center; /* center the cards */
     gap: 30px;
     margin-top: 20px;
 }
 
 .feature-card {
+    width: 400px;
     display: flex;
     flex-direction: column;
     background-color: white;
