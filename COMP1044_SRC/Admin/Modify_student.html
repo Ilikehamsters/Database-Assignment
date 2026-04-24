@@ -1,23 +1,23 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Add Student</title>
+        <title>Modify Student</title>
     </head>
     <body>
         <header>
-            <h1>Add Student</h1>
+            <h1>Modify Student Details</h1>
         </header>
         <main>
             <form>
-                <label for="student_name">Enter full name:</label>
-                <input type="text" name="student_name" value="" placeholder="Enter student name..." required><br>
-                <label for="program">Enter program code:</label>
-                <input type="text" maxlength="5" name="program" value="" placeholder="Enter program code..." required><br>
-                <label for="contact">Enter contact number:</label>
-                <input type="text" name="contact" value="" placeholder="Enter phone number..." required><br>
-                <label for="email">Enter email address:</label>
-                <input type="text" name="email" value="" placeholder="Enter email address..." required><br>
-                <label for="Enroll">Enter enrollment date:</label>
+                <label for="Name">Student Name:</label>
+                <input type="text" name="Name" value="" placeholder="Student Name"><br>
+                <label for="program">Student Program Code:</label>
+                <input type="text" maxlength="5" name="program" value="" placeholder="Program Code"><br>
+                <label for="contact">Student contact number:</label>
+                <input type="text" name="contact" value="" placeholder="Phone Number" required><br>
+                <label for="email">Student email address:</label>
+                <input type="text" name="email" value="" placeholder="Email Address" required><br>
+                <label for="Enroll">Student enrollment date:</label>
                 <input type="date" name="Enroll" value="" placeholder="DD/MM/YYYY" required><br>
                 <label for="student_gender">Gender:</label>
                 <input type="radio" id="Male" name="student_gender" value="Male" required>
@@ -25,7 +25,6 @@
                 <input type="radio" id="Female" name="student_gender" value="Female" required>
                 <label for="Female">Female</label><br>
                 <input type="submit" value="Submit" placeholder="Submit">
-                <input type="reset" placeholder="Clear"><br>
                 <button type="button">Back</button>
             </form>
         </main>
@@ -37,7 +36,6 @@
                     window.location.href = "Student_Profile.html"
                 }
             }
-            
             backbtn.addEventListener("click", backfunction);
         </script>
     </body>
