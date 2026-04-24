@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Internship Management Page</title>
+    <link rel="stylesheet" href="../Global.css">
+</head>
+
+<body>
+<header>
+    <nav class="navbar">
+        <!-- lefthand side of the nav bar -->
+        <div class="nav-left">
+            <!-- show the umn logo -->
+            <img src="../Assets/UNMLogo.png" alt="UMN Logo" class="nav-logo">
+            <!-- all the lefthand side links -->
+            <ul class="nav-links">
+                <!-- from top to bottom: main page, user management, internship management, result viewing, student profiles -->
+                <li><a href="Admin_page.html">Home</a></li>
+                <li><a href="User_Access.html">Manage User</a></li>
+                <!-- "active" class to get some additional styling for clarity to know this is the current page -->
+                <li><a href="Internship_Management.html" class="active">Manage Internship</a></li>
+                <li><a href="../Result_Viewing.html">View Results</a></li>
+                <li><a href="Student_Profile.html">Student Profiles</a></li>
+            </ul>
+        </div>
+
+        <!-- righthand side of the nav bar -->
+        <div class="nav-right">
+            <ul class="nav-links">
+                <!-- for user to log out -->
+                <li><a href="../Login_page.html" class="logout-text">Log Out</a></li>
+            </ul>
+        </div>
+    </nav>
+</header>
+<h1 id="title">Internship Management</h1>
+<form id="searchbar" method="post">
+    <h3 id="Searchtitle">Search (Student ID/Name):</h3>
+    <input list="student_ID" class="inputbox" placeholder="Type ID or Name to Search">
+    <datalist id="student_ID">
+        <option value="20716333 - Yee Grace Shuang">
+        <option value="1111111 - Ian Yap">
+    </datalist>
+    <button class="searchbtn">Search</button>
+    <button class="searchbtn">Clear</button>
+</form>
+<main>
+    <div class="infoContainer">
+        <h2 class="infoTitle">Assign New Internship</h2>
+
+        <form action="#" method="POST">
+            <div class="form-grid">
+
+                <!-- for the choosing of the student -->
+                <div class="formGroup">
+                    <label>Select Student</label>
+                    <input list="students" name="student_id" class="inputbox" placeholder="Type ID or Name to Search">
+                    <datalist id="students">
+                        <option value="20716333 - Yee Grace Shuang">
+                        <option value="1111111 - Ian Yap">
+                    </datalist>
+                </div>
+
+                <!-- for the lecturer -->
+                <div class="formGroup">
+                    <label>Select Lecturer</label>
+                    <input list="assessors" name="staff_id" class="inputbox" placeholder="Type ID or Name to Search">
+                    <datalist id="assessors">
+                        <option value="123 - Dr. Tan">
+                        <option value="246 - Dr. Name">
+                    </datalist>
+                </div>
+
+                <!-- for the company -->
+                <div class="formGroup">
+                    <label>Select Company</label>
+                    <input list="companies" name="company_id" class="inputbox" placeholder="Type ID or Name to Search">
+                    <datalist id="companies">
+                        <option value="789 - University of Nottingham">
+                        <option value="010 - UMN">
+                    </datalist>
+                </div>
+
+                <!-- for the supervisor -->
+                <div class="formGroup">
+                    <label>Select Industry Supervisor</label>
+                    <input list="supervisors" name="supervisors_id" class="inputbox" placeholder="Type ID or Name to Search">
+                    <datalist id="supervisors">
+                        <option value="324 - Dr. Smth Yeah">
+                        <option value="420 - Dr. SuperName">
+                    </datalist>
+                </div>
+
+                <div class="formGroup">
+                    <label>Start Date</label>
+                    <input type="date" name="start_date" class="inputbox" required>
+                </div>
+
+                <div class="formGroup">
+                    <label>End Date</label>
+                    <input type="date" name="end_date" class="inputbox" required>
+                </div>
+
+            </div>
+
+            <div style="margin-top: 10px;">
+                <button type="submit" class="searchbtn" style="width: 150px;">Assign Student</button>
+            </div>
+        </form>
+    </div>
+
+    <div class="infoContainer">
+        <h2 class="infoTitle">Current Assignments</h2>
+
+        <table class="records-table">
+            <thead>
+            <tr>
+                <th>Student Name</th>
+                <th>Lecturer</th>
+                <th>Company</th>
+                <th>Supervisor</th>
+                <th>Duration</th>
+                <th>Status</th>
+            </tr>
+            </thead>
+            <tbody>
+            <!-- !!!testing info -->
+            <tr>
+                <td>Ian Yap</td>
+                <td>Dr. Tan</td>
+                <td>University of Nottingham</td>
+                <td>Dr. Smth Yeah</td>
+                <td>01/05/2026 - 31/08/2026</td>
+                <td>Ungraded</td>
+            </tr>
+            <tr>
+                <td>Yee Grace Shuang</td>
+                <td>Dr. Name</td>
+                <td>UMN</td>
+                <td>Dr. SupervisorName</td>
+                <td>15/05/2026 - 15/09/2026</td>
+                <td>Ungraded</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</main>
+</body>
+</html>

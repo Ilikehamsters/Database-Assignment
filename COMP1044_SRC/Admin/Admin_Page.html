@@ -1,34 +1,86 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Admin Page</title>
-        <link rel="stylesheet" href="Admin_Page.css">
+        <title>Admin Home Page</title>
+        <link rel="stylesheet" href="../Global.css">
+        <link rel="stylesheet" href="../Home_page.css">
     </head>
+
     <body>
+        <header>
+            <nav class="navbar">
+                <!-- lefthand side of the nav bar -->
+                <div class="nav-left">
+                    <!-- show the umn logo -->
+                    <img src="../Assets/UNMLogo.png" alt="UMN Logo" class="nav-logo">
+                    <!-- all the lefthand side links -->
+                    <ul class="nav-links">
+                        <!-- from top to bottom: main page, user management, internship management, result viewing, student profiles -->
+                        <li><a href="Admin_page.html" class="active">Home</a></li>
+                        <li><a href="User_Access.html">Manage User</a></li>
+                        <li><a href="Internship_Management.html">Manage Internship</a></li>
+                        <li><a href="../Result_Viewing.html">View Results</a></li>
+                        <li><a href="Student_Profile.html">Student Profiles</a></li>
+                    </ul>
+                </div>
+
+                <!-- righthand side of the nav bar -->
+                <div class="nav-right">
+                    <!-- for user to log out -->
+                    <a href="../Login_page.html" class="logout-text">Log Out</a>
+                </div>
+            </nav>
+        </header>
         <main>
-            <section>
-                <h2>Select your function:</h2>
-                <a href="User_Access.html">
-                    <article>
-                        <p>User Access</p>
-                    </article>
+            <h1 id="title">Welcome, Admin!</h1>
+
+            <div class="card-container">
+
+                <!-- card to lead to manage users -->
+                <a href="User_Access.html" class="feature-card">
+                    <div class="card-image">
+                        <img src="../Assets/ManageUsers.png" alt="Manage Users">
+                    </div>
+                    <div class="card-text">
+                        <h3>Manage Users</h3>
+                        <p>Manage student and assessor accounts.</p>
+                    </div>
                 </a>
-                <a href="Student_Profile.html">
-                    <article>
-                        <p>Student Profile</p>
-                    </article>
+
+                <!-- card to manage internships -->
+                <a href="Internship_Management.html" class="feature-card">
+                    <div class="card-image">
+                        <img src="../Assets/ManageInternship.png" alt="Manage Internships">
+                    </div>
+                    <div class="card-text">
+                        <h3>Manage Internships</h3>
+                        <p>Assign students to internships.</p>
+                    </div>
                 </a>
-                <a href="Ext_Assessor.html">
-                    <article>
-                        <p>Industrial Assessor Management</p>
-                    </article>
+
+                <!-- card to view internship results -->
+                <a href="result_viewing.html" class="feature-card">
+                    <div class="card-image">
+                        <img src="../Assets/ViewResults.png" alt="View Results">
+                    </div>
+                    <div class="card-text">
+                        <h3>View Results</h3>
+                        <p>View the internship marks for students.</p>
+                    </div>
                 </a>
-                <a href="Intern_Manage.html">
-                    <article>
-                        <p>Internship Management</p>
-                    </article>
+
+                <!-- card to view student profiles -->
+                <a href="Student_Profile.html" class="feature-card">
+                    <div class="card-image">
+                        <img src="../Assets/StudentProfile.png" alt="Student Profiles">
+                    </div>
+                    <div class="card-text">
+                        <h3>View Student Profiles</h3>
+                        <p>View the student's profiles.</p>
+                    </div>
                 </a>
-            </section>
+
+            </div>
         </main>
         <script>
             const params = new URLSearchParams(window.location.search);

@@ -1,0 +1,56 @@
+.card-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* autofill the screen with the 300px cards*/
+    gap: 30px;
+    margin-top: 20px;
+}
+
+.feature-card {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    border-radius: 12px;
+    border: 1px solid rgb(237, 237, 237);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    overflow: hidden; /* make the corners rounded */
+    text-decoration: none; /* removes the default underline */
+    color: inherit; /* prevent the text from turning the default blue */
+    transition: transform 0.2s ease, box-shadow 0.2s ease; /* fancy card enlarging. fancy card shadow appearance */
+}
+
+.feature-card:hover {
+    transform: translateY(-5px); /* lift the card slightly */
+    box-shadow: 0 10px 15px -3px rgb(23, 23, 152, 0.2); /* give the card a blue glow */
+    cursor: pointer; /* change the mouse cursor to the pointing one */
+}
+
+.card-image {
+    height: 200px;
+    width: 100%;
+}
+
+.card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* make the image fill the card without stretching weirdly */
+}
+
+.card-text {
+    padding: 20px;
+    background-color: whitesmoke;
+    flex-grow: 1; /* make sure the coloured box stretches to fill the bottom. So there's no weird white empty space */
+}
+
+.card-text h3 {
+    margin-top: 0;
+    margin-bottom: 10px;
+    color: rgb(23, 23, 152);
+    font-size: 24px;
+}
+
+.card-text p {
+    margin: 0;
+    color: #444;
+    font-size: 16px;
+    line-height: 1.5;
+}
