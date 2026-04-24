@@ -263,26 +263,26 @@ CREATE TABLE `user_login` (
 --
 
 INSERT INTO `user_login` (`User_ID`, `Username`, `Password`, `Role`) VALUES
-(1, 'Hi', '$2y$10$R8bwVxUEBnygClk4GXvNMerqmMbFeITCMp3z46PcmC/TlSwp6ad.K', 'Student'),
-(2, 'Hi1', '$2y$10$TujIS2nR7LdATcF0aoh9ae9VmkRm6g4KSqCKFUlU.lGnonSHSrou2', 'Student'),
-(3, 'Hi2', '$2y$10$NJHIhoCf9IUSpA0i5fWZguqK7JEpjBgRSZEawmctFOXsV8yTP330a', 'Admin'),
-(4, 'Hi5', '$2y$10$lkmwHirBM6stOjiwaySNq.9iSkVqwGqzSyrwXTEX4Fb3RpL57dBN2', 'uniAssessor'),
-(5, 'Hi3', '$2y$10$vRu9a29lEm1zSXcNXBl7OueSjbe19s.W7ShUyBNif20q0jXHYCeje', 'indSuperv'),
-(6, 'student1', '$2y$10$Pqrhaqf2ml0ilQt7bSotU.5F2PYOgH75Rd4j.TVye12YejUTZ3UWG', 'Student'),
-(7, 'student2', '$2y$10$wQibcJ0uNMWVgF4amxTH8u1Pbj7XHSUKhWzYdql6WqGHtZvGESNK.', 'Student'),
-(8, 'student3', '$2y$10$9WMi09N3IGQgqITLTtX3IeBXRa43eFcodlyerRwkYMYk9.Uxi7PX.', 'Student'),
-(9, 'skswoqa1', '$2y$10$lT38RlWzktQHtFAuWMbNMOmYLRqdzzftE1JufE/MvsaLtXsHtKZXy', 'Admin'),
-(10, 'admin1', '$2y$10$/ZK75CFQxN/TizVECpBaJOhezOur0i8OC3eCSqlGPhMa8JW1IAmsm', 'Admin'),
-(11, 'ioee1', '$2y$10$ZimoIcYvr/1ahYbHXOD6xuPP64dGQj7x2zU7UkSUyF1khLQyuA4Ve', 'Admin'),
-(12, 'admin2', '$2y$10$3Pd6LxUE2yliE.ceRWEJNeunDaM6nmkW7pKlcWwXbal/oAS0elgSG', 'Admin'),
-(13, 'efhwf', '$2y$10$Ufd84KaqkYgSkxSNj7FQqudk7r13E1iipkKZfYBxToKyK35rTzpLW', 'uniAssessor'),
-(14, 'fulge1', '$2y$10$hM1/n44bJxAAf85K6rdJoebwhZvPwgRdPjYW1zzJODCXSaSExQDwe', 'uniAssessor'),
-(15, 'hifuh9', '$2y$10$lK96hJbNkSwln8M.ugTZU.7hzmz0wMIR9OEZq.hQ2vVBfCz20G.g2', 'uniAssessor'),
-(16, 'fghae7', '$2y$10$hXw1Zzl0gtGXP1m/RC9hreKXsBHiS9TfssWCMpnQF2N3Wc3DF5v5.', 'uniAssessor'),
-(17, 'eriu5', '$2y$10$H5c.vqw8DsCcxCISXsxwTeNRU/pL1vtesCNuh9MwjB3lCIXzSmy/u', 'indSuperv'),
-(18, 'kjfhw4', '$2y$10$ZsNBozxewxnPvBzaWVljyO5LtTFgbYdxA8HIeHCfvN8EgdpkZm9Ha', 'indSuperv'),
-(19, 'rteg4', '$2y$10$PbgYzhjd7eqSpavyDKGnae4MgfhZx8VGOYLzggtxk/eKDsn5o2ENu', 'indSuperv'),
-(20, 'fkg84', '$2y$10$z55qjJnAG1KFuz5CcpAUlOGFrXA8g//5wXJGIr2Xbs3nJE1nlK4wa', 'indSuperv');
+(1, 'Student1', '1234', 'Student'),
+(2, 'Student2', '123abc', 'Student'),
+(3, 'Admin1', '12345', 'Admin'),
+(4, 'Assessor1', '123abcd', 'uniAssessor'),
+(5, 'Superv1', '123456', 'indSuperv'),
+(6, 'student3', '12345678910', 'Student'),
+(7, 'student4', '1234567890', 'Student'),
+(8, 'student5', 'abcde', 'Student'),
+(9, 'Admin2', 'abcd', 'Admin'),
+(10, 'Admin3', 'abcdef', 'Admin'),
+(11, 'Admin4', '12345678', 'Admin'),
+(12, 'Admin5', '1234567', 'Admin'),
+(13, 'Assessor2', 'justdoit', 'uniAssessor'),
+(14, 'Assessor3', 'justdewit', 'uniAssessor'),
+(15, 'Assessor4', '123boring', 'uniAssessor'),
+(16, 'Assessor5', 'password', 'uniAssessor'),
+(17, 'Superv2', 'Ok101', 'indSuperv'),
+(18, 'Superv3', 'Password101', 'indSuperv'),
+(19, 'Superv4', 'Sailor120', 'indSuperv'),
+(20, 'Superv5', 'qwerty', 'indSuperv');
 
 --
 -- Indexes for dumped tables
