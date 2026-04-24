@@ -1,17 +1,73 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Student Page</title>
-    </head>
-    <body>
+<head>
+    <title>Home</title>
+    <link rel="stylesheet" href="../Global.css">
+    <link rel="stylesheet" href="../Home_page.css">
+</head>
 
-        <script>
-            const params = new URLSearchParams(window.location.search);
-            if (params.get("login") == "success") {
-                alert("Login successful! Welcome!");
-                // Clean the URL so refreshing doesn't re-trigger the alert
-                window.history.replaceState({}, document.title, window.location.pathname);
-            }
-        </script>
-    </body>
+<body>
+<header>
+    <nav class="navbar">
+        <!-- lefthand side of the nav bar -->
+        <div class="nav-left">
+            <!-- show the umn logo -->
+            <img src="../Assets/UNMLogo.png" alt="UMN Logo" class="nav-logo">
+            <!-- all the lefthand side links -->
+            <ul class="nav-links">
+                <!-- from top to bottom: main page, result viewing -->
+                <li><a href="Student_Page.html" class="active">Home</a></li>
+                <li><a href="../Result_Viewing.html">View Results</a></li>
+            </ul>
+        </div>
+
+        <!-- righthand side of the nav bar -->
+        <div class="nav-right">
+            <ul class="nav-links">
+                <!-- for profile information -->
+                <li><a href="../Student_Profile.html">Profile</a></li>
+                <!-- for user to log out -->
+                <li><a href="../Login_page.html" class="logout-text">Log Out</a></li>
+            </ul>
+        </div>
+    </nav>
+</header>
+<main>
+    <h1 id="title">Welcome, Student!</h1>
+
+    <div class="card-container">
+
+        <!-- card to lead to result viewing -->
+        <a href="result_viewing.html" class="feature-card">
+            <div class="card-image">
+                <img src="../Assets/ViewResults.png" alt="View Results">
+            </div>
+            <div class="card-text">
+                <h3>View Results</h3>
+                <p>View your internship marks.</p>
+            </div>
+        </a>
+
+        <!-- card to view profile -->
+        <a href="Student_Profile.html" class="feature-card">
+            <div class="card-image">
+                <img src="../Assets/Profile.jpg" alt="Profile">
+            </div>
+            <div class="card-text">
+                <h3>Profile</h3>
+                <p>View your profile information.</p>
+            </div>
+        </a>
+
+    </div>
+</main>
+<script>
+    const params = new URLSearchParams(window.location.search);
+    if (params.get("login") == "success") {
+        alert("Login successful! Welcome!");
+        // Clean the URL so refreshing doesn't re-trigger the alert
+        window.history.replaceState({}, document.title, window.location.pathname);
+    }
+</script>
+</body>
 </html>
