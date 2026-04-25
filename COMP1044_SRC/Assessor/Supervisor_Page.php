@@ -2,7 +2,7 @@
 session_start();
 
 //check if the user is logged in and they're the right role.
-if (!isset($_SESSION['User_ID']) || $_SESSION['Role'] !== 'indSuperv') {
+if (!isset($_SESSION['User_ID']) || $_SESSION['Role'] !== 'Industrial Supervisor') {
     //if no then bring the user to the login page.
     header("Location: ../Login_Page.php");
     exit();
@@ -28,7 +28,7 @@ if (!isset($_SESSION['User_ID']) || $_SESSION['Role'] !== 'indSuperv') {
                 <!-- from top to bottom: main page, internship result entry, result viewing -->
                 <li><a href="Supervisor_Page.html" class="active">Home</a></li>
                 <li><a href="Supervisor_Internship_Grading.php">Grade Internship</a></li>
-                <li><a href="../Result_Viewing.html">View Results</a></li>
+                <li><a href="../Main_Result_Viewing.php">View Results</a></li>
             </ul>
         </div>
 
@@ -38,7 +38,7 @@ if (!isset($_SESSION['User_ID']) || $_SESSION['Role'] !== 'indSuperv') {
                 <!-- for profile information -->
                 <li><a href="Supervisor_Profile.php">Profile</a></li>
                 <!-- for user to log out -->
-                <li><a href="../Login_page.php"><button type="button" class="logoutbtn"><img src="../Assets/Logout.png" class="logoutIcon">Logout</button></a></li>
+                <li><a href="../Logout.php"><button type="button" class="logoutbtn"><img src="../Assets/Logout.png" class="logoutIcon">Logout</button></a></li>
             </ul>
         </div>
     </nav>
@@ -60,7 +60,7 @@ if (!isset($_SESSION['User_ID']) || $_SESSION['Role'] !== 'indSuperv') {
         </a>
 
         <!-- card to lead to view results -->
-        <a href="Result_Viewing.html" class="feature-card">
+        <a href="../Main_Result_Viewing.php" class="feature-card">
             <div class="card-image">
                 <img src="../Assets/ViewResults.png" alt="View Results">
             </div>

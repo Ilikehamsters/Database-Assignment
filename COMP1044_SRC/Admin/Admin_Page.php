@@ -29,8 +29,8 @@ if (!isset($_SESSION['User_ID']) || $_SESSION['Role'] !== 'Admin') {
                         <li><a href="Admin_Page.php" class="active">Home</a></li>
                         <li><a href="User_Access.html">Manage User</a></li>
                         <li><a href="Internship_Management.php">Manage Internship</a></li>
-                        <li><a href="../Result_Viewing.html">View Results</a></li>
                         <li><a href="Student_Profile.html">Student Profiles</a></li>
+                        <li><a href="../Main_Result_Viewing.php">View Results</a></li>
                     </ul>
                 </div>
 
@@ -68,17 +68,6 @@ if (!isset($_SESSION['User_ID']) || $_SESSION['Role'] !== 'Admin') {
                     </div>
                 </a>
 
-                <!-- card to view internship results -->
-                <a href="result_viewing.html" class="feature-card">
-                    <div class="card-image">
-                        <img src="../Assets/ViewResults.png" alt="View Results">
-                    </div>
-                    <div class="card-text">
-                        <h3>View Results</h3>
-                        <p>View the internship marks for students.</p>
-                    </div>
-                </a>
-
                 <!-- card to view student profiles -->
                 <a href="Student_prof_manage.html" class="feature-card">
                     <div class="card-image">
@@ -87,6 +76,17 @@ if (!isset($_SESSION['User_ID']) || $_SESSION['Role'] !== 'Admin') {
                     <div class="card-text">
                         <h3>View Student Profiles</h3>
                         <p>View the student's profiles.</p>
+                    </div>
+                </a>
+
+                <!-- card to view internship results -->
+                <a href="../Main_Result_Viewing.php" class="feature-card">
+                    <div class="card-image">
+                        <img src="../Assets/ViewResults.png" alt="View Results">
+                    </div>
+                    <div class="card-text">
+                        <h3>View Results</h3>
+                        <p>View the internship marks for students.</p>
                     </div>
                 </a>
 

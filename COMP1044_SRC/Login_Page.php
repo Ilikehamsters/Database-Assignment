@@ -1,4 +1,7 @@
 <?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 //start the session.
 session_start();
 //connect to the database.
@@ -10,8 +13,8 @@ if (isset($_SESSION['Role'])) {
     match($_SESSION['Role']) {
         'Student'     => header("Location: Student/Student_Page.php?redirect=success"),
         'Admin'       => header("Location: Admin/Admin_Page.php?redirect=success"),
-        'uniAssessor' => header("Location: Assessor/Lecturer_Page.php?redirect=success"),
-        'indSuperv'   => header("Location: Assessor/Supervisor_Page.php?redirect=success"),
+        'University Assessor' => header("Location: Assessor/Lecturer_Page.php?redirect=success"),
+        'Industrial Supervisor'   => header("Location: Assessor/Supervisor_Page.php?redirect=success"),
     };
     //exit and stop this page from loading.
     exit();

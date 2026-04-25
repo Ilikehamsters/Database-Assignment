@@ -3,7 +3,7 @@
 session_start();
 
 //check if the user is logged in and they're the right role.
-if (!isset($_SESSION['User_ID']) || $_SESSION['Role'] !== 'indSuperv') {
+if (!isset($_SESSION['User_ID']) || $_SESSION['Role'] !== 'Industrial Supervisor') {
     //if no then bring the user to the login page.
     header("Location: ../Login_Page.php");
     exit();

@@ -2,7 +2,7 @@
 session_start();
 
 //check if the user is logged in and they're the right role.
-if (!isset($_SESSION['User_ID']) || $_SESSION['Role'] !== 'indSuperv') {
+if (!isset($_SESSION['User_ID']) || $_SESSION['Role'] !== 'Industrial Supervisor') {
     //if no then bring the user to the login page.
     header("Location: ../Login_Page.php");
     exit();
@@ -31,7 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['action']) && $_POST['a
                      UTP=?, UTP_Feedback=?, HSR=?, HSR_Feedback=?, CUTK=?, CUTK_Feedback=?,
                      PR=?, PR_Feedback=?, CLI=?, CLI_Feedback=?, LLA=?, LLA_Feedback=?,
                      PM=?, PM_Feedback=?, TM=?, TM_Feedback=?
-                     WHERE Internship_ID=? AND Assessment_ID LIKE '%INDS%'";
+                     WHERE Internship_ID=? AND Assessment_ID LIKE '___INDS%'";
     //prepare to submit the data.
     $stmt_update = $conn->prepare($update_query);
     $stmt_update->bind_param("dsdsdsdsdsdsdsdss",
@@ -83,7 +83,7 @@ if ($target_student_id) {
                       JOIN student s ON i.Student_ID = s.Student_ID
                       JOIN assessment a ON i.Internship_ID = a.Internship_ID
                       JOIN company c ON i.Company_ID = c.Company_ID
-                      WHERE i.Supvr_ID = ? AND s.Student_ID = ? AND a.Assessment_ID LIKE '%INDS%'";
+                      WHERE i.Supvr_ID = ? AND s.Student_ID = ? AND a.Assessment_ID LIKE '___INDS%'";
     $stmt_details = $conn->prepare($details_query);
     $stmt_details->bind_param("ii", $supvr_id, $target_student_id);
 } else {
@@ -92,7 +92,7 @@ if ($target_student_id) {
                       JOIN student s ON i.Student_ID = s.Student_ID
                       JOIN assessment a ON i.Internship_ID = a.Internship_ID
                       JOIN company c ON i.Company_ID = c.Company_ID
-                      WHERE i.Supvr_ID = ? AND a.Assessment_ID LIKE '%INDS%' LIMIT 1";
+                      WHERE i.Supvr_ID = ? AND a.Assessment_ID LIKE '___INDS%' LIMIT 1";
     $stmt_details = $conn->prepare($details_query);
     $stmt_details->bind_param("i", $supvr_id);
 }
@@ -104,7 +104,7 @@ $current_student = $stmt_details->get_result()->fetch_assoc();
 //this is checked via seeing if the utp mark is not the default 0.00 or if the feedback is not null.
 //as when a form is submitted, the empty feedback field will become "" instead of null.
 //the logic is basically that since all the mark fields are compulsory, if one mark isn't graded, then it means the form hasn't been submitted yet.
-//the feedback is in case the user just decides to mark the utp 0.00.
+//the feedback is in case the user just decides to mark the utp as 0.00.
 $has_graded = false;
 if ($current_student) {
     if ($current_student['UTP'] != 0.00 || $current_student['UTP_Feedback'] !== null) {

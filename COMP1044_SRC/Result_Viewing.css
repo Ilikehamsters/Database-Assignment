@@ -1,0 +1,21 @@
+/* for the main results aka the dashboard */
+.results-table {
+    table-layout: fixed;
+    width: 100%;
+}
+.results-table th, .results-table td {
+    padding: 10px 5px;
+    text-align: center;
+    /* wrap around if the field is too long */
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+.results-table th:first-child, .results-table td:first-child {
+    text-align: left;
+    padding-left: 10px;
+    width: 15%;
+}
+
+/* set the width for the second and third columns */
+.results-table th:nth-child(2), .results-table td:nth-child(2) { width: 12%; }
+.results-table th:nth-child(3), .results-table td:nth-child(3) { width: 9%; }

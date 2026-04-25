@@ -20,8 +20,8 @@
                 <li><a href="User_Access.html">Manage User</a></li>
                 <!-- "active" class to get some additional styling for clarity to know this is the current page -->
                 <li><a href="Internship_Management.php" class="active">Manage Internship</a></li>
-                <li><a href="../Result_Viewing.html">View Results</a></li>
                 <li><a href="Student_Profile.html">Student Profiles</a></li>
+                <li><a href="../Main_Result_Viewing.php">View Results</a></li>
             </ul>
         </div>
 
@@ -40,6 +40,8 @@
     <!-- search bar -->
     <form id="searchbar" method="GET" action="Internship_Management.php">
         <h3 id="Searchtitle">Search (Student ID/Name):</h3>
+        <!-- autocomplete="off" so that the user inputs don't get added to the bottom of the data list -->
+        <!-- get the search term from the url if it's available. Basically so that if the user goes to the next page for a searched term, then it won't reset back to an empty search -->
         <input list="student_search_list" name="search" class="inputbox" autocomplete="off" placeholder="Type ID or Name" value="<?= isset($_GET['search']) ? htmlspecialchars($_GET['search']) : '' ?>">
         <datalist id="student_search_list">
             <?php
@@ -189,6 +191,7 @@
             <div class="page">
 
                 <!-- previous button -->
+                <!-- makes sure this isn't the first page so that the user can go back -->
                 <?php if ($page > 1) { ?>
                     <!-- pass on the previous page number and search term to the php file -->
                     <!-- so that the correct rows can be selected -->
@@ -205,7 +208,7 @@
                 <!-- next button -->
                 <?php if ($page < $total_pages) { ?>
                     <!-- pass on the next page number and search term to the php file -->
-                    <a href="Internship_Management.php?page=<?= $page + 1 ?><?= $search_param ?>" class="page-btn">Next </a>
+                    <a href="Internship_Management.php?page=<?= $page + 1 ?><?= $search_param ?>" class="page-btn">Next</a>
                 <?php } else { ?>
                     <!-- if on last page, then show a disabled grey button -->
                     <span class="page-btn disabled">Next</span>
