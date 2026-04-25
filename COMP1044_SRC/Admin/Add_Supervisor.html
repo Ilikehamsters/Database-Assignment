@@ -21,21 +21,17 @@
                 <label for="email">Email address:</label>
                 <input type="text" maxlength="50" id="email" name="email" value="" placeholder="Enter email address..." required><br>
 
+                <label for="company">Company:</label>
+                <select id="company" name="company" required>
+                    <option value="">...</option>
+                </select><br>
+
 
                 <label for="gender">Gender:</label>
                 <input type="radio" id="Male" name="gender" value="Male" required>
                 <label for="Male">Male</label>
                 <input type="radio" id="Female" name="gender" value="Female" required>
                 <label for="Female">Female</label><br>
-
-                <label for="role">Role:</label>
-                <input type="radio" id="Admin" name="role" value="Admin" required>
-                <label for="Admin">Admin</label>
-                <input type="radio" id="assess" name="role" value="University Assessor" required>
-                <label for="assess">Assessor</label><br>
-
-                <label for="employ">Employment Date:</label>
-                <input type="date" id="employ" name="employment" value="" placeholder="DD/MM/YYYY" required><br>
 
                 <input type="submit" value="Submit" placeholder="Submit">
                 <input type="reset" value="Clear"><br>
@@ -52,6 +48,29 @@
             }
             
             backbtn.addEventListener("click", backfunction);
+            document.addEventListener('DOMContentLoaded', () => {
+                const dropdown = document.getElementById('company');
+
+                // Fetch data from the PHP script
+                fetch('Add_supervisor.php')
+                    .then(response => response.json())
+                    .then(data => {
+                        // Clear the "Loading..." option
+                        dropdown.innerHTML = '<option value="">--Select Company--</option>';
+
+                        // Iterate through the array and create options
+                        data.forEach(item => {
+                            const option = document.createElement('option');
+                            option.value = item.Reg_Comp_Name // The value sent to the server
+                            option.textContent = item.Reg_Comp_Name; // The text shown to the user
+                            dropdown.appendChild(option);
+                        });
+                    })
+                    .catch(error => {
+                        console.error('Error fetching data:', error);
+                        dropdown.innerHTML = '<option value="">Error loading data</option>';
+                    });
+            });
         </script>
     </body>
 </html>
