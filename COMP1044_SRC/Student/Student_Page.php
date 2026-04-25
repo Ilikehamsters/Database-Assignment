@@ -72,6 +72,7 @@ if (!isset($_SESSION['User_ID']) || $_SESSION['Role'] !== 'Student') {
     </div>
 </main>
 <script>
+    //show an alert greeting the user based on either a login success or redirection.
     const params = new URLSearchParams(window.location.search);
     if (params.get("login") == "success") {
         alert("Login successful! Welcome!");

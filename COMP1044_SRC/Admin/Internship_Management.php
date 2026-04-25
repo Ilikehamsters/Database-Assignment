@@ -58,11 +58,11 @@
         //show success or error messages if they exist.
         //unset to remove them after page refreshing.
         if(isset($_SESSION['success_msg'])) {
-            echo "<div style='color:green; font-weight:bold; padding: 10px; background: #e6ffed; border: 1px solid green; border-radius: 5px; margin-bottom: 15px;'>" . $_SESSION['success_msg'] . "</div>";
+            echo "<div class='success'>" . $_SESSION['success_msg'] . "</div>";
             unset($_SESSION['success_msg']);
         }
         if(isset($_SESSION['error_msg'])) {
-            echo "<div style='color:red; font-weight:bold; padding: 10px; background: #ffe6e6; border: 1px solid red; border-radius: 5px; margin-bottom: 15px;'>" . $_SESSION['error_msg'] . "</div>";
+            echo "<div class='error'>" . $_SESSION['error_msg'] . "</div>";
             unset($_SESSION['error_msg']);
         }
     ?>
@@ -74,9 +74,11 @@
         <form action="Internship_Management.php" method="POST">
             <!-- hidden field just to use in the logic php to tell the post method is for this form -->
             <input type="hidden" name="action" value="assign_internship">
+            <input type="hidden" name="student_id" value="<?= $current_student['Student_ID'] ?>">
 
             <div class="form-grid">
-                <!-- each form group is for one input field -->
+                <!-- each form group is for one input field. the logic for each are more or less the same -->
+                <!-- select student -->
                 <div class="form-group">
                     <label>Select Student</label>
                     <input list="students" name="student_id" class="inputbox" autocomplete="off" placeholder="Type ID or Name to Search" required>
@@ -89,6 +91,7 @@
                     </datalist>
                 </div>
 
+                <!-- select lecturer -->
                 <div class="form-group">
                     <label>Select Lecturer</label>
                     <input list="assessors" name="staff_id" class="inputbox" autocomplete="off" placeholder="Type ID or Name to Search" required>
@@ -99,6 +102,7 @@
                     </datalist>
                 </div>
 
+                <!-- select company -->
                 <div class="form-group">
                     <label>Select Company</label>
                     <input list="companies" name="company_id" class="inputbox" autocomplete="off" placeholder="Type ID or Name to Search" required>
@@ -109,8 +113,9 @@
                     </datalist>
                 </div>
 
+                <!-- select supervisor -->
                 <div class="form-group">
-                    <label>Select Industry Supervisor</label>
+                    <label>Select Supervisor</label>
                     <input list="supervisors" name="supervisors_id" class="inputbox" autocomplete="off" placeholder="Type ID or Name to Search" required>
                     <datalist id="supervisors">
                         <?php while ($row = $supervisors_list->fetch_assoc()) { ?>
@@ -119,11 +124,11 @@
                     </datalist>
                 </div>
 
+                <!-- select start and end date -->
                 <div class="form-group">
                     <label>Start Date</label>
                     <input type="date" name="start_date" class="inputbox" required>
                 </div>
-
                 <div class="form-group">
                     <label>End Date</label>
                     <input type="date" name="end_date" class="inputbox" required>
@@ -163,8 +168,8 @@
                             <td><?= htmlspecialchars($row['CompanyName']) ?></td>
                             <td><?= htmlspecialchars($row['SupvrName']) ?></td>
                             <td><?= $row['Start_Intern'] ?> to <?= $row['End_Intern'] ?></td>
-                            <!-- colour is either green or orange depending on whether the status field is graded or not -->
-                            <td style="color: <?= $row['Status'] == 'Graded' ? 'green' : 'orange' ?>; font-weight: bold;">
+                            <!-- colour is either green or red depending on whether the status field is graded or not -->
+                            <td style="color: <?= $row['Status'] == 'Graded' ? 'green' : 'red' ?>; font-weight: bold;">
                                 <?= $row['Status'] ?>
                             </td>
                         </tr>

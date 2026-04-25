@@ -40,7 +40,8 @@
     <h1 id="title">User Profile</h1>
 
     <div class="infoContainer">
-
+        <!-- htmlspecialchars() is used so special characters are read as just text -->
+        <!-- in case for some reason the data has characters that'll affect the code -->
         <h2 class="profile-name"><?= htmlspecialchars($profile['Full_Name']) ?></h2>
 
         <!-- all the account info -->

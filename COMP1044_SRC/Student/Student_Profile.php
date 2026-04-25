@@ -39,7 +39,8 @@
     <h1 id="title">User Profile</h1>
 
     <div class="infoContainer">
-
+        <!-- htmlspecialchars() is used so special characters are read as just text -->
+        <!-- in case for some reason the data has characters that'll affect the code -->
         <h2 class="profile-name"><?= htmlspecialchars($profile['Full_Name']) ?></h2>
 
         <!-- all the account info -->
@@ -47,6 +48,7 @@
             <div class="detail-group">
                 <span class="detail-label">Student ID</span>
                 <!-- get the Student_ID field from the $profile array -->
+                <!-- the logic is pretty much the same for all the detail groups too -->
                 <div class="detail-value"><?= htmlspecialchars($profile['Student_ID']) ?></div>
             </div>
 
