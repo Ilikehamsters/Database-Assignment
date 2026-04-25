@@ -112,7 +112,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['action']) && $_POST['a
             exit();
         } else {
             //else something went wrong with the database.
-            $error_msg = "Error! Something is wrong with the database.";
+            $error_msg = "Error! Something is wrong with the database. The form has not been saved.";
         }
     }
 
