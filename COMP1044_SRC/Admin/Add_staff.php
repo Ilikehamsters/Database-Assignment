@@ -23,18 +23,7 @@
         $USERID = $conn->insert_id;
         $Userstmt->close();
 
-        /*// 2. Get the user ID
-        $UserIDstmt = $conn->prepare("SELECT User_ID FROM user_login where Username = ?");
-        if (!$UserIDstmt) {
-            die("Prepare failed (User_ID): " . $conn->error);
-        }
-        $UserIDstmt->bind_param("s", $Username);
-        $UserIDstmt->execute();
-        $UserIDstmt->bind_result($USERID);
-        $UserIDstmt->fetch();
-        $UserIDstmt->close();*/
-
-        // 3. Get the position code
+        // 2. Get the position code
         $positionstmt = $conn->prepare("SELECT Position_Code FROM position where Position_Name = ?");
         if (!$positionstmt) {
             die("Prepare failed (Position_Code): " . $conn->error);
@@ -46,7 +35,7 @@
         $positionstmt->close();
 
 
-        // 4. Add all the values to staff table
+        // 3. Add all the values to staff table
         $Staffstmt = $conn->prepare("INSERT INTO uni_staff (User_ID, Position_Code, Full_Name, Email_Addr, Contact_No, Employ_Date, Gender) VALUES (?, ?, ?, ?, ?, ?, ?)");
         if (!$Staffstmt) {
             die("Prepare failed (Staff): " . $conn->error);

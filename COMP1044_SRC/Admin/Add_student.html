@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Add Student</title>
+        <title>Add Student Page</title>
     </head>
     <body>
         <header>
@@ -9,27 +9,30 @@
         </header>
         <main>
             <form action="Add_student.php" method="post">
-                <label for="userID">Enter student's user ID:</label>
-                <input type="number" name="userID" value="" placeholder="Enter student's user ID..."><br>
-                <label for="username">Enter student's username:</label>
-                <input type="text" name="username" value="" placeholder="Enter student's username..."><br>
-                <label for="password">Enter default password:</label>
-                <input type="text" name="password" value="" placeholder="Enter the default password..."><br>
-                <label for="student_name">Enter full name:</label>
-                <input type="text" name="student_name" value="" placeholder="Enter student name..." required><br>
-                <label for="program">Enter program code:</label>
+                <label for="username">Username:</label>
+                <input type="text" maxlength="12" id="username" name="username" value="" placeholder="Enter username..." required><br>
+
+                <label for="name">Full Name:</label>
+                <input type="text" maxlength="60" id="name" name="name" value="" placeholder="Enter full name..." required><br>
+
+                <label for="program">Program Code:</label>
                 <input type="text" maxlength="5" name="program" value="" placeholder="Enter program code..." required><br>
-                <label for="contact">Enter contact number:</label>
-                <input type="text" name="contact" value="" placeholder="Enter phone number..." required><br>
-                <label for="email">Enter email address:</label>
-                <input type="text" name="email" value="" placeholder="Enter email address..." required><br>
-                <label for="Enroll">Enter enrollment date:</label>
-                <input type="date" name="Enroll" value="" placeholder="DD/MM/YYYY" required><br>
-                <label for="student_gender">Gender:</label>
-                <input type="radio" id="Male" name="student_gender" value="Male" required>
+
+                <label for="contact">Contact Number:</label>
+                <input type="text" maxlength="16" name="contact" value="" placeholder="Enter phone number..." required><br>
+
+                <label for="email">Email Address:</label>
+                <input type="text" maxlength="50" name="email" value="" placeholder="Enter email address..." required><br>
+
+                <label for="enroll">Enrollment Date:</label>
+                <input type="date" id="enroll" name="enroll" value="" placeholder="DD/MM/YYYY" required><br>
+
+                <label for="gender">Gender:</label>
+                <input type="radio" id="Male" name="gender" value="Male" required>
                 <label for="Male">Male</label>
-                <input type="radio" id="Female" name="student_gender" value="Female" required>
+                <input type="radio" id="Female" name="gender" value="Female" required>
                 <label for="Female">Female</label><br>
+
                 <input type="submit" value="Submit" placeholder="Submit">
                 <input type="reset" value="Clear"><br>
                 <button type="button">Back</button>

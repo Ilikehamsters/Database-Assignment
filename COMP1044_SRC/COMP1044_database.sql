@@ -224,7 +224,7 @@ CREATE TABLE `uni_staff` (
   `Position_Code` varchar(5) NOT NULL,
   `Full_Name` varchar(60) NOT NULL,
   `Email_Addr` varchar(50) NOT NULL,
-  `Contact_No` varchar(25) NOT NULL,
+  `Contact_No` varchar(16) NOT NULL,
   `Employ_Date` date NOT NULL,
   `Gender` enum('Male','Female') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
