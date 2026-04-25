@@ -3,10 +3,38 @@
     error_reporting(E_ALL);
     include '../global.php';
 
+    if ($conn->connect_error) {
+        // Return an error message in JSON format so JS can handle it
+        header('Content-Type: application/json');
+        die(json_encode(['error' => 'Connection failed: ' . $conn->connect_error]));
+    }
+
+    if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+        $fetchcomp = $conn->prepare("SELECT Programme_Name FROM programme");
+        if (!$fetchcomp) {
+            die("Prepare failed (Programme_Name): " . $conn->error);
+        }
+        $fetchcomp->execute();
+        $progName = $fetchcomp->get_result();
+        $proglist = $progName->fetch_all(MYSQLI_ASSOC);
+
+
+        if ($progName->num_rows > 0) {
+            // 4. Loop through the result set and push into the array
+            while($row = $progName->fetch_assoc()) {
+                $proglist[] = $row;
+            }
+        }
+        header('Content-Type: application/json');
+        echo json_encode($proglist);
+        $conn->close();
+        exit();
+    }
+
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $Username = $_POST['username'];
         $Name = $_POST['name'];
-        $Program = $_POST['program'];
+        $Programme = $_POST['programme'];
         $Contact = $_POST['contact'];
         $Email = $_POST['email'];
         $Enrollment = $_POST['enroll'];
@@ -23,11 +51,21 @@
         $USERID = $conn->insert_id;
         $Userstmt->close();
 
+        $progstmt = $conn->prepare("SELECT Prog_Code FROM programme where Programme_Name = ?");
+        if (!$progstmt) {
+            die("Prepare failed (Company_ID): " . $conn->error);
+        }
+        $progstmt->bind_param("s", $Programme);
+        $progstmt->execute();
+        $progstmt->bind_result($progCode);
+        $progstmt->fetch();
+        $progstmt->close();
+
         $Studstmt = $conn->prepare("INSERT INTO student (User_ID, Full_Name, Prog_Code, Contact_No, Email_Addr, Enroll_Date, Gender) VALUES (?, ?, ?, ?, ?, ?, ?)");
         if (!$Studstmt) {
             die("Prepare failed (student): " . $conn->error);
         }
-        $Studstmt->bind_param("issssss", $USERID, $Name, $Program, $Contact, $Email, $Enrollment, $Gender);
+        $Studstmt->bind_param("issssss", $USERID, $Name, $progCode, $Contact, $Email, $Enrollment, $Gender);
         $Studstmt->execute();
         $Studstmt->close();
         

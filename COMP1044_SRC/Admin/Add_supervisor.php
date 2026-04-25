@@ -51,7 +51,7 @@
         $USERID = $conn->insert_id;
         $Userstmt->close();
 
-        // 2. Get the position code
+
         $companystmt = $conn->prepare("SELECT Company_ID FROM company where Reg_Comp_Name = ?");
         if (!$companystmt) {
             die("Prepare failed (Company_ID): " . $conn->error);
@@ -63,7 +63,7 @@
         $companystmt->close();
 
 
-        // 3. Add all the values to staff table
+
         $Supvrstmt = $conn->prepare("INSERT INTO inds_supervisor (User_ID, Company_ID, Full_Name, Email_Addr, Contact_No, Gender) VALUES (?, ?, ?, ?, ?, ?)");
         if (!$Supvrstmt) {
             die("Prepare failed (Supervisor): " . $conn->error);

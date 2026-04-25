@@ -15,8 +15,10 @@
                 <label for="name">Full Name:</label>
                 <input type="text" maxlength="60" id="name" name="name" value="" placeholder="Enter full name..." required><br>
 
-                <label for="program">Program Code:</label>
-                <input type="text" maxlength="5" name="program" value="" placeholder="Enter program code..." required><br>
+                <label for="programme">Programme:</label>
+                <select id="programme" name="programme" required>
+                    <option value="">...</option>
+                </select><br>
 
                 <label for="contact">Contact Number:</label>
                 <input type="text" maxlength="16" name="contact" value="" placeholder="Enter phone number..." required><br>
@@ -46,8 +48,31 @@
                     window.location.href = "Student_Profile.html"
                 }
             }
-            
             backbtn.addEventListener("click", backfunction);
+
+            document.addEventListener("DOMContentLoaded", () => {
+                const dropdown = document.getElementById('programme');
+
+                // Fetch data from the PHP script
+                fetch('Add_student.php')
+                    .then(response => response.json())
+                    .then(data => {
+                        // Clear the "Loading..." option
+                        dropdown.innerHTML = '<option value="">--Select Program--</option>';
+
+                        // Iterate through the array and create options
+                        data.forEach(item => {
+                            const option = document.createElement('option');
+                            option.value = item.Programme_Name // The value sent to the server
+                            option.textContent = item.Programme_Name; // The text shown to the user
+                            dropdown.appendChild(option);
+                        });
+                    })
+                    .catch(error => {
+                        console.error('Error fetching data:', error);
+                        dropdown.innerHTML = '<option value="">Error loading data</option>';
+                    });
+            });
         </script>
     </body>
 </html>
