@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Apr 24, 2026 at 10:37 AM
+-- Generation Time: Apr 25, 2026 at 11:45 AM
 -- Server version: 5.7.24
 -- PHP Version: 8.3.1
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `internship_db`
+-- Database: `comp1044_database`
 --
 
 -- --------------------------------------------------------
@@ -359,17 +359,30 @@ ALTER TABLE `user_login`
 -- AUTO_INCREMENT for dumped tables
 --
 
-ALTER TABLE `user_login`
-  MODIFY `User_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+--
+-- AUTO_INCREMENT for table `inds_supervisor`
+--
+ALTER TABLE `inds_supervisor`
+  MODIFY `Supvr_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
+--
+-- AUTO_INCREMENT for table `student`
+--
 ALTER TABLE `student`
   MODIFY `Student_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
+--
+-- AUTO_INCREMENT for table `uni_staff`
+--
 ALTER TABLE `uni_staff`
   MODIFY `Staff_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
-ALTER TABLE `inds_supervisor`
-  MODIFY `Supvr_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+--
+-- AUTO_INCREMENT for table `user_login`
+--
+ALTER TABLE `user_login`
+  MODIFY `User_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+
 --
 -- Constraints for dumped tables
 --
