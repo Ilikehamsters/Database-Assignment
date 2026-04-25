@@ -33,47 +33,7 @@
                                 <th colspan="2"></th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>1</td>
-                                <td>James</td>
-                                <td>Male</td>
-                                <td>Data Science</td>
-                                <td>+605453453</td>
-                                <td>2025-02-01</td>
-                                <td>James@gmail.com</td>
-                                <td><button class="modifybtn" type="button">Modify</button></td>
-                                <dialog id="modifyModal">
-                                    <form id="editForm">
-                                        <h3>Edit Student Record</h3>
-                                        <input type="hidden" id="editUserId"> <label>Name: <input type="text" id="editName" required></label><br>
-                                        <label>Program: <input type="text" id="editProgram" required></label><br>
-                                        <label>Contact: <input type="text" id="editContact" required></label><br>
-                                        <div style="margin-top: 10px;">
-                                            <button type="submit">Update Database</button>
-                                            <button type="button" id="closeModal">Cancel</button>
-                                        </div>
-                                        <label for="Name">Name:</label>
-                                        <input type="text" id="editName" name="Name" value="" required><br>
-                                        <label for="program">Program:</label>
-                                        <input type="text" name="program" value="" placeholder="Enter program code..." required><br>
-                                    </form>
-                                </dialog>
-                                <td><button class="deletebtn" type="button">Delete</button></td>
-                            </tr>
-                            <tr>
-                                <td>1</td>
-                                <td>1</td>
-                                <td>James</td>
-                                <td>Male</td>
-                                <td>Data Science</td>
-                                <td>+605453453</td>
-                                <td>2025-02-01</td>
-                                <td>James@gmail.com</td>
-                                <td><button class="modifybtn" type="button">Modify</button></td>
-                                <td><button class="deletebtn" type="button">Delete</button></td>
-                            </tr>
+                        <tbody id="record">
                         </tbody>
                     </table>
                 </article>
@@ -84,12 +44,49 @@
             const modify = document.getElementsByClassName("modifybtn");
             const deleterecord = document.getElementsByClassName("deletebtn");
 
-            const modal = document.getElementById("modifyModal");
+            /*const modal = document.getElementById("modifyModal");
             const editForm = document.getElementById("editForm");
-            const closeModal = document.getElementById("closeModal");
+            const closeModal = document.getElementById("closeModal");*/
+
+
+            document.addEventListener("DOMContentLoaded", () => {
+            const tableBody = document.getElementById('record');
+
+            fetch('Student_prof_manage.php')
+                .then(response => response.json())
+                .then(data => {
+                    // 1. Clear existing hardcoded rows
+                    tableBody.innerHTML = '';
+
+                    // 2. Iterate through the database results
+                    data.forEach(student => {
+                        const row = document.createElement('tr');
+
+                        // 3. Assign values to TD elements (Matching your database column names)
+                        row.innerHTML = `
+                            <td>${student.User_ID}</td>
+                            <td>${student.Student_ID}</td>
+                            <td>${student.Full_Name}</td>
+                            <td>${student.Gender}</td>
+                            <td>${student.Prog_Code}</td>
+                            <td>${student.Contact_No}</td>
+                            <td>${student.Enroll_Date}</td>
+                            <td>${student.Email_Addr}</td>
+                            <td><button class="modifybtn" type="button">Modify</button></td>
+                            <td><button class="deletebtn" type="button">Delete</button></td>
+                        `;
+                        
+                        tableBody.appendChild(row);
+                    });
+                })
+                .catch(error => {
+                    console.error('Error fetching data:', error);
+                    tableBody.innerHTML = '<tr><td colspan="10">Error loading student records.</td></tr>';
+                });
+        });
 
             // 1. Open modal and fill it with row data
-            document.addEventListener("click", function(e) {
+            /*document.addEventListener("click", function(e) {
                 if (e.target.classList.contains("modifybtn")) {
                     const row = e.target.closest("tr");
                     
@@ -134,7 +131,7 @@
                 } catch (error) {
                     console.error("Fetch error:", error);
                 }
-            });
+            });*/
 
             function addfunction() {
                 window.location.href = "Add_student.html";

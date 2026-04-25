@@ -10,9 +10,9 @@
     }
 
     if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-        $fetchcomp = $conn->prepare("SELECT Prog_Code, Full_Name, Contact_No, Enroll_Date, Email_Addr, Gender FROM student WHERE Student_ID = 1");
+        $fetchcomp = $conn->prepare("SELECT * FROM student");
         if (!$fetchcomp) {
-            die("Prepare failed (student): " . $conn->error);
+            die("Prepare failed (Programme_Name): " . $conn->error);
         }
         $fetchcomp->execute();
         $student = $fetchcomp->get_result();

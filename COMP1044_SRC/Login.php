@@ -19,7 +19,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $row = $result->fetch_assoc();
         
         // 4. Verify Password
-        if ($pass === $row['Password']) {
+        if ($pass === $row['Password'] && $pass != "defaultPWD") {
             // Success! Create session variables
             $_SESSION['User_ID'] = $row['User_ID'];
             $_SESSION['Username'] = $user;
@@ -31,6 +31,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             'uniAssessor' => header("Location: Assessor/Lecturer_Page.php?login=success"),
             'indSuperv'   => header("Location: Assessor/Supervisor_Page.php?login=success"),
         };
+            exit();
+        } elseif ($pass === $row['Password'] && $pass == "defaultPWD") {
+            $_SESSION['User_ID'] = $row['User_ID'];
+            $_SESSION['Username'] = $user;
+            $_SESSION['Role'] = $row['Role'];
+
+            header("Location: Change_PWD.html?login=success");
             exit();
         } else {
             echo "Invalid username or password!";

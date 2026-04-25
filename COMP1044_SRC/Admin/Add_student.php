@@ -1,7 +1,7 @@
 <?php
     ini_set('display_errors', 1);
     error_reporting(E_ALL);
-    include '../global.php';
+    require_once '../global.php';
 
     if ($conn->connect_error) {
         // Return an error message in JSON format so JS can handle it

@@ -80,7 +80,7 @@ if (!isset($_SESSION['User_ID']) || $_SESSION['Role'] !== 'Admin') {
                 </a>
 
                 <!-- card to view student profiles -->
-                <a href="Student_Profile.html" class="feature-card">
+                <a href="Student_prof_manage.html" class="feature-card">
                     <div class="card-image">
                         <img src="../Assets/StudentProfile.png" alt="Student Profiles">
                     </div>

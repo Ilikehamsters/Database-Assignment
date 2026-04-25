@@ -3,14 +3,32 @@
     <head>
         <title>Password Change</title>
         <link rel="stylesheet" href="Change_PWD.css">
+        <link rel="stylesheet" href="Global.css">
     </head>
     <body>
-        <form>
-            <label for="New_PWD" id="New_PWD">New Password:</label>
-            <input type="text" id="New_PWD" name="New_PWD" placeholder="Type new password" required>
-            <label for="Conf_PWD" id="Conf_PWD">Confirm Password:</label>
-            <input type="text" id="Conf_PWD" name="Conf_PWD" placeholder="Confirm new password" required>
-            <input id="submit_button" type="submit" value="submit">
+        <header>
+            <h1>Change Password</h1>
+        </header>
+        <form action="Change_PWD.php" method="post">
+            <label for="password" id="password">New Password:</label>
+            <input type="text" maxlength="255" id="password" name="password" placeholder="Enter new password..." required><br>
+
+            <label for="confirmPWD" id="confirmPWD">Confirm Password:</label>
+            <input type="text" id="confirmPWD" name="confirmPWD" placeholder="Confirm new password..." required><br>
+
+            <input id="submit_button" type="submit" value="Submit">
         </form>
+        <script>
+            //show an alert greeting the user based on either a login success or redirection.
+            const params = new URLSearchParams(window.location.search);
+            if (params.get("login") == "success") {
+                alert("Login successful! Redirecting user to change password!");
+                // Clean the URL so refreshing doesn't re-trigger the alert
+                window.history.replaceState({}, document.title, window.location.pathname);
+            } else if (params.get("redirect") == "success") {
+                alert("You're being redirected to the home page as you are currently logged into an account. Please ensure you are logged into the correct role if you were previously trying to access a different page.");
+                window.history.replaceState({}, document.title, window.location.pathname);
+            }
+        </script>
     </body>
 </html>
