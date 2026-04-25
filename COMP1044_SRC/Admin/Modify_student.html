@@ -48,7 +48,36 @@
             backbtn.addEventListener("click", backfunction);
 
             document.addEventListener("DOMContentLoaded", () => {
+                const name = document.getElementById('name');
+                const programme = document.getElementById('programme');
+                const contact = document.getElementById('contact');
+                const email = document.getElementById('email');
+                const enroll = document.getElementById('enroll');
+                const gender = document.getElementById('gender');
 
+                fetch('Modify_student.php')
+                    .then(response => response.json())
+                    .then(data => {
+                        name.value = data.Full_Name;
+                        programme.innerHTML = '<option value="">--Select Program--</option>';
+                        programme.value = data.Programme_Name;
+                        contact.value = data.Contact_No;
+                        email.value = data.Email_Addr;
+                        enroll.value = data.Enroll_Date;
+                        gender.value = data.Gender;
+
+                        // Iterate through the array and create options
+                        data.forEach(item => {
+                            const option = document.createElement('option');
+                            option.value = item.Programme_Name; // The value sent to the server
+                            option.textContent = item.Programme_Name; // The text shown to the user
+                            dropdown.appendChild(option);
+                        });
+                    })
+                    .catch(error => {
+                        console.error('Error fetching data:', error);
+                        dropdown.innerHTML = '<option value="">Error loading data</option>';
+                    });
             });
         </script>
     </body>

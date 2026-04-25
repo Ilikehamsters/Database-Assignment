@@ -56,13 +56,12 @@
                 fetch('Add_supervisor.php')
                     .then(response => response.json())
                     .then(data => {
-                        // Clear the "Loading..." option
                         dropdown.innerHTML = '<option value="">--Select Company--</option>';
 
                         // Iterate through the array and create options
                         data.forEach(item => {
                             const option = document.createElement('option');
-                            option.value = item.Reg_Comp_Name // The value sent to the server
+                            option.value = item.Reg_Comp_Name; // The value sent to the server
                             option.textContent = item.Reg_Comp_Name; // The text shown to the user
                             dropdown.appendChild(option);
                         });

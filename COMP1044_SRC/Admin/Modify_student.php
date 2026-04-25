@@ -10,7 +10,7 @@
     }
 
     if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-        $fetchcomp = $conn->prepare("SELECT Prog_Code, Full_Name, Contact_No, Enroll_Date, Email_Addr, Gender FROM student");
+        $fetchcomp = $conn->prepare("SELECT Prog_Code, Full_Name, Contact_No, Enroll_Date, Email_Addr, Gender FROM student WHERE Student_ID = 1");
         if (!$fetchcomp) {
             die("Prepare failed (student): " . $conn->error);
         }
