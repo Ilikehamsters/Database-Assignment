@@ -35,8 +35,10 @@ if (!isset($_SESSION['User_ID']) || $_SESSION['Role'] !== 'uniAssessor') {
             <!-- righthand side of the nav bar -->
             <div class="nav-right">
                 <ul class="nav-links">
-                <!-- for user to log out -->
-                    <a href="../Logout.php" class="logout-text"><button type="button" class="logoutbtn"><img src="../Assets/Logout.png" class="logoutIcon">Logout</button></a>
+                    <!-- for profile information -->
+                    <li><a href="Lecturer_Profile.php">Profile</a></li>
+                    <!-- for user to log out -->
+                    <li><a href="../Logout.php" class="logout-text"><button type="button" class="logoutbtn"><img src="../Assets/Logout.png" class="logoutIcon">Logout</button></a></li>
                 </ul>
             </div>
         </nav>

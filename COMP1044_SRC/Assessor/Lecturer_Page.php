@@ -35,8 +35,10 @@ if (!isset($_SESSION['User_ID']) || $_SESSION['Role'] !== 'uniAssessor') {
             <!-- righthand side of the nav bar -->
             <div class="nav-right">
                 <ul class="nav-links">
+                    <!-- for profile information -->
+                    <li><a href="Lecturer_Profile.php">Profile</a></li>
                     <!-- for user to log out -->
-                    <a href="../Logout.php" class="logout-text"><button type="button" class="logoutbtn"><img src="../Assets/Logout.png" class="logoutIcon">Logout</button></a>
+                    <li><a href="../Logout.php" class="logout-text"><button type="button" class="logoutbtn"><img src="../Assets/Logout.png" class="logoutIcon">Logout</button></a></li>
                 </ul>
             </div>
         </nav>
@@ -65,6 +67,17 @@ if (!isset($_SESSION['User_ID']) || $_SESSION['Role'] !== 'uniAssessor') {
                 <div class="card-text">
                     <h3>View Results</h3>
                     <p>View the internship marks for the students assigned to you.</p>
+                </div>
+            </a>
+
+            <!-- card to lead to view profile -->
+            <a href="Lecturer_Profile.php" class="feature-card">
+                <div class="card-image">
+                    <img src="../Assets/Profile.jpg" alt="Profile">
+                </div>
+                <div class="card-text">
+                    <h3>Profile</h3>
+                    <p>View your profile information.</p>
                 </div>
             </a>
 

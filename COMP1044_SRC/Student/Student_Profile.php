@@ -76,13 +76,6 @@
             </div>
         </div>
 
-        <!-- change password -->
-        <div class="profile-actions">
-            <a href="../Change_PWD.html">
-                <button class="searchbtn" style="width: auto;">Change Password</button>
-            </a>
-        </div>
-
     </div>
 </main>
 
