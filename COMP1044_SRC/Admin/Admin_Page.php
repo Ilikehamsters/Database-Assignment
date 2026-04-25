@@ -28,7 +28,7 @@ if (!isset($_SESSION['User_ID']) || $_SESSION['Role'] !== 'Admin') {
                         <!-- from top to bottom: main page, user management, internship management, result viewing, student profiles -->
                         <li><a href="Admin_Page.php" class="active">Home</a></li>
                         <li><a href="User_Access.html">Manage User</a></li>
-                        <li><a href="Internship_Management.html">Manage Internship</a></li>
+                        <li><a href="Internship_Management.php">Manage Internship</a></li>
                         <li><a href="../Result_Viewing.html">View Results</a></li>
                         <li><a href="Student_Profile.html">Student Profiles</a></li>
                     </ul>
@@ -58,7 +58,7 @@ if (!isset($_SESSION['User_ID']) || $_SESSION['Role'] !== 'Admin') {
                 </a>
 
                 <!-- card to manage internships -->
-                <a href="Internship_Management.html" class="feature-card">
+                <a href="Internship_Management.php" class="feature-card">
                     <div class="card-image">
                         <img src="../Assets/ManageInternship.png" alt="Manage Internships">
                     </div>

@@ -46,7 +46,7 @@ if (!isset($_SESSION['User_ID']) || $_SESSION['Role'] !== 'uniAssessor') {
         <h1 id="title">Internship Result Entry</h1>
         <form id="searchbar" method="post">
             <h3 id="Searchtitle">Search (Student ID/Name):</h3>
-            <input list="student_ID" class="inputbox" placeholder="Type ID or Name to Search">
+            <input list="student_ID" class="inputbox" autocomplete="off" placeholder="Type ID or Name to Search">
             <datalist id="student_ID">
                 <option value="20716333 - Yee Grace Shuang">
                 <option value="1111111 - Ian Yap">

@@ -40,39 +40,39 @@
 
     <div class="infoContainer">
 
-        <h2 class="profile-name"><?php echo($profile['Full_Name']) ?></h2>
+        <h2 class="profile-name"><?= htmlspecialchars($profile['Full_Name']) ?></h2>
 
         <!-- all the account info -->
         <div class="form-grid">
             <div class="detail-group">
                 <span class="detail-label">Student ID</span>
                 <!-- get the Student_ID field from the $profile array -->
-                <div class="detail-value"><?php echo($profile['Student_ID']) ?></div>
+                <div class="detail-value"><?= htmlspecialchars($profile['Student_ID']) ?></div>
             </div>
 
             <div class="detail-group">
                 <span class="detail-label">Full Name</span>
-                <div class="detail-value"><?php echo($profile['Full_Name']) ?></div>
+                <div class="detail-value"><?= htmlspecialchars($profile['Full_Name']) ?></div>
             </div>
 
             <div class="detail-group">
                 <span class="detail-label">Email Address</span>
-                <div class="detail-value"><?php echo($profile['Email_Addr']) ?></div>
+                <div class="detail-value"><?= htmlspecialchars($profile['Email_Addr']) ?></div>
             </div>
 
             <div class="detail-group">
                 <span class="detail-label">Contact Number</span>
-                <div class="detail-value"><?php echo($profile['Contact_No.']) ?></div>
+                <div class="detail-value"><?= htmlspecialchars($profile['Contact_No.']) ?></div>
             </div>
 
             <div class="detail-group">
                 <span class="detail-label">Enrolled Programme</span>
-                <div class="detail-value"><?php echo($profile['Programme_Name']) ?></div>
+                <div class="detail-value"><?= htmlspecialchars($profile['Programme_Name']) ?></div>
             </div>
 
             <div class="detail-group">
                 <span class="detail-label">Enrollment Date</span>
-                <div class="detail-value"><?php echo($profile['Enroll_Date']) ?></div>
+                <div class="detail-value"><?= htmlspecialchars($profile['Enroll_Date']) ?></div>
             </div>
         </div>
 
