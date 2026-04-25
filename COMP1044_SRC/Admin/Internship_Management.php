@@ -51,7 +51,7 @@
             <?php } ?>
         </datalist>
         <button type="submit" class="searchbtn">Search</button>
-        <a href="Internship_Management.php"><button type="button" class="searchbtn">Clear</button></a>
+        <a href="Internship_Management.php"><button type="button" class="searchbtn" style="background-color: #555;">Clear</button></a>
     </form>
 
     <?php
@@ -63,7 +63,7 @@
         }
         if(isset($_SESSION['error_msg'])) {
             echo "<div style='color:red; font-weight:bold; padding: 10px; background: #ffe6e6; border: 1px solid red; border-radius: 5px; margin-bottom: 15px;'>" . $_SESSION['error_msg'] . "</div>";
-            unset($_SESSION['error_msg']); // Deletes it so it disappears on next reload!
+            unset($_SESSION['error_msg']);
         }
     ?>
 
@@ -163,6 +163,7 @@
                             <td><?= htmlspecialchars($row['CompanyName']) ?></td>
                             <td><?= htmlspecialchars($row['SupvrName']) ?></td>
                             <td><?= $row['Start_Intern'] ?> to <?= $row['End_Intern'] ?></td>
+                            <!-- colour is either green or orange depending on whether the status field is graded or not -->
                             <td style="color: <?= $row['Status'] == 'Graded' ? 'green' : 'orange' ?>; font-weight: bold;">
                                 <?= $row['Status'] ?>
                             </td>

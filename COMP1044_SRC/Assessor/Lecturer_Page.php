@@ -90,7 +90,7 @@ if (!isset($_SESSION['User_ID']) || $_SESSION['Role'] !== 'uniAssessor') {
             // Clean the URL so refreshing doesn't re-trigger the alert
             window.history.replaceState({}, document.title, window.location.pathname);
         } else if (params.get("redirect") == "success") {
-            alert("You've been redirected to the home page as you are still logged in to an account.");
+            alert("You're being redirected to the home page as you are currently logged into an account. Please ensure you are logged into the correct role if you were previously trying to access a different page.");
             window.history.replaceState({}, document.title, window.location.pathname);
         }
     </script>
