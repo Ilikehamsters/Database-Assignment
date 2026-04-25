@@ -100,7 +100,7 @@ CREATE TABLE `inds_supervisor` (
   `User_ID` int(11) NOT NULL,
   `Full_Name` varchar(60) NOT NULL,
   `Email_Addr` varchar(50) NOT NULL,
-  `Contact_No.` varchar(25) NOT NULL,
+  `Contact_No` varchar(25) NOT NULL,
   `Gender` enum('Male','Female') DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -108,7 +108,7 @@ CREATE TABLE `inds_supervisor` (
 -- Dumping data for table `inds_supervisor`
 --
 
-INSERT INTO `inds_supervisor` (`Supvr_ID`, `Company_ID`, `User_ID`, `Full_Name`, `Email_Addr`, `Contact_No.`, `Gender`) VALUES
+INSERT INTO `inds_supervisor` (`Supvr_ID`, `Company_ID`, `User_ID`, `Full_Name`, `Email_Addr`, `Contact_No`, `Gender`) VALUES
 (1, 10445, 5, 'Ben', 'Ben@gmail.com', '+601123439402', 'Male'),
 (2, 34231, 17, 'Welt', 'Welt@gmail.com', '+602323777900', 'Male'),
 (3, 12304, 18, 'Grace', 'Grace@gmail.com', '+402323777900', 'Female'),
@@ -195,7 +195,7 @@ CREATE TABLE `student` (
   `Prog_Code` varchar(5) NOT NULL,
   `User_ID` int(11) NOT NULL,
   `Full_Name` varchar(60) NOT NULL,
-  `Contact_No.` varchar(25) NOT NULL,
+  `Contact_No` varchar(25) NOT NULL,
   `Enroll_Date` date NOT NULL,
   `Email_Addr` varchar(50) NOT NULL,
   `Gender` enum('Male','Female') NOT NULL
@@ -205,7 +205,7 @@ CREATE TABLE `student` (
 -- Dumping data for table `student`
 --
 
-INSERT INTO `student` (`Student_ID`, `Prog_Code`, `User_ID`, `Full_Name`, `Contact_No.`, `Enroll_Date`, `Email_Addr`, `Gender`) VALUES
+INSERT INTO `student` (`Student_ID`, `Prog_Code`, `User_ID`, `Full_Name`, `Contact_No`, `Enroll_Date`, `Email_Addr`, `Gender`) VALUES
 (1, 'PC01', 1, 'Yee Grace Shuang', '+601163742608', '2025-01-01', 'Grace@gmail.com', 'Female'),
 (2, 'PC02', 2, 'Brian Yang Shunxi', '+601163742049', '2025-01-15', 'Brian@gmail.com', 'Male'),
 (3, 'PC04', 15, 'Valerie', '+602323855900', '2025-02-01', 'Valerie@gmail.com', 'Female'),
@@ -224,7 +224,7 @@ CREATE TABLE `uni_staff` (
   `Position_Code` varchar(5) NOT NULL,
   `Full_Name` varchar(60) NOT NULL,
   `Email_Addr` varchar(50) NOT NULL,
-  `Contact_No.` varchar(25) NOT NULL,
+  `Contact_No` varchar(25) NOT NULL,
   `Employ_Date` date NOT NULL,
   `Gender` enum('Male','Female') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -233,7 +233,7 @@ CREATE TABLE `uni_staff` (
 -- Dumping data for table `uni_staff`
 --
 
-INSERT INTO `uni_staff` (`Staff_ID`, `User_ID`, `Position_Code`, `Full_Name`, `Email_Addr`, `Contact_No.`, `Employ_Date`, `Gender`) VALUES
+INSERT INTO `uni_staff` (`Staff_ID`, `User_ID`, `Position_Code`, `Full_Name`, `Email_Addr`, `Contact_No`, `Employ_Date`, `Gender`) VALUES
 (1, 3, 'AD', 'Storm', 'Storm@gmail.com', '+601123443910', '1994-01-25', 'Male'),
 (2, 9, 'AD', 'Sophia', 'Sophia@gmail.com', '+601145443910', '1990-11-05', 'Female'),
 (3, 10, 'AD', 'Oliver', 'Oliver@gmail.com', '+829323443910', '1991-03-12', 'Male'),
@@ -255,7 +255,7 @@ CREATE TABLE `user_login` (
   `User_ID` int(11) NOT NULL,
   `Username` varchar(12) NOT NULL,
   `Password` varchar(255) DEFAULT NULL,
-  `Role` enum('Student','Admin','uniAssessor','indSuperv') DEFAULT NULL
+  `Role` enum('Student','Admin','University Assessor','Industrial Supervisor') DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -266,8 +266,8 @@ INSERT INTO `user_login` (`User_ID`, `Username`, `Password`, `Role`) VALUES
 (1, 'Student1', '1234', 'Student'),
 (2, 'Student2', '123abc', 'Student'),
 (3, 'Admin1', '12345', 'Admin'),
-(4, 'Assessor1', '123abcd', 'uniAssessor'),
-(5, 'Superv1', '123456', 'indSuperv'),
+(4, 'Assessor1', '123abcd', 'University Assessor'),
+(5, 'Superv1', '123456', 'Industrial Supervisor'),
 (6, 'student3', '12345678910', 'Student'),
 (7, 'student4', '1234567890', 'Student'),
 (8, 'student5', 'abcde', 'Student'),
@@ -275,14 +275,14 @@ INSERT INTO `user_login` (`User_ID`, `Username`, `Password`, `Role`) VALUES
 (10, 'Admin3', 'abcdef', 'Admin'),
 (11, 'Admin4', '12345678', 'Admin'),
 (12, 'Admin5', '1234567', 'Admin'),
-(13, 'Assessor2', 'justdoit', 'uniAssessor'),
-(14, 'Assessor3', 'justdewit', 'uniAssessor'),
-(15, 'Assessor4', '123boring', 'uniAssessor'),
-(16, 'Assessor5', 'password', 'uniAssessor'),
-(17, 'Superv2', 'Ok101', 'indSuperv'),
-(18, 'Superv3', 'Password101', 'indSuperv'),
-(19, 'Superv4', 'Sailor120', 'indSuperv'),
-(20, 'Superv5', 'qwerty', 'indSuperv');
+(13, 'Assessor2', 'justdoit', 'University Assessor'),
+(14, 'Assessor3', 'justdewit', 'University Assessor'),
+(15, 'Assessor4', '123boring', 'University Assessor'),
+(16, 'Assessor5', 'password', 'University Assessor'),
+(17, 'Superv2', 'Ok101', 'Industrial Supervisor'),
+(18, 'Superv3', 'Password101', 'Industrial Supervisor'),
+(19, 'Superv4', 'Sailor120', 'Industrial Supervisor'),
+(20, 'Superv5', 'qwerty', 'Industrial Supervisor');
 
 --
 -- Indexes for dumped tables
@@ -359,12 +359,17 @@ ALTER TABLE `user_login`
 -- AUTO_INCREMENT for dumped tables
 --
 
---
--- AUTO_INCREMENT for table `user_login`
---
 ALTER TABLE `user_login`
   MODIFY `User_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
+ALTER TABLE `student`
+  MODIFY `Student_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+ALTER TABLE `uni_staff`
+  MODIFY `Staff_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+ALTER TABLE `inds_supervisor`
+  MODIFY `Supvr_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- Constraints for dumped tables
 --

@@ -43,8 +43,24 @@
                                 <td>+605453453</td>
                                 <td>2025-02-01</td>
                                 <td>James@gmail.com</td>
-                                <td><button id="modifybtn" type="button">Modify</button></td>
-                                <td><button id="deletebtn" type="button">Delete</button></td>
+                                <td><button class="modifybtn" type="button">Modify</button></td>
+                                <dialog id="modifyModal">
+                                    <form id="editForm">
+                                        <h3>Edit Student Record</h3>
+                                        <input type="hidden" id="editUserId"> <label>Name: <input type="text" id="editName" required></label><br>
+                                        <label>Program: <input type="text" id="editProgram" required></label><br>
+                                        <label>Contact: <input type="text" id="editContact" required></label><br>
+                                        <div style="margin-top: 10px;">
+                                            <button type="submit">Update Database</button>
+                                            <button type="button" id="closeModal">Cancel</button>
+                                        </div>
+                                        <label for="Name">Name:</label>
+                                        <input type="text" id="editName" name="Name" value="" required><br>
+                                        <label for="program">Program:</label>
+                                        <input type="text" name="program" value="" placeholder="Enter program code..." required><br>
+                                    </form>
+                                </dialog>
+                                <td><button class="deletebtn" type="button">Delete</button></td>
                             </tr>
                             <tr>
                                 <td>1</td>
@@ -55,8 +71,8 @@
                                 <td>+605453453</td>
                                 <td>2025-02-01</td>
                                 <td>James@gmail.com</td>
-                                <td><button id="modifybtn" type="button">Modify</button></td>
-                                <td><button id="deletebtn" type="button">Delete</button></td>
+                                <td><button class="modifybtn" type="button">Modify</button></td>
+                                <td><button class="deletebtn" type="button">Delete</button></td>
                             </tr>
                         </tbody>
                     </table>
@@ -65,8 +81,60 @@
         </main>
         <script>
             const add = document.getElementById("addbtn");
-            const modify = document.getElementById("modifybtn");
-            const deleterecord = document.getElementById("deletebtn");
+            const modify = document.getElementsByClassName("modifybtn");
+            const deleterecord = document.getElementsByClassName("deletebtn");
+
+            const modal = document.getElementById("modifyModal");
+            const editForm = document.getElementById("editForm");
+            const closeModal = document.getElementById("closeModal");
+
+            // 1. Open modal and fill it with row data
+            document.addEventListener("click", function(e) {
+                if (e.target.classList.contains("modifybtn")) {
+                    const row = e.target.closest("tr");
+                    
+                    // Pull data from the table cells
+                    document.getElementById("editUserId").value = row.cells[0].innerText;
+                    document.getElementById("editName").value = row.cells[2].innerText;
+                    document.getElementById("editProgram").value = row.cells[4].innerText;
+                    document.getElementById("editContact").value = row.cells[5].innerText;
+
+                    modal.showModal(); // Opens the dialog
+                }
+            });
+
+            // 2. Close modal
+            closeModal.addEventListener("click", () => modal.close());
+
+            // 3. Handle Form Submission (Database + UI update)
+            editForm.addEventListener("submit", async (e) => {
+                e.preventDefault();
+
+                const updatedData = {
+                    userId: document.getElementById("editUserId").value,
+                    name: document.getElementById("editName").value,
+                    program: document.getElementById("editProgram").value,
+                    contact: document.getElementById("editContact").value
+                };
+
+                try {
+                    // Change 'update_student.php' or '/api/update' to your actual backend URL
+                    const response = await fetch('update_student.php', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(updatedData)
+                    });
+
+                    if (response.ok) {
+                        alert("Record updated successfully!");
+                        location.reload(); // Simplest way to refresh the table with new DB data
+                    } else {
+                        alert("Error updating database.");
+                    }
+                } catch (error) {
+                    console.error("Fetch error:", error);
+                }
+            });
 
             function addfunction() {
                 window.location.href = "Add_student.html";

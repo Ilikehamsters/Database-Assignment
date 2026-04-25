@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Add University Staff Page</title>
+    </head>
+    <body>
+        <header>
+            <h1>Add University Staff</h1>
+        </header>
+        <main>
+            <form action="Add_staff.php" method="post">
+                <label for="username">Staff's username:</label>
+                <input type="text" id="username" name="username" value="" placeholder="Enter username..." required><br>
+
+                <label for="Name">Staff's Full Name:</label>
+                <input type="text" id="Name" name="name" value="" placeholder="Enter Full Name..." required><br>
+
+                <label for="contact">Contact Number:</label>
+                <input type="text" id="contact" name="contact" value="" placeholder="Enter phone number..." required><br>
+
+                <label for="email">Email address:</label>
+                <input type="text" id="email" name="email" value="" placeholder="Enter email address..." required><br>
+
+
+                <label for="gender">Gender:</label>
+                <input type="radio" id="Male" name="gender" value="Male" required>
+                <label for="Male">Male</label>
+                <input type="radio" id="Female" name="gender" value="Female" required>
+                <label for="Female">Female</label><br>
+
+                <label for="role">Role:</label>
+                <input type="radio" id="Admin" name="role" value="Admin" required>
+                <label for="Admin">Admin</label>
+                <input type="radio" id="assess" name="role" value="University Assessor">
+                <label for="assess">Assessor</label><br>
+
+                <label for="employ">Employment Date:</label>
+                <input type="date" id="employ" name="employment" value="" placeholder="DD/MM/YYYY" required><br>
+
+                <input type="submit" value="Submit" placeholder="Submit">
+                <input type="reset" value="Clear"><br>
+                <button type="button">Back</button>
+            </form>
+        </main>
+        <script>
+            const backbtn = document.querySelector("button");
+            function backfunction() {
+                let confirmation = confirm("Are you sure you want to go back? By clicking 'OK', all unsubmitted data will be lost.");
+                if (confirmation) {
+                    window.location.href = "Student_Profile.html"
+                }
+            }
+            
+            backbtn.addEventListener("click", backfunction);
+        </script>
+    </body>
+</html>
