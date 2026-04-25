@@ -41,33 +41,33 @@
 
     <div class="infoContainer">
 
-        <h2 class="profile-name"><?php echo $profile['Full_Name']; ?></h2>
+        <h2 class="profile-name"><?= htmlspecialchars($profile['Full_Name']) ?></h2>
 
         <!-- all the account info -->
         <div class="form-grid">
             <div class="detail-group">
                 <span class="detail-label">Supervisor ID</span>
-                <div class="detail-value"><?php echo $profile['Supvr_ID']; ?></div>
+                <div class="detail-value"><?= htmlspecialchars($profile['Supvr_ID']) ?></div>
             </div>
 
             <div class="detail-group">
                 <span class="detail-label">Full Name</span>
-                <div class="detail-value"><?php echo $profile['Full_Name']; ?></div>
+                <div class="detail-value"><?= htmlspecialchars($profile['Full_Name']) ?></div>
             </div>
 
             <div class="detail-group">
                 <span class="detail-label">Email Address</span>
-                <div class="detail-value"><?php echo $profile['Email_Addr']; ?></div>
+                <div class="detail-value"><?= htmlspecialchars($profile['Email_Addr']) ?></div>
             </div>
 
             <div class="detail-group">
                 <span class="detail-label">Contact Number</span>
-                <div class="detail-value"><?php echo $profile['Contact_No.']; ?></div>
+                <div class="detail-value"><?= htmlspecialchars($profile['Contact_No.']) ?></div>
             </div>
 
             <div class="detail-group">
                 <span class="detail-label">Company Name</span>
-                <div class="detail-value"><?php echo $profile['Reg_Comp_Name']; ?></div>
+                <div class="detail-value"><?= htmlspecialchars($profile['Reg_Comp_Name']) ?></div>
             </div>
         </div>
 

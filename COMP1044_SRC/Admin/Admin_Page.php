@@ -28,7 +28,7 @@ if (!isset($_SESSION['User_ID']) || $_SESSION['Role'] !== 'Admin') {
                         <!-- from top to bottom: main page, user management, internship management, result viewing, student profiles -->
                         <li><a href="Admin_Page.php" class="active">Home</a></li>
                         <li><a href="User_Access.html">Manage User</a></li>
-                        <li><a href="Internship_Management.html">Manage Internship</a></li>
+                        <li><a href="Internship_Management.php">Manage Internship</a></li>
                         <li><a href="../Result_Viewing.html">View Results</a></li>
                         <li><a href="Student_Profile.html">Student Profiles</a></li>
                     </ul>
@@ -58,7 +58,7 @@ if (!isset($_SESSION['User_ID']) || $_SESSION['Role'] !== 'Admin') {
                 </a>
 
                 <!-- card to manage internships -->
-                <a href="Internship_Management.html" class="feature-card">
+                <a href="Internship_Management.php" class="feature-card">
                     <div class="card-image">
                         <img src="../Assets/ManageInternship.png" alt="Manage Internships">
                     </div>
@@ -99,7 +99,7 @@ if (!isset($_SESSION['User_ID']) || $_SESSION['Role'] !== 'Admin') {
                 // Clean the URL so refreshing doesn't re-trigger the alert
                 window.history.replaceState({}, document.title, window.location.pathname);
             } else if (params.get("redirect") == "success") {
-                alert("You've been redirected to the home page as you are still logged in to an account.");
+                alert("You're being redirected to the home page as you are currently logged into an account. Please ensure you are logged into the correct role if you were previously trying to access a different page.");
                 window.history.replaceState({}, document.title, window.location.pathname);
             }
         </script>
