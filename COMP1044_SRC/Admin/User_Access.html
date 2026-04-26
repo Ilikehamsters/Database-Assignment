@@ -3,21 +3,44 @@
     <head>
         <title>User Access Page</title>
         <link rel="stylesheet" href="Management.css">
+        <link rel="stylesheet" href="../Global.css">
     </head>
     <body>
         <header>
+            <nav class="navbar">
+                <!-- lefthand side of the nav bar -->
+                <div class="nav-left">
+                    <!-- show the umn logo -->
+                    <img src="../Assets/UNMLogo.png" alt="UMN Logo" class="nav-logo">
+                    <!-- all the lefthand side links -->
+                    <ul class="nav-links">
+                        <!-- from top to bottom: main page, user management, internship management, result viewing, student profiles -->
+                        <li><a href="Admin_Page.php" class="active">Home</a></li>
+                        <li><a href="User_Access.html">Manage User</a></li>
+                        <li><a href="Internship_Management.php">Manage Internship</a></li>
+                        <li><a href="Student_Profile.html">Student Profiles</a></li>
+                        <li><a href="../Main_Result_Viewing.php">View Results</a></li>
+                    </ul>
+                </div>
+
+                <!-- righthand side of the nav bar -->
+                <div class="nav-right">
+                    <!-- for user to log out -->
+                    <a href="../Logout.php" class="logout-text"><button type="button" class="logoutbtn"><img src="../Assets/Logout.png" class="logoutIcon">Logout</button></a>
+                </div>
+            </nav>
             <h1 id="title">User Access</h1>
         </header>
         <form id="searchbar">
-            <h3>Search (Student/Staff ID):</h3>
+            <h3>Search by ID:</h3>
             <input class="inputbox" type="number" id="student_ID" placeholder="Enter Student ID...">
             <input class="inputbox" type="number" id="staff_ID" placeholder="Enter Staff ID...">
+            <input class="inputbox" type="number" id="superv_ID" placeholder="Enter Supervisor ID...">
             <button class="searchbtn">Search</button>
             <button class="searchbtn">Clear</button>
         </form>
         <main>
             <section>
-                <button id="addbtn">ADD +</button>
                 <article id="tableContainer">
                     <table>
                         <thead>
