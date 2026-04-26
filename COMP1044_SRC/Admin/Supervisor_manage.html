@@ -1,19 +1,42 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Student Profile Page</title>
+        <title>Supervisor Profile Page</title>
         <link rel="stylesheet" href="Management.css">
+        <link rel="stylesheet" href="../Global.css">
     </head>
     <body>
         <header>
-            <h1 id="title">Student Profile</h1>
+            <nav class="navbar">
+                <!-- lefthand side of the nav bar -->
+                <div class="nav-left">
+                    <!-- show the umn logo -->
+                    <img src="../Assets/UNMLogo.png" alt="UMN Logo" class="nav-logo">
+                    <!-- all the lefthand side links -->
+                    <ul class="nav-links">
+                        <!-- from top to bottom: main page, user management, internship management, result viewing, supervisor profiles -->
+                        <li><a href="Admin_Page.php" class="active">Home</a></li>
+                        <li><a href="User_Access.html">Manage User</a></li>
+                        <li><a href="Internship_Management.php">Manage Internship</a></li>
+                        <li><a href="supervisor_Profile.html">supervisor Profiles</a></li>
+                        <li><a href="../Main_Result_Viewing.php">View Results</a></li>
+                    </ul>
+                </div>
+
+                <!-- righthand side of the nav bar -->
+                <div class="nav-right">
+                    <!-- for user to log out -->
+                    <a href="../Logout.php" class="logout-text"><button type="button" class="logoutbtn"><img src="../Assets/Logout.png" class="logoutIcon">Logout</button></a>
+                </div>
+            </nav>
+            <h1 id="title">Supervisor Management</h1>
         </header>
-        <form id="searchbar">
-            <h3>Search (Student ID/Name):</h3>
-            <input class="inputbox" type="number" id="student_ID" placeholder="Enter Student ID; e.g. 1000234">
-            <input class="inputbox" type="search" id="student_name" placeholder="Enter Student's Full Name">
-            <button class="searchbtn">Search</button>
-            <button class="searchbtn">Clear</button>
+        <form id="searchbar" action="Supervisor_manage.php" method="get">
+            <h3>Search (Supervisor ID/Name):</h3>
+            <input class="inputbox" type="number" id="supervisor_ID" name="ID" value="" placeholder="Enter supervisor ID...">
+            <input class="inputbox" type="search" id="supervisor_name" name="name" value="" placeholder="Enter supervisor's Full Name...">
+            <input class="searchbtn" type="submit" value="Search">
+            <input class="searchbtn" id="searchclear" type="reset" value="Clear">
         </form>
         <main>
             <section>
@@ -23,66 +46,125 @@
                         <thead>
                             <tr>
                                 <th>User ID</th>
-                                <th>Student ID</th>
-                                <th>Student name</th>
-                                <th>Gender</th>
-                                <th>Program</th>
+                                <th>Supervisor ID</th>
+                                <th>Company ID</th>
+                                <th>Full Name</th>
+                                <th>Email Address</th>
                                 <th>Contact No.</th>
-                                <th>Enroll date</th>
-                                <th>Email</th>
+                                <th>Gender</th>
                                 <th colspan="2"></th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>1</td>
-                                <td>James</td>
-                                <td>Male</td>
-                                <td>Data Science</td>
-                                <td>+605453453</td>
-                                <td>2025-02-01</td>
-                                <td>James@gmail.com</td>
-                                <td><button id="modifybtn" type="button">Modify</button></td>
-                                <td><button id="deletebtn" type="button">Delete</button></td>
-                            </tr>
-                            <tr>
-                                <td>1</td>
-                                <td>1</td>
-                                <td>James</td>
-                                <td>Male</td>
-                                <td>Data Science</td>
-                                <td>+605453453</td>
-                                <td>2025-02-01</td>
-                                <td>James@gmail.com</td>
-                                <td><button id="modifybtn" type="button">Modify</button></td>
-                                <td><button id="deletebtn" type="button">Delete</button></td>
-                            </tr>
+                        <tbody id="record">
                         </tbody>
                     </table>
                 </article>
             </section>
         </main>
         <script>
+            const params = new URLSearchParams(window.location.search);
+            if (params.get("modify") == "success") {
+                alert("Successfully modifed supervisor data!");
+                // Clean the URL so refreshing doesn't re-trigger the alert
+                window.history.replaceState({}, document.title, window.location.pathname);
+            } else if (params.get("redirect") == "success") {
+                alert("You're being redirected to the home page as you are currently logged into an account. Please ensure you are logged into the correct role if you were previously trying to access a different page.");
+                window.history.replaceState({}, document.title, window.location.pathname);
+            } else if (params.get("add") == "success") {
+                alert("Successfully added supervisor data!");
+                window.history.replaceState({}, document.title, window.location.pathname);
+            } else if (params.get("delete") == "success") {
+                alert("Successfully deleted supervisor data");
+                window.history.replaceState({}, document.title, window.location.pathname);
+            }
+
+            fetch('Supervisor_manage.php')
+                .then(response => response.json())
+                .then(data => {
+                    renderTable(data); // Call a function to update the UI
+                })
+                .catch(err => console.error("Search error:", err));
+
+            const searchForm = document.getElementById("searchbar");
+
+            searchForm.addEventListener("submit", (e) => {
+                e.preventDefault(); // Stop the browser from leaving the page
+
+                const formData = new FormData(searchForm);
+                const params = new URLSearchParams(formData).toString();
+
+                // Fetch from PHP with the search parameters
+                fetch(`Supervisor_manage.php?${params}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        renderTable(data); // Call a function to update the UI
+                    })
+                    .catch(err => console.error("Search error:", err));
+            });
+
+            function renderTable(data) {
+                const tableBody = document.getElementById('record');
+                tableBody.innerHTML = ''; // Clear the table
+
+                data.forEach(supervisor => {
+                    const row = document.createElement('tr');
+                    if (supervisor.Error_msg) {
+                        row.innerHTML = `<td colspan="10" style="text-align:center; color:red; font-size:18px; font-weight:bold;">${supervisor.Error_msg}</td>`;
+
+                    } else {
+                        row.innerHTML = `
+                        <td>${supervisor.User_ID}</td>
+                        <td>${supervisor.Supvr_ID}</td>
+                        <td>${supervisor.Company_ID}</td>
+                        <td>${supervisor.Full_Name}</td>
+                        <td>${supervisor.Email_Addr}</td>
+                        <td>${supervisor.Contact_No}</td>
+                        <td>${supervisor.Gender}</td>
+                        
+                        <td><button class="modifybtn" data-id="${supervisor.Supvr_ID}">Modify</button></td>
+                        <td><button class="deletebtn" data-id="${supervisor.Supvr_ID}">Delete</button></td>`;
+                    }
+                    tableBody.appendChild(row);
+                });
+            }
+
             const add = document.getElementById("addbtn");
-            const modify = document.getElementById("modifybtn");
-            const deleterecord = document.getElementById("deletebtn");
+            add.addEventListener("click", () => window.location.href = "Add_supervisor.html");
 
-            function addfunction() {
-                window.location.href = "Add_student.html";
-            }
+            const clearBtn = document.getElementById("searchclear");
+            clearBtn.addEventListener("click", (e) => {
+                // 1. Manually reset the form fields
+                document.getElementById("searchbar").reset();
 
-            function modifyfunction() {
-                window.location.href = "Modify_student.html";
-            }
+                // 2. Re-fetch the full list (no parameters)
+                fetch('Supervisor_manage.php')
+                    .then(response => response.json())
+                    .then(data => {
+                        renderTable(data);
+                    })
+                    .catch(err => console.error("Error resetting table:", err));
+            });
 
-            function deletefunction() {
-                let confirmation = confirm("**WARNING** By clicking 'OK', the record will be permanently deleted.");
-            }
+            // Use Event Delegation for dynamic buttons
+            const tableBody = document.getElementById('record');
+            tableBody.addEventListener("click", async (e) => {
 
-            add.addEventListener("click", addfunction);
-            modify.addEventListener("click", modifyfunction);
-            deleterecord.addEventListener("click", deletefunction);
+                // Check if the clicked element is a Modify button
+                if (e.target.classList.contains("modifybtn")) {
+                    const supervID = e.target.getAttribute("data-id");
+                    // Redirect with the ID as a query string
+                    window.location.href = `Modify_supervisor.html?supervID=${supervID}`;
+                }
+
+                // Check if the clicked element is a Delete button
+                if (e.target.classList.contains("deletebtn")) {
+                    const supervID = e.target.getAttribute("data-id");
+                    let confirmation = confirm("**WARNING** By clicking 'OK', all records related to the supervisor (supervisor, login, internship and assessment records) will be permanently deleted. Are you sure you want to delete the record?");
+                    if (confirmation) {
+                        window.location.href = `Supervisor_manage.php?supervID=${supervID}`;
+                    }
+                }
+            });
         </script>
     </body>
 </html>

@@ -73,7 +73,7 @@
         $Supvrstmt->close();
 
         // Redirect back to the form after successful insert
-        header("Location: Add_Supervisor.html");
+        header("Location: Supervisor_manage.html?add=success");
         exit();
     }
 ?>

@@ -36,7 +36,7 @@
             <input class="inputbox" type="number" id="student_ID" name="ID" value="" placeholder="Enter Student ID...">
             <input class="inputbox" type="search" id="student_name" name="name" value="" placeholder="Enter Student's Full Name...">
             <input class="searchbtn" type="submit" value="Search">
-            <input class="searchbtn" type="reset" value="Clear">
+            <input class="searchbtn" id="searchclear" type="reset" value="Clear">
         </form>
         <main>
             <section>
@@ -63,9 +63,6 @@
             </section>
         </main>
         <script>
-            /*const modal = document.getElementById("modifyModal");
-            const editForm = document.getElementById("editForm");
-            const closeModal = document.getElementById("closeModal");*/
             const params = new URLSearchParams(window.location.search);
             if (params.get("modify") == "success") {
                 alert("Successfully modifed student data!");
@@ -135,6 +132,20 @@
             const add = document.getElementById("addbtn");
             add.addEventListener("click", () => window.location.href = "Add_student.html");
 
+            const clearBtn = document.getElementById("searchclear");
+            clearBtn.addEventListener("click", (e) => {
+                // 1. Manually reset the form fields
+                document.getElementById("searchbar").reset();
+
+                // 2. Re-fetch the full list (no parameters)
+                fetch('Student_prof_manage.php')
+                    .then(response => response.json())
+                    .then(data => {
+                        renderTable(data);
+                    })
+                    .catch(err => console.error("Error resetting table:", err));
+            });
+
             // Use Event Delegation for dynamic buttons
             const tableBody = document.getElementById('record');
             tableBody.addEventListener("click", async (e) => {
@@ -149,60 +160,12 @@
                 // Check if the clicked element is a Delete button
                 if (e.target.classList.contains("deletebtn")) {
                     const studID = e.target.getAttribute("data-id");
-                    let confirmation = confirm("**WARNING** By clicking 'OK', all records related to the student (student, login, intership and assessment records) will be permanently deleted. Are you sure you want to delete the record?");
+                    let confirmation = confirm("**WARNING** By clicking 'OK', all records related to the student (student, login, internship and assessment records) will be permanently deleted. Are you sure you want to delete the record?");
                     if (confirmation) {
                         window.location.href = `Student_prof_manage.php?studID=${studID}`;
                     }
                 }
             });
-
-            // 1. Open modal and fill it with row data
-            /*document.addEventListener("click", function(e) {
-                if (e.target.classList.contains("modifybtn")) {
-                    const row = e.target.closest("tr");
-                    
-                    // Pull data from the table cells
-                    document.getElementById("editUserId").value = row.cells[0].innerText;
-                    document.getElementById("editName").value = row.cells[2].innerText;
-                    document.getElementById("editProgram").value = row.cells[4].innerText;
-                    document.getElementById("editContact").value = row.cells[5].innerText;
-
-                    modal.showModal(); // Opens the dialog
-                }
-            });
-
-            // 2. Close modal
-            closeModal.addEventListener("click", () => modal.close());
-
-            // 3. Handle Form Submission (Database + UI update)
-            editForm.addEventListener("submit", async (e) => {
-                e.preventDefault();
-
-                const updatedData = {
-                    userId: document.getElementById("editUserId").value,
-                    name: document.getElementById("editName").value,
-                    program: document.getElementById("editProgram").value,
-                    contact: document.getElementById("editContact").value
-                };
-
-                try {
-                    // Change 'update_student.php' or '/api/update' to your actual backend URL
-                    const response = await fetch('update_student.php', {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify(updatedData)
-                    });
-
-                    if (response.ok) {
-                        alert("Record updated successfully!");
-                        location.reload(); // Simplest way to refresh the table with new DB data
-                    } else {
-                        alert("Error updating database.");
-                    }
-                } catch (error) {
-                    console.error("Fetch error:", error);
-                }
-            });*/
         </script>
     </body>
 </html>
