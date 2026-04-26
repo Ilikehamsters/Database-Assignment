@@ -1,16 +1,15 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Add University Staff Page</title>
+        <title>Modify University Staff Page</title>
     </head>
     <body>
         <header>
-            <h1>Add University Staff</h1>
+            <h1>Modify University Staff</h1>
         </header>
         <main>
-            <form action="Add_staff.php" method="post">
-                <label for="username">Username:</label>
-                <input type="text" maxlength="12" id="username" name="username" value="" placeholder="Enter username..." required><br>
+            <form action="Modify_staff.php" method="post">
+                <input type="hidden" id="hidden_staffID" name="staffID">
 
                 <label for="Name">Full Name:</label>
                 <input type="text" maxlength="60" id="Name" name="name" value="" placeholder="Enter Full Name..." required><br>
@@ -50,8 +49,39 @@
                     window.location.href = "Staff_manage.html"
                 }
             }
-            
             backbtn.addEventListener("click", backfunction);
+
+            document.addEventListener("DOMContentLoaded", () => {
+                const name = document.getElementById('Name');
+                const contact = document.getElementById('contact');
+                const email = document.getElementById('email');
+                const employ = document.getElementById('employ');
+                const hid_staffID = document.getElementById('hidden_staffID');
+
+                const urlParams = new URLSearchParams(window.location.search);
+                const staffID = urlParams.get('staffID');
+                hid_staffID.value = staffID;
+
+                fetch(`Modify_staff.php?staffID=${staffID}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        const Staff = data.staff;
+
+                        // 1. Populate standard inputs
+                        name.value = Staff.Full_Name;
+                        contact.value = Staff.Contact_No;
+                        email.value = Staff.Email_Addr;
+                        employ.value = Staff.Employ_Date;
+
+                        // 2. Handle Gender
+                        if (Staff.Gender === "Male") document.getElementById('Male').checked = true;
+                        if (Staff.Gender === "Female") document.getElementById('Female').checked = true;
+
+                        if (Staff.Position_Name === "Admin") document.getElementById('Admin').checked = true;
+                        if (Staff.Position_Name === "University Assessor") document.getElementById('assess').checked = true;
+                    })
+                    .catch(error => console.error('Error:', error));
+            });
         </script>
     </body>
 </html>

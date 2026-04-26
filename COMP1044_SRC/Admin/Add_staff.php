@@ -45,7 +45,7 @@
         $Staffstmt->close();
 
         // Redirect back to the form after successful insert
-        header("Location: Add_staff.html");
+        header("Location: Staff_manage.html?add=success");
         exit();
     }
 ?>

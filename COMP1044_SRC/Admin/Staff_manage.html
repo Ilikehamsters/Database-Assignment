@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Staff Profile Page</title>
+        <link rel="stylesheet" href="Management.css">
+        <link rel="stylesheet" href="../Global.css">
+    </head>
+    <body>
+        <header>
+            <nav class="navbar">
+                <!-- lefthand side of the nav bar -->
+                <div class="nav-left">
+                    <!-- show the umn logo -->
+                    <img src="../Assets/UNMLogo.png" alt="UMN Logo" class="nav-logo">
+                    <!-- all the lefthand side links -->
+                    <ul class="nav-links">
+                        <!-- from top to bottom: main page, user management, internship management, result viewing, staff profiles -->
+                        <li><a href="Admin_Page.php" class="active">Home</a></li>
+                        <li><a href="User_Access.html">Manage User</a></li>
+                        <li><a href="Internship_Management.php">Manage Internship</a></li>
+                        <li><a href="staff_Profile.html">staff Profiles</a></li>
+                        <li><a href="../Main_Result_Viewing.php">View Results</a></li>
+                    </ul>
+                </div>
+
+                <!-- righthand side of the nav bar -->
+                <div class="nav-right">
+                    <!-- for user to log out -->
+                    <a href="../Logout.php" class="logout-text"><button type="button" class="logoutbtn"><img src="../Assets/Logout.png" class="logoutIcon">Logout</button></a>
+                </div>
+            </nav>
+            <h1 id="title">Staff Management</h1>
+        </header>
+        <form id="searchbar" action="Staff_manage.php" method="get">
+            <h3>Search (Staff ID/Name):</h3>
+            <input class="inputbox" type="number" id="staff_ID" name="ID" value="" placeholder="Enter staff ID...">
+            <input class="inputbox" type="search" id="staff_name" name="name" value="" placeholder="Enter staff's Full Name...">
+            <input class="searchbtn" type="submit" value="Search">
+            <input class="searchbtn" id="searchclear" type="reset" value="Clear">
+        </form>
+        <main>
+            <section>
+                <button id="addbtn" type="button">ADD+</button>
+                <article id="tableContainer">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>User ID</th>
+                                <th>Staff ID</th>
+                                <th>Position Code</th>
+                                <th>Full Name</th>
+                                <th>Email Address</th>
+                                <th>Contact No.</th>
+                                <th>Employment Date</th>
+                                <th>Gender</th>
+                                <th colspan="2"></th>
+                            </tr>
+                        </thead>
+                        <tbody id="record">
+                        </tbody>
+                    </table>
+                </article>
+            </section>
+        </main>
+        <script>
+            const params = new URLSearchParams(window.location.search);
+            if (params.get("modify") == "success") {
+                alert("Successfully modifed staff data!");
+                // Clean the URL so refreshing doesn't re-trigger the alert
+                window.history.replaceState({}, document.title, window.location.pathname);
+            } else if (params.get("redirect") == "success") {
+                alert("You're being redirected to the home page as you are currently logged into an account. Please ensure you are logged into the correct role if you were previously trying to access a different page.");
+                window.history.replaceState({}, document.title, window.location.pathname);
+            } else if (params.get("add") == "success") {
+                alert("Successfully added staff data!");
+                window.history.replaceState({}, document.title, window.location.pathname);
+            } else if (params.get("delete") == "success") {
+                alert("Successfully deleted staff data");
+                window.history.replaceState({}, document.title, window.location.pathname);
+            }
+
+            fetch('Staff_manage.php')
+                .then(response => response.json())
+                .then(data => {
+                    renderTable(data); // Call a function to update the UI
+                })
+                .catch(err => console.error("Search error:", err));
+
+            const searchForm = document.getElementById("searchbar");
+
+            searchForm.addEventListener("submit", (e) => {
+                e.preventDefault(); // Stop the browser from leaving the page
+
+                const formData = new FormData(searchForm);
+                const params = new URLSearchParams(formData).toString();
+
+                // Fetch from PHP with the search parameters
+                fetch(`Staff_manage.php?${params}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        renderTable(data); // Call a function to update the UI
+                    })
+                    .catch(err => console.error("Search error:", err));
+            });
+
+            function renderTable(data) {
+                const tableBody = document.getElementById('record');
+                tableBody.innerHTML = ''; // Clear the table
+
+                data.forEach(staff => {
+                    const row = document.createElement('tr');
+                    if (staff.Error_msg) {
+                        row.innerHTML = `<td colspan="10" style="text-align:center; color:red; font-size:18px; font-weight:bold;">${staff.Error_msg}</td>`;
+
+                    } else {
+                        row.innerHTML = `
+                        <td>${staff.User_ID}</td>
+                        <td>${staff.Staff_ID}</td>
+                        <td>${staff.Position_Code}</td>
+                        <td>${staff.Full_Name}</td>
+                        <td>${staff.Email_Addr}</td>
+                        <td>${staff.Contact_No}</td>
+                        <td>${staff.Employ_Date}</td>
+                        <td>${staff.Gender}</td>
+                        
+                        <td><button class="modifybtn" data-id="${staff.Staff_ID}">Modify</button></td>
+                        <td><button class="deletebtn" data-id="${staff.Staff_ID}">Delete</button></td>`;
+                    }
+                    tableBody.appendChild(row);
+                });
+            }
+
+            const add = document.getElementById("addbtn");
+            add.addEventListener("click", () => window.location.href = "Add_staff.html");
+
+            const clearBtn = document.getElementById("searchclear");
+            clearBtn.addEventListener("click", (e) => {
+                // 1. Manually reset the form fields
+                document.getElementById("searchbar").reset();
+
+                // 2. Re-fetch the full list (no parameters)
+                fetch('Staff_manage.php')
+                    .then(response => response.json())
+                    .then(data => {
+                        renderTable(data);
+                    })
+                    .catch(err => console.error("Error resetting table:", err));
+            });
+
+            // Use Event Delegation for dynamic buttons
+            const tableBody = document.getElementById('record');
+            tableBody.addEventListener("click", async (e) => {
+
+                // Check if the clicked element is a Modify button
+                if (e.target.classList.contains("modifybtn")) {
+                    const staffID = e.target.getAttribute("data-id");
+                    // Redirect with the ID as a query string
+                    window.location.href = `Modify_staff.html?staffID=${staffID}`;
+                }
+
+                // Check if the clicked element is a Delete button
+                if (e.target.classList.contains("deletebtn")) {
+                    const staffID = e.target.getAttribute("data-id");
+                    let confirmation = confirm("**WARNING** By clicking 'OK', all records related to the staff (staff, login, internship and assessment records) will be permanently deleted. Are you sure you want to delete the record?");
+                    if (confirmation) {
+                        window.location.href = `Staff_manage.php?staffID=${staffID}`;
+                    }
+                }
+            });
+        </script>
+    </body>
+</html>
