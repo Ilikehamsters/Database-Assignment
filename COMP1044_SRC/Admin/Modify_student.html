@@ -8,7 +8,9 @@
             <h1>Modify Student Details</h1>
         </header>
         <main>
-            <form>
+            <form action="Modify_student.php" method="post">
+                <input type="hidden" id="hidden_studID" name="studID">
+
                 <label for="name">Full Name:</label>
                 <input type="text" maxlength="60" id="name" name="name" value="" placeholder="Enter full name..." required><br>
 
@@ -18,10 +20,10 @@
                 </select><br>
 
                 <label for="contact">Contact Number:</label>
-                <input type="text" maxlength="16" name="contact" value="" placeholder="Enter phone number..." required><br>
+                <input type="text" id="contact" maxlength="16" name="contact" value="" placeholder="Enter phone number..." required><br>
 
                 <label for="email">Email Address:</label>
-                <input type="text" maxlength="50" name="email" value="" placeholder="Enter email address..." required><br>
+                <input type="text" id="email" maxlength="50" name="email" value="" placeholder="Enter email address..." required><br>
 
                 <label for="enroll">Enrollment Date:</label>
                 <input type="date" id="enroll" name="enroll" value="" placeholder="DD/MM/YYYY" required><br>
@@ -32,7 +34,7 @@
                 <input type="radio" id="Female" name="gender" value="Female" required>
                 <label for="Female">Female</label><br>
 
-                <input type="submit" value="Submit" placeholder="Submit">
+                <input type="submit" value="Submit">
                 <input type="reset" value="Clear"><br>
                 <button type="button">Back</button>
             </form>
@@ -42,7 +44,7 @@
             function backfunction() {
                 let confirmation = confirm("Are you sure you want to go back? By clicking 'OK', all unsubmitted data will be lost.");
                 if (confirmation) {
-                    window.location.href = "Student_Profile.html"
+                    window.location.href = "Student_prof_manage.html"
                 }
             }
             backbtn.addEventListener("click", backfunction);
@@ -53,31 +55,45 @@
                 const contact = document.getElementById('contact');
                 const email = document.getElementById('email');
                 const enroll = document.getElementById('enroll');
-                const gender = document.getElementById('gender');
+                const hid_studID = document.getElementById('hidden_studID');
 
-                fetch('Modify_student.php')
+                const urlParams = new URLSearchParams(window.location.search);
+                const studID = urlParams.get('studID');
+                hid_studID.value = studID;
+
+                fetch(`Modify_student.php?studID=${studID}`)
                     .then(response => response.json())
                     .then(data => {
-                        name.value = data.Full_Name;
-                        programme.innerHTML = '<option value="">--Select Program--</option>';
-                        programme.value = data.Programme_Name;
-                        contact.value = data.Contact_No;
-                        email.value = data.Email_Addr;
-                        enroll.value = data.Enroll_Date;
-                        gender.value = data.Gender;
+                        const student = data.student;
+                        const allProgrammes = data.programmes;
 
-                        // Iterate through the array and create options
-                        data.forEach(item => {
+                        // 1. Populate standard inputs
+                        name.value = student.Full_Name;
+                        contact.value = student.Contact_No;
+                        email.value = student.Email_Addr;
+                        enroll.value = student.Enroll_Date;
+
+                        // 2. Handle Gender
+                        if (student.Gender === "Male") document.getElementById('Male').checked = true;
+                        if (student.Gender === "Female") document.getElementById('Female').checked = true;
+
+                        // 3. Populate Select List with ALL programmes
+                        programme.innerHTML = '<option value="">--Select Program--</option>'; // Clear existing options
+
+                        allProgrammes.forEach(prog => {
                             const option = document.createElement('option');
-                            option.value = item.Programme_Name; // The value sent to the server
-                            option.textContent = item.Programme_Name; // The text shown to the user
-                            dropdown.appendChild(option);
+                            option.value = prog.Programme_Name;
+                            option.textContent = prog.Programme_Name;
+
+                            // If this programme matches the student's current one, select it
+                            if (prog.Programme_Name === student.Programme_Name) {
+                                option.selected = true;
+                            }
+
+                            programme.appendChild(option);
                         });
                     })
-                    .catch(error => {
-                        console.error('Error fetching data:', error);
-                        dropdown.innerHTML = '<option value="">Error loading data</option>';
-                    });
+                    .catch(error => console.error('Error:', error));
             });
         </script>
     </body>

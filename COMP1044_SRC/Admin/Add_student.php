@@ -17,7 +17,6 @@
         $fetchcomp->execute();
         $progName = $fetchcomp->get_result();
 
-
         if ($progName->num_rows > 0) {
             $proglist = $progName->fetch_all(MYSQLI_ASSOC);
             header('Content-Type: application/json');
@@ -66,7 +65,7 @@
         $Studstmt->close();
         
         // Redirect back to the form after successful insert
-        header("Location: Add_student.html");
+        header("Location: Student_prof_manage.html?add=success");
         exit();
     }
 ?>

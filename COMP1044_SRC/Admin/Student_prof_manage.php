@@ -9,13 +9,42 @@
         die(json_encode(['error' => 'Connection failed: ' . $conn->connect_error]));
     }
 
+    if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['userID'])) {
+        $UserID = $_GET['userID'];
+
+        // Start a transaction to ensure both deletes happen or neither does
+        $conn->begin_transaction();
+
+        try {
+            // Delete from student table
+            $deleteStmt1 = $conn->prepare("DELETE FROM student WHERE User_ID = ?");
+            $deleteStmt1->bind_param("i", $UserID);
+            $deleteStmt1->execute();
+
+            // Delete from login table
+            $deleteStmt2 = $conn->prepare("DELETE FROM user_login WHERE User_ID = ?");
+            $deleteStmt2->bind_param("i", $UserID);
+            $deleteStmt2->execute();
+
+            $conn->commit();
+            echo json_encode(["status" => "success"]);
+        } catch (Exception $e) {
+            $conn->rollback();
+            http_response_code(500);
+            echo json_encode(["error" => $e->getMessage()]);
+        }
+        
+        $conn->close();
+        exit(); // Stop execution here so it doesn't try to "Search"
+    }
+
     if ($_SERVER['REQUEST_METHOD'] === 'GET' && empty($_GET['ID']) && empty($_GET['name'])) {
-        $fetchcomp = $conn->prepare("SELECT * FROM student");
-        if (!$fetchcomp) {
+        $fetchstmt = $conn->prepare("SELECT * FROM student");
+        if (!$fetchstmt) {
             die("Prepare failed (Programme_Name): " . $conn->error);
         }
-        $fetchcomp->execute();
-        $student = $fetchcomp->get_result();
+        $fetchstmt->execute();
+        $student = $fetchstmt->get_result();
         $studentlist = $student->fetch_all(MYSQLI_ASSOC);
 
 
@@ -35,13 +64,13 @@
 
     } elseif ($_SERVER['REQUEST_METHOD'] === 'GET' && !empty($_GET['ID'])) {
         $StudID = $_GET['ID'];
-        $fetchcomp = $conn->prepare("SELECT * FROM student WHERE Student_ID = ?");
-        if (!$fetchcomp) {
+        $fetchstmt = $conn->prepare("SELECT * FROM student WHERE Student_ID = ?");
+        if (!$fetchstmt) {
             die("Prepare failed (Programme_Name): " . $conn->error);
         }
-        $fetchcomp->bind_param("i", $StudID);
-        $fetchcomp->execute();
-        $student = $fetchcomp->get_result();
+        $fetchstmt->bind_param("i", $StudID);
+        $fetchstmt->execute();
+        $student = $fetchstmt->get_result();
 
         if ($student->num_rows > 0) {
             $studentlist = $student->fetch_all(MYSQLI_ASSOC);
@@ -58,12 +87,12 @@
             exit();
         }
         
-    } else {
-        $name = "%" . $_GET['name'] . "%";
-        $fetchcomp = $conn->prepare("SELECT * FROM student WHERE Full_Name LIKE ?");
-        $fetchcomp->bind_param("s", $name);
-        $fetchcomp->execute();
-        $student = $fetchcomp->get_result();
+    } elseif ($_SERVER['REQUEST_METHOD'] === 'GET' && !empty($_GET['name'])) {
+        $Name = "%" . $_GET['name'] . "%";
+        $fetchstmt = $conn->prepare("SELECT * FROM student WHERE Full_Name LIKE ?");
+        $fetchstmt->bind_param("s", $Name);
+        $fetchstmt->execute();
+        $student = $fetchstmt->get_result();
 
         if ($student->num_rows > 0) {
             $studentlist = $student->fetch_all(MYSQLI_ASSOC);
@@ -74,6 +103,28 @@
 
         } else {
             $error_response = [["Error_msg" => "Student name doesn't exist!"]];
+            header('Content-Type: application/json');
+            echo json_encode($error_response);
+            $conn->close();
+            exit();
+        }
+    } else {
+        $StudID = $_GET['ID'];
+        $Name = "%" . $_GET['name'] . "%";
+        $fetchstmt = $conn->prepare("SELECT * FROM student WHERE Full_Name LIKE ? AND Student_ID = ?");
+        $fetchstmt->bind_param("si", $Name, $StudID);
+        $fetchstmt->execute();
+        $student = $fetchstmt->get_result();
+
+        if ($student->num_rows > 0) {
+            $studentlist = $student->fetch_all(MYSQLI_ASSOC);
+            header('Content-Type: application/json');
+            echo json_encode($studentlist);
+            $conn->close();
+            exit();
+
+        } else {
+            $error_response = [["Error_msg" => "No student found! Either student ID or Name are wrong!"]];
             header('Content-Type: application/json');
             echo json_encode($error_response);
             $conn->close();

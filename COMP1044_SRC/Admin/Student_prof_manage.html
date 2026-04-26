@@ -43,6 +43,21 @@
             /*const modal = document.getElementById("modifyModal");
             const editForm = document.getElementById("editForm");
             const closeModal = document.getElementById("closeModal");*/
+            const params = new URLSearchParams(window.location.search);
+            if (params.get("modify") == "success") {
+                alert("Successfully modifed student data!");
+                // Clean the URL so refreshing doesn't re-trigger the alert
+                window.history.replaceState({}, document.title, window.location.pathname);
+            } else if (params.get("redirect") == "success") {
+                alert("You're being redirected to the home page as you are currently logged into an account. Please ensure you are logged into the correct role if you were previously trying to access a different page.");
+                window.history.replaceState({}, document.title, window.location.pathname);
+            } else if (params.get("add") == "success") {
+                alert("Successfully added student data!");
+                window.history.replaceState({}, document.title, window.location.pathname);
+            } else if (params.get("delete") == "success") {
+                alert("Successfully deleted student data");
+                window.history.replaceState({}, document.title, window.location.pathname);
+            }
 
             fetch('Student_prof_manage.php')
                 .then(response => response.json())
@@ -88,7 +103,7 @@
                         <td>${student.Enroll_Date}</td>
                         <td>${student.Email_Addr}</td>
                         <td><button class="modifybtn" data-id="${student.Student_ID}">Modify</button></td>
-                        <td><button class="deletebtn" type="button">Delete</button></td>`;
+                        <td><button class="deletebtn" data-id="${student.User_ID}">Delete</button></td>`;
                     }
                     tableBody.appendChild(row);
                 });
@@ -99,7 +114,8 @@
 
             // Use Event Delegation for dynamic buttons
             const tableBody = document.getElementById('record');
-            tableBody.addEventListener("click", (e) => {
+            tableBody.addEventListener("click", async (e) => {
+
                 // Check if the clicked element is a Modify button
                 if (e.target.classList.contains("modifybtn")) {
                     const studID = e.target.getAttribute("data-id");
@@ -109,10 +125,22 @@
 
                 // Check if the clicked element is a Delete button
                 if (e.target.classList.contains("deletebtn")) {
+                    const userID = e.target.getAttribute("data-id");
                     let confirmation = confirm("**WARNING** By clicking 'OK', the record will be permanently deleted.");
                     if (confirmation) {
-                        // Add your logic here to delete from DB via fetch
-                        console.log("Deleting record...");
+                        try {
+                            const response = await fetch(`Student_prof_manage.php?userID=${userID}`);
+                            if (response.ok) {
+                                alert("Deleted successfully!");
+                                location.reload();
+                            } else {
+                                alert("Error deleting record.");
+                            }
+                        } catch (error) {
+                            console.error("Delete failed:", error);
+                        }
+
+                        //window.location.href = `Student_prof_manage.php?studID=${studID}`;
                     }
                 }
             });
