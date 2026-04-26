@@ -101,7 +101,7 @@ CREATE TABLE `inds_supervisor` (
   `Full_Name` varchar(60) NOT NULL,
   `Email_Addr` varchar(50) NOT NULL,
   `Contact_No` varchar(25) NOT NULL,
-  `Gender` enum('Male','Female') DEFAULT NULL
+  `Gender` enum('Male','Female') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -130,7 +130,7 @@ CREATE TABLE `internship` (
   `Supvr_ID` int(11) NOT NULL,
   `Start_Intern` date NOT NULL,
   `End_Intern` date NOT NULL,
-  `Status` enum('Ungraded','Graded') DEFAULT NULL
+  `Status` enum('Ungraded','Graded') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -258,8 +258,8 @@ INSERT INTO `uni_staff` (`Staff_ID`, `User_ID`, `Position_Code`, `Full_Name`, `E
 CREATE TABLE `user_login` (
   `User_ID` int(11) NOT NULL,
   `Username` varchar(12) NOT NULL,
-  `Password` varchar(255) DEFAULT NULL,
-  `Role` enum('Student','Admin','University Assessor','Industrial Supervisor') DEFAULT NULL
+  `Password` varchar(255) NOT NULL,
+  `Role` enum('Student','Admin','University Assessor','Industrial Supervisor') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --

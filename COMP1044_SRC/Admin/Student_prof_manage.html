@@ -149,7 +149,7 @@
                 // Check if the clicked element is a Delete button
                 if (e.target.classList.contains("deletebtn")) {
                     const studID = e.target.getAttribute("data-id");
-                    let confirmation = confirm("**WARNING** By clicking 'OK', all records related to the student (student record, intership record and assessment records) will be permanently deleted except login record. Are you sure you want to delete the record?");
+                    let confirmation = confirm("**WARNING** By clicking 'OK', all records related to the student (student, login, intership and assessment records) will be permanently deleted. Are you sure you want to delete the record?");
                     if (confirmation) {
                         window.location.href = `Student_prof_manage.php?studID=${studID}`;
                     }
