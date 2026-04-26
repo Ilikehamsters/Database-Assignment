@@ -3,9 +3,32 @@
     <head>
         <title>Student Profile Page</title>
         <link rel="stylesheet" href="Management.css">
+        <link rel="stylesheet" href="../Global.css">
     </head>
     <body>
         <header>
+            <nav class="navbar">
+                <!-- lefthand side of the nav bar -->
+                <div class="nav-left">
+                    <!-- show the umn logo -->
+                    <img src="../Assets/UNMLogo.png" alt="UMN Logo" class="nav-logo">
+                    <!-- all the lefthand side links -->
+                    <ul class="nav-links">
+                        <!-- from top to bottom: main page, user management, internship management, result viewing, student profiles -->
+                        <li><a href="Admin_Page.php" class="active">Home</a></li>
+                        <li><a href="User_Access.html">Manage User</a></li>
+                        <li><a href="Internship_Management.php">Manage Internship</a></li>
+                        <li><a href="Student_Profile.html">Student Profiles</a></li>
+                        <li><a href="../Main_Result_Viewing.php">View Results</a></li>
+                    </ul>
+                </div>
+
+                <!-- righthand side of the nav bar -->
+                <div class="nav-right">
+                    <!-- for user to log out -->
+                    <a href="../Logout.php" class="logout-text"><button type="button" class="logoutbtn"><img src="../Assets/Logout.png" class="logoutIcon">Logout</button></a>
+                </div>
+            </nav>
             <h1 id="title">Student Profile</h1>
         </header>
         <form id="searchbar" action="Student_prof_manage.php" method="get">
@@ -103,7 +126,7 @@
                         <td>${student.Enroll_Date}</td>
                         <td>${student.Email_Addr}</td>
                         <td><button class="modifybtn" data-id="${student.Student_ID}">Modify</button></td>
-                        <td><button class="deletebtn" data-id="${student.User_ID}">Delete</button></td>`;
+                        <td><button class="deletebtn" data-id="${student.Student_ID}">Delete</button></td>`;
                     }
                     tableBody.appendChild(row);
                 });
@@ -125,22 +148,10 @@
 
                 // Check if the clicked element is a Delete button
                 if (e.target.classList.contains("deletebtn")) {
-                    const userID = e.target.getAttribute("data-id");
-                    let confirmation = confirm("**WARNING** By clicking 'OK', the record will be permanently deleted.");
+                    const studID = e.target.getAttribute("data-id");
+                    let confirmation = confirm("**WARNING** By clicking 'OK', all records related to the student (student record, intership record and assessment records) will be permanently deleted except login record. Are you sure you want to delete the record?");
                     if (confirmation) {
-                        try {
-                            const response = await fetch(`Student_prof_manage.php?userID=${userID}`);
-                            if (response.ok) {
-                                alert("Deleted successfully!");
-                                location.reload();
-                            } else {
-                                alert("Error deleting record.");
-                            }
-                        } catch (error) {
-                            console.error("Delete failed:", error);
-                        }
-
-                        //window.location.href = `Student_prof_manage.php?studID=${studID}`;
+                        window.location.href = `Student_prof_manage.php?studID=${studID}`;
                     }
                 }
             });

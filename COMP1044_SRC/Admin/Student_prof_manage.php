@@ -9,34 +9,18 @@
         die(json_encode(['error' => 'Connection failed: ' . $conn->connect_error]));
     }
 
-    if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['userID'])) {
-        $UserID = $_GET['userID'];
-
-        // Start a transaction to ensure both deletes happen or neither does
-        $conn->begin_transaction();
-
-        try {
-            // Delete from student table
-            $deleteStmt1 = $conn->prepare("DELETE FROM student WHERE User_ID = ?");
-            $deleteStmt1->bind_param("i", $UserID);
-            $deleteStmt1->execute();
-
-            // Delete from login table
-            $deleteStmt2 = $conn->prepare("DELETE FROM user_login WHERE User_ID = ?");
-            $deleteStmt2->bind_param("i", $UserID);
-            $deleteStmt2->execute();
-
-            $conn->commit();
-            echo json_encode(["status" => "success"]);
-        } catch (Exception $e) {
-            $conn->rollback();
-            http_response_code(500);
-            echo json_encode(["error" => $e->getMessage()]);
+    if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['studID'])) {
+        $StudID = $_GET['studID'];
+        $deleteStmt = $conn->prepare("DELETE FROM student WHERE Student_ID = ?");
+        if (!$deleteStmt) {
+            die("Prepare failed (Delete_student): " . $conn->error);
         }
-        
+        $deleteStmt->bind_param("i", $StudID);
+        $deleteStmt->execute();
         $conn->close();
+        header("Location: Student_prof_manage.html?delete=success");
         exit(); // Stop execution here so it doesn't try to "Search"
-    }
+    } 
 
     if ($_SERVER['REQUEST_METHOD'] === 'GET' && empty($_GET['ID']) && empty($_GET['name'])) {
         $fetchstmt = $conn->prepare("SELECT * FROM student");

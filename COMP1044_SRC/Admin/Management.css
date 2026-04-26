@@ -93,15 +93,16 @@ th {
 }
 
 td {
-    padding: 16px;
     font-size: 14px;
     border-bottom: 1px solid black;
 }
 
 tr:last-child td {
+    padding-bottom: 0;
+    margin-bottom: 0;
     border-bottom: none;
 }
 
-tbody:hover {
+tr:hover {
     background-color: #f1f5f9;
 }

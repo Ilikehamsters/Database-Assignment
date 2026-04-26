@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Apr 25, 2026 at 11:45 AM
+-- Generation Time: Apr 26, 2026 at 11:25 AM
 -- Server version: 5.7.24
 -- PHP Version: 8.3.1
 
@@ -113,7 +113,8 @@ INSERT INTO `inds_supervisor` (`Supvr_ID`, `Company_ID`, `User_ID`, `Full_Name`,
 (2, 34231, 17, 'Welt', 'Welt@gmail.com', '+602323777900', 'Male'),
 (3, 12304, 18, 'Grace', 'Grace@gmail.com', '+402323777900', 'Female'),
 (4, 13424, 19, 'Mia', 'Mia@gmail.com', '+749523777900', 'Female'),
-(5, 13922, 20, 'Richard', 'Richard@gmail.com', '+644423777900', 'Male');
+(5, 13922, 20, 'Richard', 'Richard@gmail.com', '+644423777900', 'Male'),
+(6, 13424, 21, 'Ada Wong', 'Ada@gmail.com', '+60192749620', 'Female');
 
 -- --------------------------------------------------------
 
@@ -192,7 +193,7 @@ INSERT INTO `programme` (`Prog_Code`, `Programme_Name`) VALUES
 
 CREATE TABLE `student` (
   `Student_ID` int(11) NOT NULL,
-  `Prog_Code` varchar(5) NOT NULL,
+  `Prog_Code` varchar(5) DEFAULT NULL,
   `User_ID` int(11) NOT NULL,
   `Full_Name` varchar(60) NOT NULL,
   `Contact_No` varchar(25) NOT NULL,
@@ -210,7 +211,10 @@ INSERT INTO `student` (`Student_ID`, `Prog_Code`, `User_ID`, `Full_Name`, `Conta
 (2, 'PC02', 2, 'Brian Yang Shunxi', '+601163742049', '2025-01-15', 'Brian@gmail.com', 'Male'),
 (3, 'PC04', 15, 'Valerie', '+602323855900', '2025-02-01', 'Valerie@gmail.com', 'Female'),
 (4, 'PC05', 16, 'Valiant', '+602319855317', '2025-03-15', 'Valiant@gmail.com', 'Female'),
-(5, 'PC03', 17, 'Ben', '+601123445902', '2025-02-01', 'Ben@gmail.com', 'Male');
+(5, 'PC03', 17, 'Ben', '+601123445902', '2025-02-01', 'Ben@gmail.com', 'Male'),
+(6, 'PC03', 22, 'Bryan Teh', '+60192340955', '2018-01-01', 'Bryan@gmail.com', 'Male'),
+(7, 'PC01', 23, 'Claire Redfield', '+601927721833', '1998-09-30', 'Claire@gmail.com', 'Female'),
+(8, 'PC03', 24, 'Sung Jin Woo', '+60192773094', '2015-11-10', 'Sung@gmail.com', 'Male');
 
 -- --------------------------------------------------------
 
@@ -221,7 +225,7 @@ INSERT INTO `student` (`Student_ID`, `Prog_Code`, `User_ID`, `Full_Name`, `Conta
 CREATE TABLE `uni_staff` (
   `Staff_ID` int(11) NOT NULL,
   `User_ID` int(11) NOT NULL,
-  `Position_Code` varchar(5) NOT NULL,
+  `Position_Code` varchar(5) DEFAULT NULL,
   `Full_Name` varchar(60) NOT NULL,
   `Email_Addr` varchar(50) NOT NULL,
   `Contact_No` varchar(16) NOT NULL,
@@ -282,7 +286,11 @@ INSERT INTO `user_login` (`User_ID`, `Username`, `Password`, `Role`) VALUES
 (17, 'Superv2', 'Ok101', 'Industrial Supervisor'),
 (18, 'Superv3', 'Password101', 'Industrial Supervisor'),
 (19, 'Superv4', 'Sailor120', 'Industrial Supervisor'),
-(20, 'Superv5', 'qwerty', 'Industrial Supervisor');
+(20, 'Superv5', 'qwerty', 'Industrial Supervisor'),
+(21, 'supervisor10', 'defaultPWD', 'Industrial Supervisor'),
+(22, 'fhsoi', 'Beef101', 'Student'),
+(23, 'sdkjsf', 'defaultPWD', 'Student'),
+(24, 'kjdfdsd', 'defaultPWD', 'Student');
 
 --
 -- Indexes for dumped tables
@@ -363,13 +371,13 @@ ALTER TABLE `user_login`
 -- AUTO_INCREMENT for table `inds_supervisor`
 --
 ALTER TABLE `inds_supervisor`
-  MODIFY `Supvr_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `Supvr_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `student`
 --
 ALTER TABLE `student`
-  MODIFY `Student_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `Student_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `uni_staff`
@@ -381,7 +389,7 @@ ALTER TABLE `uni_staff`
 -- AUTO_INCREMENT for table `user_login`
 --
 ALTER TABLE `user_login`
-  MODIFY `User_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `User_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- Constraints for dumped tables
@@ -391,29 +399,37 @@ ALTER TABLE `user_login`
 -- Constraints for table `assessment`
 --
 ALTER TABLE `assessment`
-  ADD CONSTRAINT `ASS_internID_fk` FOREIGN KEY (`Internship_ID`) REFERENCES `internship` (`Internship_ID`);
+  ADD CONSTRAINT `ASS_internID_fk` FOREIGN KEY (`Internship_ID`) REFERENCES `internship` (`Internship_ID`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `inds_supervisor`
 --
 ALTER TABLE `inds_supervisor`
-  ADD CONSTRAINT `superv_compID_fk` FOREIGN KEY (`Company_ID`) REFERENCES `company` (`Company_ID`),
-  ADD CONSTRAINT `superv_userID_fk` FOREIGN KEY (`User_ID`) REFERENCES `user_login` (`User_ID`);
+  ADD CONSTRAINT `superv_compID_fk` FOREIGN KEY (`Company_ID`) REFERENCES `company` (`Company_ID`) ON DELETE CASCADE,
+  ADD CONSTRAINT `superv_userID_fk` FOREIGN KEY (`User_ID`) REFERENCES `user_login` (`User_ID`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `internship`
 --
 ALTER TABLE `internship`
-  ADD CONSTRAINT `intern_compID_fk` FOREIGN KEY (`Company_ID`) REFERENCES `company` (`Company_ID`),
-  ADD CONSTRAINT `intern_staffID_fk` FOREIGN KEY (`Staff_ID`) REFERENCES `uni_staff` (`Staff_ID`),
-  ADD CONSTRAINT `intern_studID_fk` FOREIGN KEY (`Student_ID`) REFERENCES `student` (`Student_ID`),
-  ADD CONSTRAINT `intern_supvrID_fk` FOREIGN KEY (`Supvr_ID`) REFERENCES `inds_supervisor` (`Supvr_ID`);
+  ADD CONSTRAINT `intern_compID_fk` FOREIGN KEY (`Company_ID`) REFERENCES `company` (`Company_ID`) ON DELETE CASCADE,
+  ADD CONSTRAINT `intern_staffID_fk` FOREIGN KEY (`Staff_ID`) REFERENCES `uni_staff` (`Staff_ID`) ON DELETE CASCADE,
+  ADD CONSTRAINT `intern_studID_fk` FOREIGN KEY (`Student_ID`) REFERENCES `student` (`Student_ID`) ON DELETE CASCADE,
+  ADD CONSTRAINT `intern_supvrID_fk` FOREIGN KEY (`Supvr_ID`) REFERENCES `inds_supervisor` (`Supvr_ID`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `student`
+--
+ALTER TABLE `student`
+  ADD CONSTRAINT `Student_programme_fk` FOREIGN KEY (`Prog_Code`) REFERENCES `programme` (`Prog_Code`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `Student_userID_fk` FOREIGN KEY (`User_ID`) REFERENCES `user_login` (`User_ID`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `uni_staff`
 --
 ALTER TABLE `uni_staff`
-  ADD CONSTRAINT `Staff_userID_fk` FOREIGN KEY (`User_ID`) REFERENCES `user_login` (`User_ID`);
+  ADD CONSTRAINT `Staff_position_fk` FOREIGN KEY (`Position_Code`) REFERENCES `position` (`Position_Code`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `Staff_userID_fk` FOREIGN KEY (`User_ID`) REFERENCES `user_login` (`User_ID`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
