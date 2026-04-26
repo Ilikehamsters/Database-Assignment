@@ -16,19 +16,15 @@
         }
         $fetchcomp->execute();
         $progName = $fetchcomp->get_result();
-        $proglist = $progName->fetch_all(MYSQLI_ASSOC);
 
 
         if ($progName->num_rows > 0) {
-            // 4. Loop through the result set and push into the array
-            while($row = $progName->fetch_assoc()) {
-                $proglist[] = $row;
-            }
+            $proglist = $progName->fetch_all(MYSQLI_ASSOC);
+            header('Content-Type: application/json');
+            echo json_encode($proglist);
+            $conn->close();
+            exit();
         }
-        header('Content-Type: application/json');
-        echo json_encode($proglist);
-        $conn->close();
-        exit();
     }
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {

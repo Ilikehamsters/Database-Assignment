@@ -8,12 +8,12 @@
         <header>
             <h1 id="title">Student Profile</h1>
         </header>
-        <form id="searchbar">
+        <form id="searchbar" action="Student_prof_manage.php" method="get">
             <h3>Search (Student ID/Name):</h3>
-            <input class="inputbox" type="number" id="student_ID" placeholder="Enter Student ID; e.g. 1000234">
-            <input class="inputbox" type="search" id="student_name" placeholder="Enter Student's Full Name">
-            <button class="searchbtn">Search</button>
-            <button class="searchbtn">Clear</button>
+            <input class="inputbox" type="number" id="student_ID" name="ID" value="" placeholder="Enter Student ID...">
+            <input class="inputbox" type="search" id="student_name" name="name" value="" placeholder="Enter Student's Full Name...">
+            <input class="searchbtn" type="submit" value="Search">
+            <input class="searchbtn" type="reset" value="Clear">
         </form>
         <main>
             <section>
@@ -40,50 +40,82 @@
             </section>
         </main>
         <script>
-            const add = document.getElementById("addbtn");
-            const modify = document.getElementsByClassName("modifybtn");
-            const deleterecord = document.getElementsByClassName("deletebtn");
-
             /*const modal = document.getElementById("modifyModal");
             const editForm = document.getElementById("editForm");
             const closeModal = document.getElementById("closeModal");*/
 
-
-            document.addEventListener("DOMContentLoaded", () => {
-            const tableBody = document.getElementById('record');
-
             fetch('Student_prof_manage.php')
                 .then(response => response.json())
                 .then(data => {
-                    // 1. Clear existing hardcoded rows
-                    tableBody.innerHTML = '';
-
-                    // 2. Iterate through the database results
-                    data.forEach(student => {
-                        const row = document.createElement('tr');
-
-                        // 3. Assign values to TD elements (Matching your database column names)
-                        row.innerHTML = `
-                            <td>${student.User_ID}</td>
-                            <td>${student.Student_ID}</td>
-                            <td>${student.Full_Name}</td>
-                            <td>${student.Gender}</td>
-                            <td>${student.Prog_Code}</td>
-                            <td>${student.Contact_No}</td>
-                            <td>${student.Enroll_Date}</td>
-                            <td>${student.Email_Addr}</td>
-                            <td><button class="modifybtn" type="button">Modify</button></td>
-                            <td><button class="deletebtn" type="button">Delete</button></td>
-                        `;
-                        
-                        tableBody.appendChild(row);
-                    });
+                    renderTable(data); // Call a function to update the UI
                 })
-                .catch(error => {
-                    console.error('Error fetching data:', error);
-                    tableBody.innerHTML = '<tr><td colspan="10">Error loading student records.</td></tr>';
+                .catch(err => console.error("Search error:", err));
+
+            const searchForm = document.getElementById("searchbar");
+
+            searchForm.addEventListener("submit", (e) => {
+                e.preventDefault(); // Stop the browser from leaving the page
+
+                const formData = new FormData(searchForm);
+                const params = new URLSearchParams(formData).toString();
+
+                // Fetch from PHP with the search parameters
+                fetch(`Student_prof_manage.php?${params}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        renderTable(data); // Call a function to update the UI
+                    })
+                    .catch(err => console.error("Search error:", err));
+            });
+
+            function renderTable(data) {
+                const tableBody = document.getElementById('record');
+                tableBody.innerHTML = ''; // Clear the table
+
+                data.forEach(student => {
+                    const row = document.createElement('tr');
+                    if (student.Error_msg) {
+                        row.innerHTML = `<td colspan="10" style="text-align:center; color:red; font-size:18px; font-weight:bold;">${student.Error_msg}</td>`;
+
+                    } else {
+                        row.innerHTML = `
+                        <td>${student.User_ID}</td>
+                        <td>${student.Student_ID}</td>
+                        <td>${student.Full_Name}</td>
+                        <td>${student.Gender}</td>
+                        <td>${student.Prog_Code}</td>
+                        <td>${student.Contact_No}</td>
+                        <td>${student.Enroll_Date}</td>
+                        <td>${student.Email_Addr}</td>
+                        <td><button class="modifybtn" data-id="${student.Student_ID}">Modify</button></td>
+                        <td><button class="deletebtn" type="button">Delete</button></td>`;
+                    }
+                    tableBody.appendChild(row);
                 });
-        });
+            }
+
+            const add = document.getElementById("addbtn");
+            add.addEventListener("click", () => window.location.href = "Add_student.html");
+
+            // Use Event Delegation for dynamic buttons
+            const tableBody = document.getElementById('record');
+            tableBody.addEventListener("click", (e) => {
+                // Check if the clicked element is a Modify button
+                if (e.target.classList.contains("modifybtn")) {
+                    const studID = e.target.getAttribute("data-id");
+                    // Redirect with the ID as a query string
+                    window.location.href = `Modify_student.html?studID=${studID}`;
+                }
+
+                // Check if the clicked element is a Delete button
+                if (e.target.classList.contains("deletebtn")) {
+                    let confirmation = confirm("**WARNING** By clicking 'OK', the record will be permanently deleted.");
+                    if (confirmation) {
+                        // Add your logic here to delete from DB via fetch
+                        console.log("Deleting record...");
+                    }
+                }
+            });
 
             // 1. Open modal and fill it with row data
             /*document.addEventListener("click", function(e) {
@@ -132,22 +164,6 @@
                     console.error("Fetch error:", error);
                 }
             });*/
-
-            function addfunction() {
-                window.location.href = "Add_student.html";
-            }
-
-            function modifyfunction() {
-                window.location.href = "Modify_student.html";
-            }
-
-            function deletefunction() {
-                let confirmation = confirm("**WARNING** By clicking 'OK', the record will be permanently deleted.");
-            }
-
-            add.addEventListener("click", addfunction);
-            modify.addEventListener("click", modifyfunction);
-            deleterecord.addEventListener("click", deletefunction);
         </script>
     </body>
 </html>
