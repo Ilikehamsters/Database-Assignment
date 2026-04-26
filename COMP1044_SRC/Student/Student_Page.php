@@ -27,7 +27,7 @@ if (!isset($_SESSION['User_ID']) || $_SESSION['Role'] !== 'Student') {
             <ul class="nav-links">
                 <!-- from top to bottom: main page, result viewing -->
                 <li><a href="Student_Page.php" class="active">Home</a></li>
-                <li><a href="../Result_Viewing.html">View Results</a></li>
+                <li><a href="../Result_Viewing.php">View Results</a></li>
             </ul>
         </div>
 
@@ -48,7 +48,7 @@ if (!isset($_SESSION['User_ID']) || $_SESSION['Role'] !== 'Student') {
     <div class="card-container">
 
         <!-- card to lead to result viewing -->
-        <a href="result_viewing.html" class="feature-card">
+        <a href="../Result_Viewing.php" class="feature-card">
             <div class="card-image">
                 <img src="../Assets/ViewResults.png" alt="View Results">
             </div>

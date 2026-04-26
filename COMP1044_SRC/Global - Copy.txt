@@ -196,15 +196,7 @@ td, th {
 .firstHalf { font-weight: bold;}
 .secondHalf { padding-left: 40px; font-weight: bold;}
 .textfirstHalf { text-align: center; }
-.textsecondHalf { padding-left: 30px; word-wrap: break-word; }
-
-.markTable {
-    width: 100%;
-    text-align: left;
-    border-collapse: collapse;
-    table-layout: fixed;
-}
-
+.textsecondHalf { padding-left: 30px; }
 .inputMark {
     text-align: center;
     height: 40px;

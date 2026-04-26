@@ -21,8 +21,8 @@
             match($_SESSION['Role']) {
                 'Student'     => header("Location: Student/Student_Page.php?login=success"),
                 'Admin'       => header("Location: Admin/Admin_Page.php?login=success"),
-                'uniAssessor' => header("Location: Assessor/Lecturer_Page.php?login=success"),
-                'indSuperv'   => header("Location: Assessor/Supervisor_Page.php?login=success"),
+                'University Assessor' => header("Location: Assessor/Lecturer_Page.php?login=success"),
+                'Industrial Supervisor'   => header("Location: Assessor/Supervisor_Page.php?login=success"),
             };
             exit();
         } else {

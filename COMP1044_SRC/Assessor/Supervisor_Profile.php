@@ -20,7 +20,7 @@
                 <!-- from top to bottom: main page, internship result entry, result viewing -->
                 <li><a href="Supervisor_Page.php">Home</a></li>
                 <li><a href="Supervisor_Internship_Grading.php">Grade Internship</a></li>
-                <li><a href="../Result_Viewing.html">View Results</a></li>
+                <li><a href="../Main_Result_Viewing.php">View Results</a></li>
             </ul>
         </div>
 
@@ -63,7 +63,7 @@
 
             <div class="detail-group">
                 <span class="detail-label">Contact Number</span>
-                <div class="detail-value"><?= htmlspecialchars($profile['Contact_No.']) ?></div>
+                <div class="detail-value"><?= htmlspecialchars($profile['Contact_No']) ?></div>
             </div>
 
             <div class="detail-group">

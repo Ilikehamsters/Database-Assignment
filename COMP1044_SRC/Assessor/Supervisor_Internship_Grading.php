@@ -19,7 +19,7 @@
                     <li><a href="Supervisor_Page.php">Home</a></li>
                     <!-- "active" class to get some additional styling for clarity to know this is the current page -->
                     <li><a href="Supervisor_Internship_Grading.php" class="active">Grade Internship</a></li>
-                    <li><a href="../Result_Viewing.html">View Results</a></li>
+                    <li><a href="../Main_Result_Viewing.php">View Results</a></li>
                 </ul>
             </div>
 
@@ -99,6 +99,7 @@
                     </tr>
                     <tr>
                         <td class="firstHalf">Status</td>
+                        <!-- displays in green or red text depending on whether status is graded or not -->
                         <td style="color: <?= $is_graded ? 'green' : 'red' ?>; font-weight:bold;">
                             <?= htmlspecialchars($current_student['Status']) ?>
                         </td>
@@ -124,6 +125,7 @@
                             <!-- the max values and sizes are also declared here for validation -->
                             <!-- fields/input which were previously graded cannot be edited, thus the $has_graded check -->
                             <!-- if available, the field/input will show marks/feedback the supervisor has previous entered -->
+                            <!-- the inputs will be disabled if $has_graded is true -->
                             <!-- utp -->
                             <tr>
                                 <td style="width: 80px;"><input class="inputMark" type="number" name="UTP" value="<?= $current_student['UTP'] ?>" min="0" max="10" required <?= $has_graded ? 'disabled' : '' ?>></td>
@@ -222,7 +224,7 @@
                             <?php } else { ?>
                             <tr>
                                 <td colspan="2" class="success">
-                                    You have already submitted the marks for this student, the marks cannot be changed. The university assessor/lecturer will now complete the final grading, then the internship status will change to graded.
+                                    You have already submitted the marks for this student, the marks cannot be changed. The internship status will change to graded if the university assessor/lecturer has also graded this internship.
                                 </td>
                             </tr>
                             <?php } ?>
