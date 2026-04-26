@@ -34,29 +34,86 @@
         <form id="searchbar">
             <h3>Search by ID:</h3>
             <input class="inputbox" type="number" id="student_ID" placeholder="Enter Student ID...">
+            <input class="inputbox" type="number" id="student_ID" placeholder="Enter Student ID...">
+            <input class="inputbox" type="number" id="student_ID" placeholder="Enter Student ID...">
+            <h3>Search by Name:</h3>
+            <input class="inputbox" type="number" id="student_ID" placeholder="Enter Student ID...">
             <input class="inputbox" type="number" id="staff_ID" placeholder="Enter Staff ID...">
-            <input class="inputbox" type="number" id="superv_ID" placeholder="Enter Supervisor ID...">
+            <input class="inputbox" type="number" id="superv_ID" placeholder="Enter Supervisor ID..."><br>
             <button class="searchbtn">Search</button>
             <button class="searchbtn">Clear</button>
         </form>
         <main>
-            <section>
-                <article id="tableContainer">
-                    <table>
-                        <thead>
-                            
-                            
-                        </thead>
-                        <tbody>
-                            
-                            
-                        </tbody>
-                    </table>
-                </article>
-            </section>
+            <table>
+                <tbody>
+                    <tr>
+                        <td>User ID</td>
+                        <td>Unknown</td>
+                    </tr>
+                    <tr>
+                        <td>Name</td>
+                        <td>Unknown</td>
+                    </tr>
+                    <tr>
+                        <td>Username</td>
+                        <td>Unknown</td>
+                    </tr>
+                    <tr>
+                        <td><button type="button" id="resetPWDbtn">Reset Password</button></td>
+                    </tr>
+                    <tr>
+                        <td><button type="button" id="backbtn">Back</button></td>
+                    </tr>
+                </tbody>
+            </table>
         </main>
         <script>
+            const params = new URLSearchParams(window.location.search);
+            if (params.get("reset") == "success") {
+                alert("Successfully reset password!");
+                // Clean the URL so refreshing doesn't re-trigger the alert
+                window.history.replaceState({}, document.title, window.location.pathname);
+            } else if (params.get("redirect") == "success") {
+                alert("You're being redirected to the home page as you are currently logged into an account. Please ensure you are logged into the correct role if you were previously trying to access a different page.");
+                window.history.replaceState({}, document.title, window.location.pathname);
+            }
 
+
+            const backbtn = document.getElementById("backbtn");
+            function backfunction() {
+                let confirmation = confirm("Are you sure you want to go back? By clicking 'OK', all unsubmitted data will be lost.");
+                if (confirmation) {
+                    window.location.href = "Admin_Page.php";
+                }
+            }
+            backbtn.addEventListener("click", backfunction);
+
+            fetch('User_Access.php')
+                .then(response => response.json())
+                .then(data => {
+                    renderTable(data); // Call a function to update the UI
+                })
+                .catch(err => console.error("Search error:", err));
+
+            const reset = document.getElementById("resetPWDbtn");
+            reset.addEventListener("submit", (e) => {
+                e.preventDefault(); // Stop the browser from leaving the page
+
+                const formData = new FormData(reset);
+                const params = new URLSearchParams(formData).toString();
+
+
+
+                // Fetch from PHP with the search parameters
+                fetch(`User_Access.php?${params}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        renderTable(data); // Call a function to update the UI
+                    })
+                    .catch(err => console.error("Search error:", err));
+            });
+
+            //window.location.href = `User_Access.php?ID=${ID},name=${name}`
         </script>
     </body>
 </html>

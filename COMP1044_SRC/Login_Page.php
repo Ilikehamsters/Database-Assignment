@@ -38,7 +38,6 @@ if (isset($_SESSION['Role'])) {
                     <input class="textbox" type="password" id="password" name="password" placeholder="Password" required>
                     <img src="Assets/Eye.png" alt="Show" id="togglePWD"><br><br>
                     <input id="login_button" type="submit" value="Log in"><br>
-                    <a href="Forgot_PWD.html" id="forgot_password">Forgot password?</a><br><br>
                 </form>
             </section>
         </main>

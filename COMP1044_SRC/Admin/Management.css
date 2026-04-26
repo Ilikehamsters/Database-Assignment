@@ -103,6 +103,6 @@ tr:last-child td {
     border-bottom: none;
 }
 
-td:hover {
-    background-color: #b8c0cd;
+tr:hover {
+    background-color: #f9f9f9;
 }
