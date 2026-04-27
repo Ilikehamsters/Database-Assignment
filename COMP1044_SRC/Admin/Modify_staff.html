@@ -31,49 +31,50 @@
                     <a href="../Logout.php" class="logout-text"><button type="button" class="logoutbtn"><img src="../Assets/Logout.png" class="logoutIcon">Logout</button></a>
                 </div>
             </nav>
-            <h1>Modify Staff Details</h1>
+            <h1 id="title">Modify Staff Details</h1>
         </header>
         <section class="page-layout">
             <main>
+                <section class="infoContainer">
                 <form action="Modify_staff.php" method="post">
-                    <input type="hidden" id="hidden_staffID" name="staffID">
+                    <input type="hidden" class="inputbox" id="hidden_staffID" name="staffID">
 
                     <article class="form-row">
                         <label for="Name">Full Name:</label>
-                        <input type="text" maxlength="60" id="Name" name="name" value="" placeholder="Full Name" required pattern="[\p{L}\s'\-]{2,60}">
+                        <input type="text" class="inputbox" maxlength="60" id="Name" name="name" value="" placeholder="Full Name" required pattern="[\p{L}\s'\-]{2,60}">
                     </article>
                     <article class="form-row">
                         <label for="contact">Contact Number:</label>
-                        <input type="tel" maxlength="16" id="contact" name="contact" value="" placeholder="Enter phone number..." required pattern="\+[0-9]{12}">
+                        <input type="tel" class="inputbox" maxlength="16" id="contact" name="contact" value="" placeholder="Enter phone number..." required pattern="\+[0-9]{12}">
                     </article>
                     <article class="form-row">
                         <label for="email">Email address:</label>
-                        <input type="email" maxlength="50" id="email" name="email" value="" placeholder="Email Address" required pattern="[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}">
+                        <input type="email" class="inputbox" maxlength="50" id="email" name="email" value="" placeholder="Email Address" required pattern="[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}">
                     </article>
                 
                     <article class="form-row">
-                        <label for="gender">Gender:</label>
+                        <label>Gender:</label>
                         <article class="radio-group" >
                             <input type="radio" id="Male" name="gender" value="Male" required>
-                            <label for="Male">Male</label>
+                            <label for="Male" style="font-weight: normal; color: #444;">Male</label>
                             <input type="radio" id="Female" name="gender" value="Female" required>
-                            <label for="Female">Female</label>
+                            <label for="Female" style="font-weight: normal; color: #444;">Female</label>
                         </article>
                     </article>
 
                     <article class="form-row">
-                        <label for="role">Role:</label>
+                        <label>Role:</label>
                         <article class="radio-group">
                             <input type="radio" id="Admin" name="role" value="Admin" required>
-                            <label for="Admin">Admin</label>
+                            <label for="Admin" style="font-weight: normal; color: #444;">Admin</label>
                             <input type="radio" id="assess" name="role" value="University Assessor" required>
-                            <label for="assess">Assessor</label>
+                            <label for="assess" style="font-weight: normal; color: #444;">Assessor</label>
                         </article>
                     </article>
 
                     <article class="form-row">
                         <label for="employ">Employment Date:</label>
-                        <input type="date" id="employ" name="employment" value=""required>
+                        <input type="date" class="inputbox" id="employ" name="employment" value=""required>
                     </article>
                     <article class="form-buttons">
                         <input type="submit" class="formbtn" value="Submit" placeholder="Submit">
@@ -81,6 +82,7 @@
                         <button type="button" id="backbtn" class="formbtn">Back</button>
                     </article>
                 </form>
+                </section>
             </main>
             <aside id="imgcontainer">
                 <img src="../Assets/Assessor.jpg" alt="Picture of Assessor" class="sideimages">
