@@ -25,8 +25,9 @@ if (!isset($_SESSION['User_ID']) || $_SESSION['Role'] !== 'Student') {
             <img src="../Assets/UNMLogo.png" alt="UMN Logo" class="nav-logo">
             <!-- all the lefthand side links -->
             <ul class="nav-links">
-                <!-- from top to bottom: main page, result viewing -->
+                <!-- from top to bottom: main page, result viewing and profile information -->
                 <li><a href="Student_Page.php" class="active">Home</a></li>
+                <li><a href="Student_Profile.php">Profile</a></li>
                 <li><a href="../Result_Viewing.php">View Results</a></li>
             </ul>
         </div>
@@ -34,8 +35,6 @@ if (!isset($_SESSION['User_ID']) || $_SESSION['Role'] !== 'Student') {
         <!-- righthand side of the nav bar -->
         <div class="nav-right">
             <ul class="nav-links">
-                <!-- for profile information -->
-                <li><a href="Student_Profile.php">Profile</a></li>
                 <!-- for user to log out -->
                 <a href="../Logout.php" class="logout-text"><button type="button" class="logoutbtn"><img src="../Assets/Logout.png" class="logoutIcon">Logout</button></a>
             </ul>
