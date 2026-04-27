@@ -78,7 +78,7 @@
                     <article class="form-buttons">
                         <input type="submit" class="formbtn" value="Submit" placeholder="Submit">
                         <input type="reset" class="formbtn" value="Clear">
-                        <button type="button" class="formbtn">Back</button>
+                        <button type="button" id="backbtn" class="formbtn">Back</button>
                     </article>
                 </form>
             </main>
@@ -87,7 +87,7 @@
             </aside>
         </section>
         <script>
-            const backbtn = document.querySelector("button");
+            const backbtn = document.getElementById("backbtn");
             function backfunction() {
                 let confirmation = confirm("Are you sure you want to go back? By clicking 'OK', all unsubmitted data will be lost.");
                 if (confirmation) {

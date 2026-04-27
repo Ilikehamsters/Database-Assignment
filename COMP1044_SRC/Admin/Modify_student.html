@@ -31,7 +31,7 @@
                     <a href="../Logout.php" class="logout-text"><button type="button" class="logoutbtn"><img src="../Assets/Logout.png" class="logoutIcon">Logout</button></a>
                 </div>
             </nav>
-            <h1>Modify Student Details</h1>
+            <h1 id="title">Modify Student Details</h1>
         </header>
         <section class="page-layout">
             <main>
@@ -49,30 +49,45 @@
                             <option value="">...</option>
                         </select>
                     </article>
+                    <article class="form-row">
+                        <label for="contact">Contact Number:</label>
+                        <input type="text" id="contact" maxlength="16" name="contact" value="" placeholder="Enter phone number..." required>
+                    </article>
+                    
+                    <article class="form-row">
+                        <label for="email">Email Address:</label>
+                        <input type="text" id="email" maxlength="50" name="email" value="" placeholder="Enter email address..." required>
+                    </article>
 
-                    <label for="contact">Contact Number:</label>
-                    <input type="text" id="contact" maxlength="16" name="contact" value="" placeholder="Enter phone number..." required><br>
+                    <article class="form-row">
+                        <label for="enroll">Enrollment Date:</label>
+                        <input type="date" id="enroll" name="enroll" value="" placeholder="DD/MM/YYYY" required>
+                    </article>
 
-                    <label for="email">Email Address:</label>
-                    <input type="text" id="email" maxlength="50" name="email" value="" placeholder="Enter email address..." required><br>
 
-                    <label for="enroll">Enrollment Date:</label>
-                    <input type="date" id="enroll" name="enroll" value="" placeholder="DD/MM/YYYY" required><br>
+                    <article class="form-row">
+                        <label for="gender">Gender:</label>
+                        <article class="radio-group">
+                            <input type="radio" id="Male" name="gender" value="Male" required>
+                            <label for="Male">Male</label>
+                            <input type="radio" id="Female" name="gender" value="Female" required>
+                            <label for="Female">Female</label>
+                        </article>
+                    </article>
 
-                    <label for="gender">Gender:</label>
-                    <input type="radio" id="Male" name="gender" value="Male" required>
-                    <label for="Male">Male</label>
-                    <input type="radio" id="Female" name="gender" value="Female" required>
-                    <label for="Female">Female</label><br>
-
-                    <input type="submit" value="Submit">
-                    <input type="reset" value="Clear"><br>
-                    <button type="button">Back</button>
+                    <article class="form-buttons">
+                        <input type="submit" class="formbtn" value="Submit" placeholder="Submit">
+                        <input type="reset" class="formbtn" value="Clear">
+                        <button type="button" id="backbtn" class="formbtn">Back</button>
+                    </article>
                 </form>
             </main>
+            <aside id="imgcontainer">
+                <img src="../Assets/Student.jpg" alt="Picture of Student" class="sideimages">
+            </aside>
         </section>
         <script>
-            const backbtn = document.querySelector("button");
+            const backbtn = document.getElementById("backbtn");
             function backfunction() {
                 let confirmation = confirm("Are you sure you want to go back? By clicking 'OK', all unsubmitted data will be lost.");
                 if (confirmation) {
