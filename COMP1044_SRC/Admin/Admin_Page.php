@@ -47,9 +47,6 @@ if (!isset($_SESSION['User_ID']) || $_SESSION['Role'] !== 'Admin') {
             <h1 id="title">Welcome, Admin!</h1>
 
             <div class="card-container">
-
-
-
                 <!-- card to manage internships -->
                 <a href="Internship_Management.php" class="feature-card">
                     <div class="card-image">
@@ -75,7 +72,7 @@ if (!isset($_SESSION['User_ID']) || $_SESSION['Role'] !== 'Admin') {
                 <!-- card to view manage staff -->
                 <a href="Staff_manage.html" class="feature-card">
                     <div class="card-image">
-                        <img src="../Assets/StudentProfile.png" alt="Manage Staff">
+                        <img src="../Assets/StaffProfile.png" alt="Manage Staff">
                     </div>
                     <div class="card-text">
                         <h3>Manage Staff Profiles</h3>
@@ -86,7 +83,7 @@ if (!isset($_SESSION['User_ID']) || $_SESSION['Role'] !== 'Admin') {
                 <!-- card to view manage supervisor -->
                 <a href="Supervisor_manage.html" class="feature-card">
                     <div class="card-image">
-                        <img src="../Assets/StudentProfile.png" alt="Manage Supervisor">
+                        <img src="../Assets/SupervisorProfile.png" alt="Manage Supervisor">
                     </div>
                     <div class="card-text">
                         <h3>Manage Supervisor Profiles</h3>
@@ -101,7 +98,7 @@ if (!isset($_SESSION['User_ID']) || $_SESSION['Role'] !== 'Admin') {
                     </div>
                     <div class="card-text">
                         <h3>Reset User Password</h3>
-                        <p>Manage student and assessor accounts.</p>
+                        <p>Reset the password of a user account.</p>
                     </div>
                 </a>
 
