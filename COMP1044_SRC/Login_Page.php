@@ -28,6 +28,7 @@ if (isset($_SESSION['Role'])) {
         <link rel="stylesheet" href="Login_Page.css">
     </head>
     <body>
+        <div class="login-wrapper">
         <header>
             <h1 id="welcome">Welcome to the <br>Internship <br>Management <br>System!</h1>
         </header>
@@ -53,6 +54,7 @@ if (isset($_SESSION['Role'])) {
                 </form>
             </section>
         </main>
+        </div>
         <script>
             // Get references to the password input and the toggle button
             const passwordInput = document.getElementById('password');

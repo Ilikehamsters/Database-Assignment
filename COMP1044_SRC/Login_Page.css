@@ -5,10 +5,17 @@
 #welcome {
     font-weight: bolder;
     font-size: 80px;
-    position: absolute;
     left: 7%;
     top: 10%;
     color: #111;
+}
+
+.login-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* position the welcome text left and the form right */
+    width: 85%;
+    gap: 50px;
 }
 
 #login_form {
