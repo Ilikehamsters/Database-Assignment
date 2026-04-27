@@ -30,6 +30,7 @@ if (isset($_SESSION['Role'])) {
     <body>
         <div class="login-wrapper">
         <header>
+            <img src="Assets/UNMLogo.png" alt="UNMlogo" id="logo">
             <h1 id="welcome">Welcome to the <br>Internship <br>Management <br>System!</h1>
         </header>
         <main>
