@@ -7,6 +7,30 @@
     </head>
     <body>
         <header>
+            <nav class="navbar">
+                <!-- lefthand side of the nav bar -->
+                <div class="nav-left">
+                    <!-- show the umn logo -->
+                    <img src="../Assets/UNMLogo.png" alt="UMN Logo" class="nav-logo">
+                    <!-- all the lefthand side links -->
+                    <ul class="nav-links">
+                        <!-- from top to bottom: main page, user management, internship management, result viewing, student profiles -->
+                        <li><a href="Admin_Page.php">Home</a></li>
+                        <li><a href="Internship_Management.php">Manage Internship</a></li>
+                        <li><a href="Student_prof_manage.html">Manage Student</a></li>
+                        <li><a href="Staff_manage.html">Manage Lecturer</a></li>
+                        <li><a href="Supervisor_manage.html" class="active">Manage Supervisor</a></li>
+                        <li><a href="User_Access.html">Reset User Password</a></li>
+                        <li><a href="../Main_Result_Viewing.php">View Results</a></li>
+                    </ul>
+                </div>
+
+                <!-- righthand side of the nav bar -->
+                <div class="nav-right">
+                    <!-- for user to log out -->
+                    <a href="../Logout.php" class="logout-text"><button type="button" class="logoutbtn"><img src="../Assets/Logout.png" class="logoutIcon">Logout</button></a>
+                </div>
+            </nav>
             <h1 id="title">Add Industrial Supervisor</h1>
         </header>
         <section class="page-layout">

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>User Access Page</title>
+        <title>Reset User Password</title>
         <!--<link rel="stylesheet" href="Management.css">-->
         <link rel="stylesheet" href="../Global.css">
         <style>
@@ -26,10 +26,12 @@
                     <!-- all the lefthand side links -->
                     <ul class="nav-links">
                         <!-- from top to bottom: main page, user management, internship management, result viewing, student profiles -->
-                        <li><a href="Admin_Page.php" class="active">Home</a></li>
-                        <li><a href="User_Access.html">Manage User</a></li>
+                        <li><a href="Admin_Page.php">Home</a></li>
                         <li><a href="Internship_Management.php">Manage Internship</a></li>
-                        <li><a href="Student_Profile.html">Student Profiles</a></li>
+                        <li><a href="Student_prof_manage.html">Manage Student</a></li>
+                        <li><a href="Staff_manage.html">Manage Lecturer</a></li>
+                        <li><a href="Supervisor_manage.html">Manage Supervisor</a></li>
+                        <li><a href="User_Access.html" class="active">Reset User Password</a></li>
                         <li><a href="../Main_Result_Viewing.php">View Results</a></li>
                     </ul>
                 </div>
@@ -40,7 +42,7 @@
                     <a href="../Logout.php" class="logout-text"><button type="button" class="logoutbtn"><img src="../Assets/Logout.png" class="logoutIcon">Logout</button></a>
                 </div>
             </nav>
-            <h1 id="title">User Access</h1>
+            <h1 id="title">Reset User Password</h1>
         </header>
         <form id="searchbar" action="User_Access.php" method="GET">
             <h3>Search Student by ID/Name:</h3>
@@ -49,7 +51,7 @@
                 <input class="inputbox" type="search" id="student_Name" name="studName" value="" placeholder="Enter Student Name...">
             </article>
 
-            <h3>Search Staff by ID/Name:</h3>
+            <h3>Search Lecturer by ID/Name:</h3>
             <article class="searchgroup" data-role="staff">
                 <input class="inputbox" type="number" id="staff_ID" name="staffID" value="" placeholder="Enter Staff ID...">
                 <input class="inputbox" type="search" id="staff_Name" name="staffName" value="" placeholder="Enter Staff Name...">
