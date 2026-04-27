@@ -40,7 +40,7 @@
 
                     <article class="form-row">
                         <label for="name">Full Name:</label>
-                        <input type="text" maxlength="60" id="name" name="name" value="" placeholder="Enter full name..." required>
+                        <input type="text" maxlength="60" id="Name" name="name" value="" placeholder="Enter Full Name..." required pattern="[\p{L}\s'\-]{2,60}">
                     </article>
 
                     <article class="form-row">
@@ -51,7 +51,7 @@
                     </article>
                     <article class="form-row">
                         <label for="contact">Contact Number:</label>
-                        <input type="text" id="contact" maxlength="16" name="contact" value="" placeholder="Enter phone number..." required>
+                        <input type="tel" maxlength="16" id="contact" name="contact" value="" placeholder="Enter phone number..." required pattern="[0-9+\-\s()]{7,16}">
                     </article>
                     
                     <article class="form-row">
@@ -158,6 +158,40 @@
                 if (!emailInput.validity.valid) {
                     emailInput.setCustomValidity("Please enter a valid email address (e.g. name@example.com)");
                     emailInput.reportValidity();
+                    e.preventDefault();
+                }
+            });
+
+            const contactInput = document.getElementById("contact");
+            contactInput.addEventListener("input", () => {
+                contactInput.setCustomValidity("");
+
+                if (!contactInput.validity.valid) {
+                    contactInput.setCustomValidity("Please enter a valid contact number (e.g. +601X-XXXXXXX or 01X-XXXXXXX)");
+                }
+            });
+
+            document.querySelector("form").addEventListener("submit", (e) => {
+                if (!contactInput.validity.valid) {
+                    contactInput.setCustomValidity("Please enter a valid contact number (e.g. +601X-XXXXXXX or 01X-XXXXXXX)");
+                    contactInput.reportValidity();
+                    e.preventDefault();
+                }
+            });
+
+            const nameInput = document.getElementById("Name");
+            nameInput.addEventListener("input", () => {
+                nameInput.setCustomValidity("");
+
+                if (!nameInput.validity.valid) {
+                    nameInput.setCustomValidity("Please enter a valid full name (letters, spaces, hyphens and apostrophes only)");
+                }
+            });
+
+            document.querySelector("form").addEventListener("submit", (e) => {
+                if (!nameInput.validity.valid) {
+                    nameInput.setCustomValidity("Please enter a valid full name (letters, spaces, hyphens and apostrophes only)");
+                    nameInput.reportValidity();
                     e.preventDefault();
                 }
             });
