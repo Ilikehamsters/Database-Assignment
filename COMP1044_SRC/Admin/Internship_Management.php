@@ -17,7 +17,7 @@
             <ul class="nav-links">
                 <!-- from top to bottom: main page, user management, internship management, result viewing, student profiles -->
                 <li><a href="Admin_Page.php">Home</a></li>
-                <li><a href="User_Access.html">Manage User</a></li>
+                <li><a href="User_Access.html">Reset User Password</a></li>
                 <!-- "active" class to get some additional styling for clarity to know this is the current page -->
                 <li><a href="Internship_Management.php" class="active">Manage Internship</a></li>
                 <li><a href="Student_Profile.html">Student Profiles</a></li>
