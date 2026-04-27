@@ -6,15 +6,16 @@
         <link rel="stylesheet" href="Global.css">
     </head>
     <body>
-        <header>
-            <h1 id="title">Change Password</h1>
-        </header>
         <form action="Change_PWD.php" method="post" id="container">
-            <label for="password" id="password">New Password:</label>
-            <input type="text" maxlength="255" id="password" name="password" placeholder="Enter new password..." required><br>
-
-            <label for="confirmPWD" id="confirmPWD">Confirm Password:</label>
-            <input type="text" id="confirmPWD" name="confirmPWD" placeholder="Confirm new password..." required><br>
+            <h1 id="title">Change Password</h1>
+            <article id="secondpart">
+                <label for="password" id="password">New Password:</label>
+                <input type="text" maxlength="255" id="password" name="password" placeholder="Enter new password..." required>
+            </article>
+            <article id="secondpart">
+                <label for="confirmPWD" id="confirmPWD">Confirm Password:</label>
+                <input type="text" id="confirmPWD" name="confirmPWD" placeholder="Confirm new password..." required><br>
+            </article>
 
             <input id="submit_button" type="submit" value="Submit">
         </form>
