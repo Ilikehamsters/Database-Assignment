@@ -11,8 +11,54 @@
                 opacity: 0.6;
             }
 
-            .group {
-                margin-bottom: 16px;
+            /* override the global.css searchbar */
+            #searchbar {
+                display: flex;
+                flex-direction: column;
+                align-items: stretch;
+                gap: 20px;
+            }
+
+            .search-row {
+                display: flex;
+                align-items: center;
+                gap: 20px;
+            }
+
+            .search-row h3 {
+                margin: 0;
+                width: 260px;
+                font-size: 18px;
+                color: #333;
+            }
+
+            .searchgroup {
+                display: flex;
+                gap: 15px;
+                flex: 1;
+            }
+
+            .searchgroup .inputbox {
+                width: 50%;
+            }
+
+            .button-group {
+                display: flex;
+                gap: 10px;
+                padding-top: 15px;
+                border-top: 1px solid #ddd;
+            }
+
+            .result-table {
+                width: 50%;
+                margin-top: 10px;
+            }
+            .result-table td {
+                padding: 10px 0;
+            }
+            .result-table td:first-child {
+                font-weight: bold;
+                width: 150px;
             }
         </style>
     </head>
@@ -45,32 +91,43 @@
             <h1 id="title">Reset User Password</h1>
         </header>
         <form id="searchbar" action="User_Access.php" method="GET">
+            <div class="search-row">
             <h3>Search Student by ID/Name:</h3>
             <article class="searchgroup" data-role="student">
                 <input class="inputbox" type="number" id="student_ID" name="studID" value="" placeholder="Enter Student ID...">
                 <input class="inputbox" type="search" id="student_Name" name="studName" value="" placeholder="Enter Student Name...">
             </article>
+            </div>
 
+            <div class="search-row">
             <h3>Search Lecturer by ID/Name:</h3>
             <article class="searchgroup" data-role="staff">
                 <input class="inputbox" type="number" id="staff_ID" name="staffID" value="" placeholder="Enter Staff ID...">
                 <input class="inputbox" type="search" id="staff_Name" name="staffName" value="" placeholder="Enter Staff Name...">
             </article>
+            </div>
 
+            <div class="search-row">
             <h3>Search Supervisor by ID/Name:</h3>
             <article class="searchgroup" data-role="supervisor">
                 <input class="inputbox" type="number" id="superv_ID" name="supervID" value="" placeholder="Enter Supervisor ID...">
                 <input class="inputbox" type="search" id="superv_Name" name="supervName" value="" placeholder="Enter Supervisor Name..."><br>
             </article>
-            
+            </div>
+
+            <div class="button-group">
             <input class="searchbtn" type="submit" value="Search">
             <input class="searchbtn" id="searchclear" type="reset" value="Clear">
+            </div>
         </form>
         <main>
-            <table>
-                <tbody id="record">
-                </tbody>
-            </table>
+            <section class="infoContainer" id="result-container">
+                <h2 class="infoTitle">Search Result</h2>
+                <table class="result-table">
+                    <tbody id="record">
+                    </tbody>
+                </table>
+            </section>
         </main>
         <script>
             // Grab all groups
@@ -181,7 +238,9 @@
                             <td>${search.Username}</td>
                         </tr>
                         <tr>
-                            <td><button type="button" id="resetPWDbtn" data-id="${search.User_ID}">Reset Password</button></td>
+                            <td colspan="2" style="padding-top: 20px;">
+                                <button type="button" class="searchbtn" style="width: auto; padding: 0px 20px;" id="resetPWDbtn" data-id="${search.User_ID}">Reset Password</button>
+                            </td>
                         </tr>`;
                     }
                 });
