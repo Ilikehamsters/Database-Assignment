@@ -19,28 +19,28 @@ if (!isset($_SESSION['User_ID']) || $_SESSION['Role'] !== 'Industrial Supervisor
 <body>
 <header>
     <nav class="navbar">
-            <!-- lefthand side of the nav bar -->
-            <div class="nav-left">
-                <!-- show the umn logo -->
-                <img src="../Assets/UNMLogo.png" alt="UMN Logo" class="nav-logo">
-                <!-- all the lefthand side links -->
-                <ul class="nav-links">
-                    <!-- from top to bottom: main page, internship result entry, result viewing and profile information -->
-                    <li><a href="Lecturer_Page.php" class="active">Home</a></li>
-                    <li><a href="Lecturer_Profile.php">Profile</a></li>
-                    <li><a href="Lecturer_Internship_Grading.php">Grade Internship</a></li>
-                    <li><a href="../Main_Result_Viewing.php">View Results</a></li>
-                </ul>
-            </div>
+        <!-- lefthand side of the nav bar -->
+        <div class="nav-left">
+            <!-- show the umn logo -->
+            <img src="../Assets/UNMLogo.png" alt="UMN Logo" class="nav-logo">
+            <!-- all the lefthand side links -->
+            <ul class="nav-links">
+                <!-- from top to bottom: main page, internship result entry, result viewing and profile information -->
+                <li><a href="Supervisor_Page.html" class="active">Home</a></li>
+                <li><a href="Supervisor_Profile.php">Profile</a></li>
+                <li><a href="Supervisor_Internship_Grading.php">Grade Internship</a></li>
+                <li><a href="../Result_Viewing.html">View Results</a></li>
+            </ul>
+        </div>
 
-            <!-- righthand side of the nav bar -->
-            <div class="nav-right">
-                <ul class="nav-links">
-                    <!-- for user to log out -->
-                    <li><a href="../Logout.php" class="logout-text"><button type="button" class="logoutbtn"><img src="../Assets/Logout.png" class="logoutIcon">Logout</button></a></li>
-                </ul>
-            </div>
-        </nav>
+        <!-- righthand side of the nav bar -->
+        <div class="nav-right">
+            <ul class="nav-links">
+                <!-- for user to log out -->
+                <li><a href="../Login_page.php"><button type="button" class="logoutbtn"><img src="../Assets/Logout.png" class="logoutIcon">Logout</button></a></li>
+            </ul>
+        </div>
+    </nav>
 </header>
 <main>
     <h1 id="title">Welcome, Supervisor!</h1>
