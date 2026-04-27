@@ -2,8 +2,19 @@
 <html>
     <head>
         <title>User Access Page</title>
-        <link rel="stylesheet" href="Management.css">
+        <!--<link rel="stylesheet" href="Management.css">-->
         <link rel="stylesheet" href="../Global.css">
+        <style>
+            input:disabled {
+                background-color: #e0e0e0;
+                cursor: not-allowed;
+                opacity: 0.6;
+            }
+
+            .group {
+                margin-bottom: 16px;
+            }
+        </style>
     </head>
     <body>
         <header>
@@ -31,89 +42,160 @@
             </nav>
             <h1 id="title">User Access</h1>
         </header>
-        <form id="searchbar">
-            <h3>Search by ID:</h3>
-            <input class="inputbox" type="number" id="student_ID" placeholder="Enter Student ID...">
-            <input class="inputbox" type="number" id="student_ID" placeholder="Enter Student ID...">
-            <input class="inputbox" type="number" id="student_ID" placeholder="Enter Student ID...">
-            <h3>Search by Name:</h3>
-            <input class="inputbox" type="number" id="student_ID" placeholder="Enter Student ID...">
-            <input class="inputbox" type="number" id="staff_ID" placeholder="Enter Staff ID...">
-            <input class="inputbox" type="number" id="superv_ID" placeholder="Enter Supervisor ID..."><br>
-            <button class="searchbtn">Search</button>
-            <button class="searchbtn">Clear</button>
+        <form id="searchbar" action="User_Access.php" method="GET">
+            <h3>Search Student by ID/Name:</h3>
+            <article class="searchgroup" data-role="student">
+                <input class="inputbox" type="number" id="student_ID" name="studID" value="" placeholder="Enter Student ID...">
+                <input class="inputbox" type="search" id="student_Name" name="studName" value="" placeholder="Enter Student Name...">
+            </article>
+
+            <h3>Search Staff by ID/Name:</h3>
+            <article class="searchgroup" data-role="staff">
+                <input class="inputbox" type="number" id="staff_ID" name="staffID" value="" placeholder="Enter Staff ID...">
+                <input class="inputbox" type="search" id="staff_Name" name="staffName" value="" placeholder="Enter Staff Name...">
+            </article>
+
+            <h3>Search Supervisor by ID/Name:</h3>
+            <article class="searchgroup" data-role="supervisor">
+                <input class="inputbox" type="number" id="superv_ID" name="supervID" value="" placeholder="Enter Supervisor ID...">
+                <input class="inputbox" type="search" id="superv_Name" name="supervName" value="" placeholder="Enter Supervisor Name..."><br>
+            </article>
+            
+            <input class="searchbtn" type="submit" value="Search">
+            <input class="searchbtn" id="searchclear" type="reset" value="Clear">
         </form>
         <main>
             <table>
-                <tbody>
-                    <tr>
-                        <td>User ID</td>
-                        <td>Unknown</td>
-                    </tr>
-                    <tr>
-                        <td>Name</td>
-                        <td>Unknown</td>
-                    </tr>
-                    <tr>
-                        <td>Username</td>
-                        <td>Unknown</td>
-                    </tr>
-                    <tr>
-                        <td><button type="button" id="resetPWDbtn">Reset Password</button></td>
-                    </tr>
-                    <tr>
-                        <td><button type="button" id="backbtn">Back</button></td>
-                    </tr>
+                <tbody id="record">
                 </tbody>
             </table>
         </main>
         <script>
+            // Grab all groups
+            const groups = document.querySelectorAll('.searchgroup');
+
+            // Check if ANY input in a group has a value
+            function isGroupFilled(group) {
+            return [...group.querySelectorAll('input')]
+                .some(input => input.value.trim() !== '');
+            }
+
+            // Add listeners to every input in every group
+            groups.forEach(activeGroup => {
+                activeGroup.querySelectorAll('input').forEach(input => {
+                    input.addEventListener('input', () => {
+                        const filled = isGroupFilled(activeGroup);
+
+                        // Disable/enable all OTHER groups
+                        groups.forEach(otherGroup => {
+                            if (otherGroup !== activeGroup) {
+                                otherGroup.querySelectorAll('input').forEach(otherInput => {
+                                    otherInput.disabled = filled;
+
+                                    // Clear the other fields when disabled (optional)
+                                    if (filled) otherInput.value = '';
+                                });
+                            }
+                        });
+                    });
+                });
+            });
+
             const params = new URLSearchParams(window.location.search);
+
             if (params.get("reset") == "success") {
                 alert("Successfully reset password!");
                 // Clean the URL so refreshing doesn't re-trigger the alert
+                window.history.replaceState({}, document.title, window.location.pathname);
+            } else if (params.get("reset") == "failed") {
+                alert("Failed to reset password! Search for the specific person first!");
                 window.history.replaceState({}, document.title, window.location.pathname);
             } else if (params.get("redirect") == "success") {
                 alert("You're being redirected to the home page as you are currently logged into an account. Please ensure you are logged into the correct role if you were previously trying to access a different page.");
                 window.history.replaceState({}, document.title, window.location.pathname);
             }
 
-
-            const backbtn = document.getElementById("backbtn");
-            function backfunction() {
-                let confirmation = confirm("Are you sure you want to go back? By clicking 'OK', all unsubmitted data will be lost.");
-                if (confirmation) {
-                    window.location.href = "Admin_Page.php";
-                }
-            }
-            backbtn.addEventListener("click", backfunction);
-
             fetch('User_Access.php')
                 .then(response => response.json())
                 .then(data => {
-                    renderTable(data); // Call a function to update the UI
+                    renderRecord(data); // Call a function to update the UI
                 })
                 .catch(err => console.error("Search error:", err));
 
-            const reset = document.getElementById("resetPWDbtn");
-            reset.addEventListener("submit", (e) => {
+            const searchForm = document.getElementById("searchbar");
+
+            searchForm.addEventListener("submit", (e) => {
                 e.preventDefault(); // Stop the browser from leaving the page
 
-                const formData = new FormData(reset);
+                const formData = new FormData(searchForm);
                 const params = new URLSearchParams(formData).toString();
-
-
 
                 // Fetch from PHP with the search parameters
                 fetch(`User_Access.php?${params}`)
                     .then(response => response.json())
                     .then(data => {
-                        renderTable(data); // Call a function to update the UI
+                        renderRecord(data); // Call a function to update the UI
                     })
                     .catch(err => console.error("Search error:", err));
             });
 
-            //window.location.href = `User_Access.php?ID=${ID},name=${name}`
+            const clearBtn = document.getElementById("searchclear");
+            clearBtn.addEventListener("click", (e) => {
+                // 1. Manually reset the form fields
+                document.getElementById("searchbar").reset();
+
+                // 2. Re-fetch the full list (no parameters)
+                fetch('User_Access.php')
+                    .then(response => response.json())
+                    .then(data => {
+                        renderRecord(data);
+                    })
+                    .catch(err => console.error("Error resetting record:", err));
+            });
+
+            const tableBody = document.getElementById('record');
+            function renderRecord(data) {
+                tableBody.innerHTML = ''; // Clear the table
+
+                data.forEach(search => {
+                    if (search.Error_msg) {
+                        tableBody.innerHTML = `
+                        <tr>
+                            <td style="text-align:center; color:red; font-size:18px; font-weight:bold;">${search.Error_msg}</td>
+                        </tr>`
+
+                    } else {
+                        tableBody.innerHTML = `
+                        <tr>
+                            <td>User ID</td>
+                            <td>${search.User_ID}</td>
+                        </tr>
+                        <tr>
+                            <td>Name</td>
+                            <td>${search.Full_Name}</td>
+                        </tr>
+                        <tr>
+                            <td>Username</td>
+                            <td>${search.Username}</td>
+                        </tr>
+                        <tr>
+                            <td><button type="button" id="resetPWDbtn" data-id="${search.User_ID}">Reset Password</button></td>
+                        </tr>`;
+                    }
+                });
+            }
+
+            tableBody.addEventListener("click", async (e) => {
+                // Check if the clicked element is a Modify button
+                if (e.target.id === 'resetPWDbtn') {
+                    const userID = e.target.getAttribute("data-id");
+                    let confirmation = confirm("**WARNING** Are you sure you want to reset this user's password to the default password? This action is irreversible!");
+                    // Redirect with the ID as a query string
+                    if (confirmation) {
+                        window.location.href = `User_Access.php?userID=${userID}`;
+                    }
+                }
+            });
         </script>
     </body>
 </html>
