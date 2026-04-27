@@ -15,12 +15,12 @@
             <img src="../Assets/UNMLogo.png" alt="UMN Logo" class="nav-logo">
             <!-- all the lefthand side links -->
             <ul class="nav-links">
-                <!-- from top to bottom: main page, user management, internship management, result viewing, student profiles -->
+                <!-- from top to bottom: main page, internship management, student management, staff aka lecturer/admin management, supervisor management, reset user password, result viewing -->
                 <li><a href="Admin_Page.php">Home</a></li>
                 <!-- "active" class to get some additional styling for clarity to know this is the current page -->
                 <li><a href="Internship_Management.php" class="active">Manage Internship</a></li>
                 <li><a href="Student_prof_manage.html">Manage Student</a></li>
-                <li><a href="Staff_manage.html">Manage Lecturer</a></li>
+                <li><a href="Staff_manage.html">Manage Staff</a></li>
                 <li><a href="Supervisor_manage.html">Manage Supervisor</a></li>
                 <li><a href="User_Access.html">Reset User Password</a></li>
                 <li><a href="../Main_Result_Viewing.php">View Results</a></li>
