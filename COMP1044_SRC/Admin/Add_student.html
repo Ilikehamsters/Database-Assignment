@@ -56,7 +56,7 @@
                     </article>
                     <article class="form-row">
                         <label for="email">Email Address:</label>
-                        <input type="text" maxlength="50" name="email" value="" placeholder="Enter email address..." required>
+                        <input type="email" maxlength="50" id="email" name="email" value="" placeholder="Enter email address..." required pattern="[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}">
                     </article>
                     <article class="form-row">
                         <label for="enroll">Enrollment Date:</label>
@@ -113,6 +113,25 @@
                         console.error('Error fetching data:', error);
                         dropdown.innerHTML = '<option value="">Error loading data</option>';
                     });
+            });
+
+            const emailInput = document.getElementById("email");
+            emailInput.addEventListener("input", () => {
+                // Reset first so the custom message doesn't get stuck
+                emailInput.setCustomValidity("");
+
+                if (!emailInput.validity.valid) {
+                    emailInput.setCustomValidity("Please enter a valid email address (e.g. name@example.com)");
+                }
+            });
+
+            // Also validate on form submit in case the field was never touched
+            document.querySelector("form").addEventListener("submit", (e) => {
+                if (!emailInput.validity.valid) {
+                    emailInput.setCustomValidity("Please enter a valid email address (e.g. name@example.com)");
+                    emailInput.reportValidity();
+                    e.preventDefault();
+                }
             });
         </script>
     </body>
