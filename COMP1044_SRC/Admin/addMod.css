@@ -1,0 +1,106 @@
+body {
+    text-align: left;
+}
+
+#title {
+    padding-bottom: 3%;
+    margin-left: 30px;
+}
+
+/* Flex container: form on the left, image on the right */
+.page-layout {
+    display: flex;
+    gap: 32px;
+    align-items: flex-start;
+    margin-left: 30px;
+}
+
+/* Prevent the form column from ever shrinking into the image */
+main {
+    flex: 1;
+    min-width: 0;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 180px 45%;
+    align-items: center;
+    margin-bottom: 16px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.form-row .radio-group {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    font-weight: bold;
+}
+
+.form-row .radio-group label {
+    margin: 0;
+    padding: 0;
+}
+
+label {
+    padding-right: 10px;
+}
+
+input {
+    font-size: 18px;
+}
+
+.form-buttons {
+    display: flex;
+    gap: 12px;
+    margin-top: 5%;
+}
+
+.formbtn {
+    background-color: rgb(23, 23, 152);
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    height: 50px;
+    width: 100px;
+    border: 1px solid black;
+    border-radius: 5px;
+}
+
+.formbtn:hover {
+    cursor: pointer;
+    background-color: rgb(15, 15, 194);
+}
+
+#employ {
+    width: 60%;
+}
+
+#Female {
+    margin-left: 7.7%;
+}
+
+#programme, #company{
+    font-size: 18px;
+}
+
+/* Image container: normal flow, sits to the right of the form */
+#imgcontainer {
+    flex-shrink: 0;   /* never squishes the image into the form */
+    margin-top:-10px;
+    margin-right: 30px;
+}
+
+.sideimages {
+    height: auto;
+    width: 500px;
+    display: block;
+
+}
+
+/* Hide image on small screens where there isn't enough space */
+@media (max-width: 768px) {
+    #imgcontainer {
+        display: none;
+    }
+}

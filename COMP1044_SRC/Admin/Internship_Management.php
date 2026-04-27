@@ -53,7 +53,7 @@
             <?php } ?>
         </datalist>
         <button type="submit" class="searchbtn">Search</button>
-        <a href="Internship_Management.php"><button type="button" class="searchbtn" style="background-color: #555;">Clear</button></a>
+        <a href="Internship_Management.php"><button type="button" class="searchbtn">Clear</button></a>
     </form>
 
     <?php

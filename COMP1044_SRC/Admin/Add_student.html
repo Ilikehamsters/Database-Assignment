@@ -2,44 +2,62 @@
 <html>
     <head>
         <title>Add Student Page</title>
+        <link rel="stylesheet" href="addMod.css">
+        <link rel="stylesheet" href="../Global.css">
     </head>
     <body>
         <header>
-            <h1>Add Student</h1>
+            <h1 id="title">Add Student</h1>
         </header>
-        <main>
-            <form action="Add_student.php" method="post">
-                <label for="username">Username:</label>
-                <input type="text" maxlength="12" id="username" name="username" value="" placeholder="Enter username..." required><br>
-
-                <label for="name">Full Name:</label>
-                <input type="text" maxlength="60" id="name" name="name" value="" placeholder="Enter full name..." required><br>
-
-                <label for="programme">Programme:</label>
-                <select id="programme" name="programme" required>
-                    <option value="">...</option>
-                </select><br>
-
-                <label for="contact">Contact Number:</label>
-                <input type="text" maxlength="16" name="contact" value="" placeholder="Enter phone number..." required><br>
-
-                <label for="email">Email Address:</label>
-                <input type="text" maxlength="50" name="email" value="" placeholder="Enter email address..." required><br>
-
-                <label for="enroll">Enrollment Date:</label>
-                <input type="date" id="enroll" name="enroll" value="" placeholder="DD/MM/YYYY" required><br>
-
-                <label for="gender">Gender:</label>
-                <input type="radio" id="Male" name="gender" value="Male" required>
-                <label for="Male">Male</label>
-                <input type="radio" id="Female" name="gender" value="Female" required>
-                <label for="Female">Female</label><br>
-
-                <input type="submit" value="Submit" placeholder="Submit">
-                <input type="reset" value="Clear"><br>
-                <button type="button">Back</button>
-            </form>
-        </main>
+        <section class="page-layout">
+            <main>
+                <form action="Add_student.php" method="post">
+                    <article class="form-row">
+                        <label for="username">Username:</label>
+                        <input type="text" maxlength="12" id="username" name="username" value="" placeholder="Enter username..." required>
+                    </article>
+                    <article class="form-row">
+                        <label for="name">Full Name:</label>
+                        <input type="text" maxlength="60" id="name" name="name" value="" placeholder="Enter full name..." required>
+                    </article>
+                    <article class="form-row">
+                        <label for="programme">Programme:</label>
+                        <select id="programme" name="programme" required>
+                            <option value="">...</option>
+                        </select>
+                    </article>
+                    <article class="form-row">
+                        <label for="contact">Contact Number:</label>
+                        <input type="text" maxlength="16" name="contact" value="" placeholder="Enter phone number..." required>
+                    </article>
+                    <article class="form-row">
+                        <label for="email">Email Address:</label>
+                        <input type="text" maxlength="50" name="email" value="" placeholder="Enter email address..." required>
+                    </article>
+                    <article class="form-row">
+                        <label for="enroll">Enrollment Date:</label>
+                        <input type="date" id="enroll" name="enroll" value="" placeholder="DD/MM/YYYY" required>
+                    </article>
+                    <article class="form-row">
+                        <label for="gender">Gender:</label>
+                        <article class="radio-group">
+                            <input type="radio" id="Male" name="gender" value="Male" required>
+                            <label for="Male">Male</label>
+                            <input type="radio" id="Female" name="gender" value="Female" required>
+                            <label for="Female">Female</label>
+                        </article>
+                    </article>
+                    <article class="form-buttons">
+                        <input type="submit" class="formbtn" value="Submit" placeholder="Submit">
+                        <input type="reset" class="formbtn" value="Clear">
+                        <button type="button" class="formbtn">Back</button>
+                    </article>
+                </form>
+            </main>
+            <aside id="imgcontainer">
+                <img src="../Assets/Student.jpg" alt="Picture of Student" class="sideimages">
+            </aside>
+        </section>
         <script>
             const backbtn = document.querySelector("button");
             function backfunction() {
@@ -57,7 +75,7 @@
                 fetch('Add_student.php')
                     .then(response => response.json())
                     .then(data => {
-                        dropdown.innerHTML = '<option value="">--Select Program--</option>';
+                        dropdown.innerHTML = '<option value="">--Select Programme--</option>';
 
                         // Iterate through the array and create options
                         data.forEach(item => {

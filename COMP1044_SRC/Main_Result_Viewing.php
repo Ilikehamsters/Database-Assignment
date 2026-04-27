@@ -66,7 +66,7 @@
         </datalist>
         <!-- search and clear button-->
         <button type="submit" class="searchbtn">Search</button>
-        <a href="Main_Result_Viewing.php"><button type="button" class="searchbtn" style="background-color: #555;">Clear</button></a>
+        <a href="Main_Result_Viewing.php"><button type="button" class="searchbtn">Clear</button></a>
     </form>
 
     <!-- the result table -->
