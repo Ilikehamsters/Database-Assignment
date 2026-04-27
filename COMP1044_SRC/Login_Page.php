@@ -24,6 +24,7 @@ if (isset($_SESSION['Role'])) {
 <html>
     <head>
         <title>Login Page</title>
+        <link rel="stylesheet" href="Global.css">
         <link rel="stylesheet" href="Login_Page.css">
     </head>
     <body>
@@ -34,10 +35,12 @@ if (isset($_SESSION['Role'])) {
             <section id="login_form">
                 <form action="Login.php" method="post" id="login_content">
                     <h2 id="login">Login</h2>
-                    <input class="textbox" type="text" id="username" name="username" placeholder="Username" required><br><br>
-                    <input class="textbox" type="password" id="password" name="password" placeholder="Password" required>
-                    <img src="Assets/Eye.png" alt="Show" id="togglePWD"><br><br>
-                    <input id="login_button" type="submit" value="Log in"><br>
+                    <input class="textbox" type="text" id="username" name="username" placeholder="Username" required>
+                    <div class="pwd-wrapper">
+                        <input class="textbox" type="password" id="password" name="password" placeholder="Password" required>
+                        <img src="Assets/Eye.png" alt="Show" id="togglePWD">
+                    </div>
+                    <input id="login_button" type="submit" value="Log in">
                 </form>
             </section>
         </main>
