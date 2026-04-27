@@ -25,22 +25,17 @@
                     <li><a href="Admin/User_Access.html">Reset User Password</a></li>
                 <?php } elseif ($_SESSION['Role'] == 'University Assessor') { ?>
                     <li><a href="Assessor/Lecturer_Page.php">Home</a></li>
+                    <li><a href="Assessor/Lecturer_Profile.php">Profile</a></li>
                     <li><a href="Assessor/Lecturer_Internship_Grading.php">Grade Internship</a></li>
                 <?php } elseif ($_SESSION['Role'] == 'Industrial Supervisor') { ?>
                     <li><a href="Assessor/Supervisor_Page.php">Home</a></li>
+                    <li><a href="Assessor/Supervisor_Profile.php">Profile</a></li>
                     <li><a href="Assessor/Supervisor_Internship_Grading.php">Grade Internship</a></li>
                 <?php } elseif ($_SESSION['Role'] == 'Student') { ?>
                     <li><a href="Student/Student_Page.php">Home</a></li>
-                <?php } ?>
-
-                <!-- link to the correct profile link for the role -->
-                <?php if ($_SESSION['Role'] == 'University Assessor') { ?>
-                    <li><a href="Assessor/Lecturer_Profile.php">Profile</a></li>
-                <?php } elseif ($_SESSION['Role'] == 'Industrial Supervisor') { ?>
-                    <li><a href="Assessor/Supervisor_Profile.php">Profile</a></li>
-                <?php } elseif ($_SESSION['Role'] == 'Student') { ?>
                     <li><a href="Student/Student_Profile.php">Profile</a></li>
                 <?php } ?>
+
                 <li><a href="Result_Viewing.php" class="active">View Results</a></li>
             </ul>
         </div>

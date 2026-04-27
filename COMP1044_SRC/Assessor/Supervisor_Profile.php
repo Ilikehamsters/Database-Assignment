@@ -18,8 +18,8 @@
             <!-- all the lefthand side links -->
             <ul class="nav-links">
                 <!-- from top to bottom: main page, internship result entry, result viewing and profile information -->
-                <li><a href="Supervisor_Page.html" class="active">Home</a></li>
-                <li><a href="Supervisor_Profile.php">Profile</a></li>
+                <li><a href="Supervisor_Page.php">Home</a></li>
+                <li><a href="Supervisor_Profile.php" class="active">Profile</a></li>
                 <li><a href="Supervisor_Internship_Grading.php">Grade Internship</a></li>
                 <li><a href="../Main_Result_Viewing.php">View Results</a></li>
             </ul>
@@ -29,7 +29,7 @@
         <div class="nav-right">
             <ul class="nav-links">
                 <!-- for user to log out -->
-                <li><a href="../Login_page.php"><button type="button" class="logoutbtn"><img src="../Assets/Logout.png" class="logoutIcon">Logout</button></a></li>
+                <li><a href="../Logout.php"><button type="button" class="logoutbtn"><img src="../Assets/Logout.png" class="logoutIcon">Logout</button></a></li>
             </ul>
         </div>
     </nav>

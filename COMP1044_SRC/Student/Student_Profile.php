@@ -18,8 +18,8 @@
             <!-- all the lefthand side links -->
             <ul class="nav-links">
                 <!-- from top to bottom: main page, result viewing and profile information -->
-                <li><a href="Student_Page.php" class="active">Home</a></li>
-                <li><a href="Student_Profile.php">Profile</a></li>
+                <li><a href="Student_Page.php">Home</a></li>
+                <li><a href="Student_Profile.php" class="active">Profile</a></li>
                 <li><a href="../Result_Viewing.php">View Results</a></li>
             </ul>
         </div>

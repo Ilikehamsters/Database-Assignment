@@ -16,9 +16,9 @@
                 <!-- all the lefthand side links -->
                 <ul class="nav-links">
                     <!-- from top to bottom: main page, internship result entry, result viewing and profile information -->
-                    <li><a href="Lecturer_Page.php" class="active">Home</a></li>
+                    <li><a href="Lecturer_Page.php">Home</a></li>
                     <li><a href="Lecturer_Profile.php">Profile</a></li>
-                    <li><a href="Lecturer_Internship_Grading.php">Grade Internship</a></li>
+                    <li><a href="Lecturer_Internship_Grading.php" class="active">Grade Internship</a></li>
                     <li><a href="../Main_Result_Viewing.php">View Results</a></li>
                 </ul>
             </div>
@@ -49,7 +49,7 @@
             <?php } ?>
         </datalist>
         <button type="submit" class="searchbtn">Search</button>
-        <a href="Lecturer_Internship_Grading.php"><button type="button" class="searchbtn" style="background-color: #555;">Clear</button></a>
+        <a href="Lecturer_Internship_Grading.php"><button type="button" class="searchbtn">Clear</button></a>
     </form>
 
     <main>
@@ -311,7 +311,7 @@
                             <!-- only show the form buttons if the supervisor already graded AND the lecturer hasn't graded yet -->
                             <tr>
                                 <td style="padding-top: 10px;"><button type="submit" class="formbtn">Submit</button></td>
-                                <td style="padding-top: 10px;"><button type="reset" class="formbtn" style="background-color: #555;">Clear</button></td>
+                                <td style="padding-top: 10px;"><button type="reset" class="formbtn">Clear</button></td>
                             </tr>
                         <?php } ?>
 
