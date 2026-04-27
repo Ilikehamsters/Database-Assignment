@@ -25,9 +25,11 @@
                     <li><a href="Admin/User_Access.html">Reset User Password</a></li>
                 <?php } elseif ($_SESSION['Role'] == 'University Assessor') { ?>
                     <li><a href="Assessor/Lecturer_Page.php">Home</a></li>
+                    <li><a href="Assessor/Lecturer_Profile.php">Profile</a></li>
                     <li><a href="Assessor/Lecturer_Internship_Grading.php">Grade Internship</a></li>
                 <?php } elseif ($_SESSION['Role'] == 'Industrial Supervisor') { ?>
                     <li><a href="Assessor/Supervisor_Page.php">Home</a></li>
+                    <li><a href="Assessor/Supervisor_Profile.php">Profile</a></li>
                     <li><a href="Assessor/Supervisor_Internship_Grading.php">Grade Internship</a></li>
                 <?php } ?>
                 <li><a href="Main_Result_Viewing.php" class="active">View Results</a></li>
@@ -36,12 +38,6 @@
         <!-- righthand side of the nav bar -->
         <div class="nav-right">
             <ul class="nav-links">
-                <!-- link to the correct profile link for the role -->
-                <?php if ($_SESSION['Role'] == 'University Assessor') { ?>
-                    <li><a href="Assessor/Lecturer_Profile.php">Profile</a></li>
-                <?php } elseif ($_SESSION['Role'] == 'Industrial Supervisor') { ?>
-                    <li><a href="Assessor/Supervisor_Profile.php">Profile</a></li>
-                <?php } ?>
                 <!-- for user to log out -->
                 <a href="Logout.php" class="logout-text"><button type="button" class="logoutbtn"><img src="Assets/Logout.png" class="logoutIcon">Logout</button></a>
             </ul>

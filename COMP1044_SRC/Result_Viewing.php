@@ -32,12 +32,7 @@
                 <?php } elseif ($_SESSION['Role'] == 'Student') { ?>
                     <li><a href="Student/Student_Page.php">Home</a></li>
                 <?php } ?>
-                <li><a href="Main_Result_Viewing.php" class="active">View Results</a></li>
-            </ul>
-        </div>
-        <!-- righthand side of the nav bar -->
-        <div class="nav-right">
-            <ul class="nav-links">
+
                 <!-- link to the correct profile link for the role -->
                 <?php if ($_SESSION['Role'] == 'University Assessor') { ?>
                     <li><a href="Assessor/Lecturer_Profile.php">Profile</a></li>
@@ -46,6 +41,12 @@
                 <?php } elseif ($_SESSION['Role'] == 'Student') { ?>
                     <li><a href="Student/Student_Profile.php">Profile</a></li>
                 <?php } ?>
+                <li><a href="Result_Viewing.php" class="active">View Results</a></li>
+            </ul>
+        </div>
+        <!-- righthand side of the nav bar -->
+        <div class="nav-right">
+            <ul class="nav-links">
                 <!-- for user to log out -->
                 <a href="Logout.php" class="logout-text"><button type="button" class="logoutbtn"><img src="Assets/Logout.png" class="logoutIcon">Logout</button></a>
             </ul>
