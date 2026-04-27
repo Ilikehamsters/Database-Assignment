@@ -40,10 +40,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             header("Location: Change_PWD.html?login=success");
             exit();
         } else {
-            echo "Invalid username or password!";
+            //save the error to the session for Login_Page.php to show.
+            $_SESSION['login_error'] = "Invalid username or password!";
+            //redirect back to the login page instead of being stuck on this login.php
+            header("Location: Login_Page.php");
         }
     } else {
-        echo "Invalid username or password!";
+        //save the error to the session for Login_Page.php to show.
+        $_SESSION['login_error'] = "Invalid username or password!";
+        //redirect back to the login page.
+        header("Location: Login_Page.php");
     }
     $stmt->close();
 }

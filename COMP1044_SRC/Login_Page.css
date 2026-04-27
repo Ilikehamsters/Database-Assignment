@@ -1,7 +1,3 @@
-body {
-    background-color: #f8fafc;
-}
-
 * {
     box-sizing: border-box;
 }
@@ -12,93 +8,97 @@ body {
     position: absolute;
     left: 7%;
     top: 10%;
-
-
+    color: #111;
 }
 
 #login_form {
     background-color: white;
     display: flex;
     flex-direction: column;
-    border: 1px transparent;
-    width: 500px;
-    height: 500px;
-    margin-top: 5%;
+    justify-content: center;
+    width: 480px;
+    height: 480px;
+    margin-top: 8%;
     margin-left: auto;
-    margin-right: 3%;
-    box-shadow: 0px 0px 50px rgba(83, 83, 83, 0.5);
-    border-radius: 10%;
+    margin-right: 8%;
+    box-shadow: 0px 10px 40px rgba(0, 0, 0, 0.15);
+    border-radius: 20px;
+}
+
+#login_content {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* center all the form stuff inside */
+    width: 100%;
+    gap: 25px;
 }
 
 #login {
     font-size: 40px;
-    padding-top: 0;
-    color: darkblue;
+    color: rgb(23, 23, 152);
     font-weight: bold;
-    margin-left: 5%;
-    padding-bottom: 10px;
-}
-
-#login_button {
-    border: 1px transparent;
-    border-radius: 10px;
-    background-color: rgb(50, 153, 255);
-    color: white;
-    font-size: 28px;
-    margin-bottom: 20px;
-    padding: 10px;
-    width: 450px;
-    font-weight: bold;
-    margin-left: 5%;
-    margin-right: 5%;
-}
-
-#login_button:hover {
-    cursor: pointer;
+    margin: 0;
+    margin-bottom: 5px;
+    align-self: flex-start; /* left align the text to the container */
+    padding-left: 10%;
 }
 
 .textbox {
-    width: 430px;
+    width: 80%;
     height: 55px;
-    margin-left: 5%;
-    margin-right: auto;
-    border-radius: 15px;
-    border: 1px solid black;
+    border-radius: 10px;
+    border: 1px solid #ccc;
     font-size: 20px;
-    padding-left: 12px;
-    font-weight: bold;
+    padding-left: 15px;
+    padding-right: 45px;
+    outline: none;
+    transition: border-color 0.2s; /* fancy colour change animation */
 }
 
-#forgot_password {
-    text-decoration:none;
-    color: black;
-    font-size: 20px;
-    padding-top: 20px;
-    margin-bottom: 20%;
-    margin-left: 5%;
+.textbox:focus {
+    border-color: rgb(23, 23, 152);
 }
 
-#forgot_password:hover {
-    text-decoration: underline;
+.pwd-wrapper {
+    position: relative; /* to keep the eye icon inside the password field */
+    width: 80%;
+    display: flex;
+    align-items: center;
+}
+
+.pwd-wrapper .textbox {
+    width: 100%; /* so that the eye icon is floating above it. instead of there being like a separation */
 }
 
 #togglePWD {
-    height: 30px;
-    width: 30px;
+    height: 25px;
+    width: auto;
     position: absolute;
-    right: 8%;
-    top: 45.5%;
-    transform: translateY(-50%);
+    right: 15px;
     cursor: pointer;
-    background: none;
-    border: none;
-    padding: 0;
+    opacity: 0.6; /* to match the light grey text colour more. instead of black. */
+    transition: opacity 0.2s;
 }
 
 #togglePWD:hover {
-    background-color: #c7c3c3;
-    border: 1px transparent;
-    border-radius: 50px;
-    padding: 1px;
+    opacity: 1; /* make it darker/black on hover */
+}
+
+#login_button {
+    border: none;
+    border-radius: 10px;
+    background-color: rgb(23, 23, 152);
+    color: white;
+    font-size: 24px;
+    margin-top: 10px;
+    padding: 12px;
+    width: 80%;
+    font-weight: bold;
     cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+#login_button:hover {
+    background-color: rgb(15, 15, 194);
+    transform: translateY(-2px);
 }

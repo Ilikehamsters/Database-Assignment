@@ -41,7 +41,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['action']) && $_POST['a
         $_POST['PM'], $_POST['PMfeedback'], $_POST['TM'], $_POST['TMfeedback'],
         $internship_id);
 
-    //save the message to the session for Supervisor_Grading_Logic.php.php to show.
+    //save the message to the session for Supervisor_Grading_Logic.php to show.
     //either a success or error message depending on whether the execute is successful.
     if ($stmt_update->execute()) {
         $_SESSION['success_msg'] = "Marks submitted successfully! The university assessor/lecturer can now grade this student.";
