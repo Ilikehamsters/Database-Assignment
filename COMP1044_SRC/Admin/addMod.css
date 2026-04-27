@@ -56,22 +56,6 @@ input {
     margin-top: 5%;
 }
 
-.formbtn {
-    background-color: rgb(23, 23, 152);
-    color: white;
-    font-size: 20px;
-    font-weight: bold;
-    height: 50px;
-    width: 100px;
-    border: 1px solid black;
-    border-radius: 5px;
-}
-
-.formbtn:hover {
-    cursor: pointer;
-    background-color: rgb(15, 15, 194);
-}
-
 #employ {
     width: 60%;
 }
@@ -87,7 +71,7 @@ input {
 /* Image container: normal flow, sits to the right of the form */
 #imgcontainer {
     flex-shrink: 0;   /* never squishes the image into the form */
-    margin-top: -50px;
+    margin-top: 0px;
     margin-right: 30px;
 }
 

@@ -1,3 +1,20 @@
+.modifybtn, .deletebtn {
+    background-color: rgb(23, 23, 152);
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    height: 38px;
+    border: 1px solid black;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100px;
+}
+
+
+.modifybtn:hover, .deletebtn:hover {
+    background-color: rgb(15, 15, 194);
+}
+
 #tableContainer {
     border-radius: 12px;
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
@@ -58,20 +75,6 @@ tr:nth-child(even) {
 }
 
 #addbtn:hover {
-    cursor: pointer;
-    background-color: rgb(15, 15, 194);
-}
-
-.modifybtn, .deletebtn {
-    background-color: rgb(23, 23, 152);
-    color: white;
-    font-size: 16px;
-    font-weight: bold;
-    border-radius: 5px;
-
-}
-
-.modifybtn:hover, .deletebtn:hover {
     cursor: pointer;
     background-color: rgb(15, 15, 194);
 }
