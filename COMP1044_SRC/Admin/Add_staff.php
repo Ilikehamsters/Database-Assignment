@@ -3,6 +3,15 @@
     error_reporting(E_ALL);
     require_once '../global.php';
 
+    session_start();
+
+    //check if the user is logged in and they're the right role.
+    if (!isset($_SESSION['User_ID']) || $_SESSION['Role'] !== 'Admin') {
+        //if no then bring the user to the login page.
+        header("Location: ../Login_Page.php");
+        exit();
+    }
+
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $Username = $_POST['username'];
         $Name = $_POST['name'];
