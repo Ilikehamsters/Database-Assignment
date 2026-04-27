@@ -18,9 +18,11 @@
                 <!-- show the correct navigation links based on which role is the user -->
                 <?php if ($_SESSION['Role'] == 'Admin') { ?>
                     <li><a href="Admin/Admin_Page.php">Home</a></li>
-                    <li><a href="Admin/User_Access.php">Manage User</a></li>
                     <li><a href="Admin/Internship_Management.php">Manage Internship</a></li>
-                    <li><a href="Admin/Student_prof_manage.html">Student Profiles</a></li>
+                    <li><a href="Admin/Student_prof_manage.html">Manage Student</a></li>
+                    <li><a href="Admin/Staff_manage.html">Manage Lecturer</a></li>
+                    <li><a href="Admin/Supervisor_manage.html">Manage Supervisor</a></li>
+                    <li><a href="Admin/User_Access.html">Reset User Password</a></li>
                 <?php } elseif ($_SESSION['Role'] == 'University Assessor') { ?>
                     <li><a href="Assessor/Lecturer_Page.php">Home</a></li>
                     <li><a href="Assessor/Lecturer_Internship_Grading.php">Grade Internship</a></li>

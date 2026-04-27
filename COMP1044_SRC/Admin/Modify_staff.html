@@ -1,21 +1,37 @@
 <!DOCTYPE html>
 <html>
     <head>
-<<<<<<< Updated upstream
-        <title>Modify University Staff Page</title>
+        <title>Modify Lecturer</title>
         <link rel="stylesheet" href="addMod.css">
         <link rel="stylesheet" href="../Global.css">
     </head>
     <body>
         <header>
-            <h1 id="title">Modify University Staff</h1>
-=======
-        <title>Modify Lecturer</title>
-    </head>
-    <body>
-        <header>
+            <nav class="navbar">
+                <!-- lefthand side of the nav bar -->
+                <div class="nav-left">
+                    <!-- show the umn logo -->
+                    <img src="../Assets/UNMLogo.png" alt="UMN Logo" class="nav-logo">
+                    <!-- all the lefthand side links -->
+                    <ul class="nav-links">
+                        <!-- from top to bottom: main page, user management, internship management, result viewing, student profiles -->
+                        <li><a href="Admin_Page.php">Home</a></li>
+                        <li><a href="Internship_Management.php">Manage Internship</a></li>
+                        <li><a href="Student_prof_manage.html">Manage Student</a></li>
+                        <li><a href="Staff_manage.html" class="active">Manage Lecturer</a></li>
+                        <li><a href="Supervisor_manage.html">Manage Supervisor</a></li>
+                        <li><a href="User_Access.html">Reset User Password</a></li>
+                        <li><a href="../Main_Result_Viewing.php">View Results</a></li>
+                    </ul>
+                </div>
+
+                <!-- righthand side of the nav bar -->
+                <div class="nav-right">
+                    <!-- for user to log out -->
+                    <a href="../Logout.php" class="logout-text"><button type="button" class="logoutbtn"><img src="../Assets/Logout.png" class="logoutIcon">Logout</button></a>
+                </div>
+            </nav>
             <h1>Modify Lecturer Details</h1>
->>>>>>> Stashed changes
         </header>
         <section class="page-layout">
             <main>
@@ -37,7 +53,7 @@
                 
                     <article class="form-row">
                         <label for="gender">Gender:</label>
-                        <article class="radio-group">
+                        <article class="radio-group" >
                             <input type="radio" id="Male" name="gender" value="Male" required>
                             <label for="Male">Male</label>
                             <input type="radio" id="Female" name="gender" value="Female" required>

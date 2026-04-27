@@ -27,10 +27,11 @@ if (!isset($_SESSION['User_ID']) || $_SESSION['Role'] !== 'Admin') {
                     <ul class="nav-links">
                         <!-- from top to bottom: main page, user management, internship management, result viewing, student profiles -->
                         <li><a href="Admin_Page.php" class="active">Home</a></li>
-                        <li><a href="User_Access.html">Reset User Password</a></li>
                         <li><a href="Internship_Management.php">Manage Internship</a></li>
-                        <li><a href="Student_prof_manage.html">Student Profiles</a></li>
-
+                        <li><a href="Student_prof_manage.html">Manage Student</a></li>
+                        <li><a href="Staff_manage.html">Manage Lecturer</a></li>
+                        <li><a href="Supervisor_manage.html">Manage Supervisor</a></li>
+                        <li><a href="User_Access.html">Reset User Password</a></li>
                         <li><a href="../Main_Result_Viewing.php">View Results</a></li>
                     </ul>
                 </div>
@@ -69,14 +70,14 @@ if (!isset($_SESSION['User_ID']) || $_SESSION['Role'] !== 'Admin') {
                     </div>
                 </a>
 
-                <!-- card to view student profiles -->
+                <!-- card to view manage student -->
                 <a href="Student_prof_manage.html" class="feature-card">
                     <div class="card-image">
-                        <img src="../Assets/StudentProfile.png" alt="Student Profiles">
+                        <img src="../Assets/StudentProfile.png" alt="Manage Student">
                     </div>
                     <div class="card-text">
-                        <h3>View Student Profiles</h3>
-                        <p>View the student's profiles.</p>
+                        <h3>Manage Student Profiles</h3>
+                        <p>Manage the student's profiles.</p>
                     </div>
                 </a>
 
