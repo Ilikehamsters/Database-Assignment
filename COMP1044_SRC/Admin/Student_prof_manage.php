@@ -20,16 +20,34 @@
 
     if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['studID'])) {
         $StudID = $_GET['studID'];
-        $deleteStmt = $conn->prepare("DELETE FROM student WHERE Student_ID = ?");
-        if (!$deleteStmt) {
-            die("Prepare failed (Delete_student): " . $conn->error);
+
+        $findUserStmt = $conn->prepare("SELECT User_ID FROM student WHERE Student_ID = ?");
+        if (!$findUserStmt) {
+            die("Prepare failed (Find_User): " . $conn->error);
         }
-        $deleteStmt->bind_param("i", $StudID);
-        $deleteStmt->execute();
+        $findUserStmt->bind_param("i", $StudID);
+        $findUserStmt->execute();
+        $result = $findUserStmt->get_result();
+
+        if ($result->num_rows > 0) {
+            $row = $result->fetch_assoc();
+            $userIDToDelete = $row['User_ID'];
+
+            $deleteStmt = $conn->prepare("DELETE FROM user_login WHERE User_ID = ?");
+            if (!$deleteStmt) {
+                die("Prepare failed (Delete_User): " . $conn->error);
+            }
+            $deleteStmt->bind_param("i", $userIDToDelete);
+            $deleteStmt->execute();
+            $deleteStmt->close();
+        }
+
+        $findUserStmt->close();
         $conn->close();
+
         header("Location: Student_prof_manage.html?delete=success");
-        exit(); // Stop execution here so it doesn't try to "Search"
-    } 
+        exit(); // Stop execution here
+    }
 
     if ($_SERVER['REQUEST_METHOD'] === 'GET' && empty($_GET['ID']) && empty($_GET['name'])) {
         $fetchstmt = $conn->prepare("SELECT * FROM student");

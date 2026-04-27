@@ -19,17 +19,35 @@
     }
 
     if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['supervID'])) {
-        $SupervID = $_GET['supervID'];
-        $deleteStmt = $conn->prepare("DELETE FROM inds_supervisor WHERE Supvr_ID = ?");
-        if (!$deleteStmt) {
-            die("Prepare failed (Delete_supervisor): " . $conn->error);
-        }
-        $deleteStmt->bind_param("i", $SupervID);
-        $deleteStmt->execute();
-        $conn->close();
-        header("Location: Supervisor_manage.html?delete=success");
-        exit(); // Stop execution here so it doesn't try to "Search"
-    } 
+            $SupervID = $_GET['supervID'];
+
+            $findUserStmt = $conn->prepare("SELECT User_ID FROM inds_supervisor WHERE Supvr_ID = ?");
+            if (!$findUserStmt) {
+                die("Prepare failed (Find_User): " . $conn->error);
+            }
+            $findUserStmt->bind_param("i", $SupervID);
+            $findUserStmt->execute();
+            $result = $findUserStmt->get_result();
+
+            if ($result->num_rows > 0) {
+                $row = $result->fetch_assoc();
+                $userIDToDelete = $row['User_ID'];
+
+                $deleteStmt = $conn->prepare("DELETE FROM user_login WHERE User_ID = ?");
+                if (!$deleteStmt) {
+                    die("Prepare failed (Delete_User): " . $conn->error);
+                }
+                $deleteStmt->bind_param("i", $userIDToDelete);
+                $deleteStmt->execute();
+                $deleteStmt->close();
+            }
+
+            $findUserStmt->close();
+            $conn->close();
+
+            header("Location: Supervisor_manage.html?delete=success");
+            exit();
+    }
 
     if ($_SERVER['REQUEST_METHOD'] === 'GET' && empty($_GET['ID']) && empty($_GET['name'])) {
         $fetchstmt = $conn->prepare("SELECT * FROM inds_supervisor");
