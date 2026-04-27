@@ -80,8 +80,8 @@ table {
 }
 
 thead {
-    color: rgb(19, 89, 159);
-    background-color: #b8d8f9;
+    color: rgb(255, 255, 255);
+    background-color: rgb(23, 23, 152);
 }
 
 th {
@@ -90,6 +90,8 @@ th {
     letter-spacing: 1px;
     padding: 18px;
     border-bottom: 1px solid black;
+    background-color: rgb(23, 23, 152);
+
 }
 
 td {
@@ -104,5 +106,40 @@ tr:last-child td {
 }
 
 tr:hover {
-    background-color: #f9f9f9;
+    background-color: #e6f0ff;
+}
+
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+#addbtn {
+    background-color: rgb(23, 23, 152);
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    height: 50px;
+    width: 100px;
+    border: 1px solid black;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+#addbtn:hover {
+    cursor: pointer;
+    background-color: rgb(15, 15, 194);
+}
+
+.modifybtn, .deletebtn {
+    background-color: rgb(23, 23, 152);
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 5px;
+
+}
+
+.modifybtn:hover, .deletebtn:hover {
+    cursor: pointer;
+    background-color: rgb(15, 15, 194);
 }
